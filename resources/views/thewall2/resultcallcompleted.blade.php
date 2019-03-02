@@ -17,15 +17,15 @@
         </div>
 
 
-            {{ Form::open(array('url' => action('frontend@searchCall'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+            {!! Form::open(array('url' => action('frontend@searchCall'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) !!}
 
             <div class="form-group">
                 Введіть Ваш позивний:
-                &nbsp;{{ Form::text('searchcall',"") }}
-                {{Form::hidden('Token', $tokenProgramm)}}
+                &nbsp;{!! Form::text('searchcall',"") !!}
+                {!!Form::hidden('Token', $tokenProgramm) !!}
                 <button type="submit" class="btn btn-primary submit-button">Переглянути статистику</button>
 
-                {{ Form::close() }}
+                {!! Form::close() !!}
             </div>
 
             <ul class="list-group ">
@@ -71,35 +71,35 @@
     @if($methodArray[0]==0)
         <p>Ви виконали умови диплому "{{$programmName}}"<br>Будь ласка введіть E-mail куди вам відправити диплом</p>
         <p><em>Ваша адреса E-mail буде доправлена до дипломного менеджера програми </em></p>
-                      {{ Form::open(array('url' => action('frontend@sendemail'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+                      {!! Form::open(array('url' => action('frontend@sendemail'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) !!}
 
              <div class="form-group" style="color: #2d2d30  ">
 
-                      {{ Form::text('email', "Ваш E-mail", array("class" =>"searchinput")) }}
-                      {{Form::hidden('key', "0") }}
-                      {{Form::hidden('token', $tokenProgramm)}}
-                      {{Form::hidden('call', $call)}}
+                      {!! Form::text('email', "Ваш E-mail", array("class" =>"searchinput")) !!}
+                      {!!Form::hidden('key', "0") !!}
+                      {!!Form::hidden('token', $tokenProgramm)!!}
+                      {!!Form::hidden('call', $call)!!}
                       <button type="submit" class=" btn btn-primary submit-button">Я виконав!</button>
 
-                      {{ Form::close() }}
+                      {!! Form::close() !!}
             </div>
     @endif
     @if($methodArray[0]==1)
                 <p>Ви виконали умови диплому "{{$programmName}}"<br>Будь ласка введіть Ваше ім'я латиніцею</p>
-                {{ Form::open(array('url' => action('frontend@sendemail'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+                {!! Form::open(array('url' => action('frontend@sendemail'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) !!}
 
                 <div class="form-group" style="color: #2d2d30  ">
 
-                    {{Form::text('name', "Ім'я",array("class" =>"pageinput")) }}
-                    {{Form::hidden('key', "1") }}
-                    {{Form::hidden('token', $tokenProgramm)}}
-                    {{Form::hidden('call', $call)}}
-                    {{Form::hidden('x', $methodArray[1])}}
-                    {{Form::hidden('y', $methodArray[2])}}
-                    {{Form::hidden('color', $methodArray[3])}}
+                    {!!Form::text('name', "Ім'я",array("class" =>"pageinput")) !!}
+                    {!!Form::hidden('key', "1") !!}
+                    {!!Form::hidden('token', $tokenProgramm)!!}
+                    {!!Form::hidden('call', $call)!!}
+                    {!!Form::hidden('x', $methodArray[1])!!}
+                    {!!Form::hidden('y', $methodArray[2])!!}
+                    {!!Form::hidden('color', $methodArray[3])!!}
                     <button type="submit" class=" btn btn-primary submit-button">Я виконав!</button>
 
-                    {{ Form::close() }}
+                    {!! Form::close() !!}
                 </div>
     @endif
 

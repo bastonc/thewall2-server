@@ -142,13 +142,13 @@ class DBwork
         if($StrongReq=="NoStrong")
         {
             $request="%".$SearchString."%";
-            $SearchQeuest = "SELECT `". $keyCol."` FROM ".$tableName." WHERE `".$colSearch."` LIKE '".$request."'";
+            $SearchQeuest = "SELECT ". $keyCol." FROM ".$tableName." WHERE `".$colSearch."` LIKE '".$request."'";
             $SearchArray=DB::select($SearchQeuest);
         }
         if($StrongReq=="Strong")
         {
             $request=$SearchString;
-           $SearchQeuest = "SELECT `".$keyCol."` FROM ".$tableName." WHERE `".$colSearch."`= '".$request."'";
+           $SearchQeuest = "SELECT ".$keyCol." FROM ".$tableName." WHERE `".$colSearch."`= '".$request."'";
 
             $SearchArray=DB::select($SearchQeuest);
         }

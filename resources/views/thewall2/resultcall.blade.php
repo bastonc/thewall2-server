@@ -15,18 +15,18 @@
     <div id="band" class="container text-center">
 
         <div id="band" class="container text-center">
-            <h2>{{$programmName}}</h2>
+            <h2>{!!$programmName!!}</h2>
         </div>
 
-        {{ Form::open(array('url' => action('frontend@searchCall'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+        {!! Form::open(array('url' => action('frontend@searchCall'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) !!}
 
         <div class="form-group">
             Введіть Ваш позивний:
-            &nbsp;{{ Form::text('searchcall',array("class" =>"pageinput")) }}
-            {{Form::hidden('Token', $tokenProgramm)}}
+            &nbsp;{!! Form::text('searchcall',array("class" =>"pageinput")) !!}
+            {!!Form::hidden('Token', $tokenProgramm)!!}
             <button type="submit" class="btn btn-primary submit-button">Переглянути статистику</button>
 
-            {{ Form::close() }}
+            {!! Form::close() !!}
         </div>
 
         <ul class="list-group ">
@@ -35,7 +35,7 @@
                 @foreach($programmInfo as $programm)
                     <div class="row" >
                         <div class="col-md-4 center-block " >
-                            <img src="{{$programm->image}}" width="80%">
+                            <img src="{!!$programm->image!!}" width="80%">
                         </div>
                         <div class="col ">
                             <p class="text-center"><a href="/programm/?p={{$programm->token}}">{{$programm->name}}</a></p>
