@@ -26,7 +26,7 @@ class DBwork
                     if ($qsoArray == NULL) {
                         //$validate=$record['call'];
                         //$convertedText = mb_convert_encoding($record, 'utf-8', mb_detect_encoding($record));
-                        $validator = Validator::make($record, ['call'=>'regex:"[a-zA-Z0-9\//]"']);
+                        $validator = Validator::make($record, ['call'=>'regex:"[a-zA-Z0-9\//],{3,}"']);
                         //alpha_num| 'call'=>'alpha_num'    regex:"\/[а-я0-9]"
                         if ($validator->fails()) {
 
@@ -52,7 +52,7 @@ class DBwork
                                             $record['call'], $tokenprogramm, $record['operator']]);
                     if ($qsoArray == NULL) {
                         if ($qsoArray == NULL) {
-                            $validator = Validator::make( $record, ['call'=>'regex:"[a-zA-Z0-9\//]"']);
+                            $validator = Validator::make( $record, ['call'=>'regex:"[a-zA-Z0-9\//],{3,}"']);
                             if ($validator->fails()) {
                                 //dd($validator);
                                 $errors[] = $record['call'] . "<br>";
@@ -72,7 +72,7 @@ class DBwork
                     if ($repeat->repeat == "2") {
                         //       $qsoArray = DB::select('select `id` from QSO where  `call` = ? AND `band` = ? AND `tokenprogramm`=?', [$record['call'], $record['band'], $tokenprogramm]);
                         // if ($qsoArray == NULL) {
-                        $validator = Validator::make( $record, ['call'=>'regex:"[a-zA-Z0-9\//]"']);
+                        $validator = Validator::make( $record, ['call'=>'regex:"[a-zA-Z0-9\//],{3,}"']);
                         if ($validator->fails()) {
                             //dd($record['call']);
                             $errors[] = $record['call'] . "<br>";
