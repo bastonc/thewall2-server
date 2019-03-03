@@ -170,9 +170,9 @@ class DBwork
 
     {
         if ($reverse=="REV") {
-            $arrayData = DB::table('PROGRAMM')->orderBy($sortBy, 'desk')->where('status', '=', 'close')->paginate($paginate);
+            $arrayData = DB::table('PROGRAMM')->orderBy($sortBy, 'desc')->where('status', '=', 'close')->paginate($paginate);
         } elseif($reverse=="FWD") {
-            $arrayData = DB::table('PROGRAMM')->orderBy($sortBy)->where('status', '=', 'close')->paginate($paginate);
+            $arrayData = DB::table('PROGRAMM')->orderBy($sortBy,'asc')->where('status', '=', 'close')->paginate($paginate);
         }
         //dd( $arrayData);
         return $arrayData;

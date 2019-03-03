@@ -173,7 +173,7 @@ $search_placeholder="Шукати програму...";
         }
         .navbar-header-logo{
             font-family: 'Lobster', sans-serif;
-            font-size: 18px !important;
+            font-size: 20px !important;
 
         }
 

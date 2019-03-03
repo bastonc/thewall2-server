@@ -171,7 +171,7 @@
         }
        .navbar-header-logo{
             font-family: 'Lobster', sans-serif;
-            font-size: 50px !important;
+            font-size: 20px !important;
             background-color: #cccccc;
 
         }
