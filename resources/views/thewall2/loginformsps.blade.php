@@ -14,15 +14,15 @@
         </div>
 
 
-        {{ Form::open(array('url' => action('ProgramsDiplom@loginsps'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+        {!!  Form::open(array('url' => action('ProgramsDiplom@loginsps'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) !!}
 
         <div class="form-group">
             Введіть Ваш позивний СПС:
-            {{ Form::text('spscall') }}
-            {{ Form::password('spspass') }}
+            {!!  Form::text('spscall') !!}
+            {!!  Form::password('spspass') !!}
 
             <button type="submit" class="btn btn-primary submit-button">Увійти</button>
 
-            {{ Form::close() }}
+            {!!  Form::close() !!}
         </div>
         @stop

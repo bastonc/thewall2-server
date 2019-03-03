@@ -18,7 +18,7 @@
             <h2>{{$programmName}}</h2>
         </div>
 
-        {!! Form::open(array('url' => action('frontend@searchCall'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) !!}
+        {!!  Form::open(array('url' => action('frontend@searchCall'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) !!}
 
         <div class="form-group">
             Введіть Ваш позивний:

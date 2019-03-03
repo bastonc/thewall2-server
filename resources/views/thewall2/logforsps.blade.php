@@ -12,21 +12,22 @@
 
                 @if($resolvForm=="open")
                     <h3>Завантажити новий Adif звіт</h3>
-                    <p> {{ Form::open(array('url' => action('uploadadifController@uploadsps'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) }}
+                    <p> {!!  Form::open(array('url' => action('uploadadifController@uploadsps'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
 
                     @include('thewall2/form')
 
                     <div class="form-group">
 
 
-                        {{Form::submit('Загрузить файл')}}
+                        {!!Form::submit('Загрузить файл')!!}
                     </div>
                 @elseif($resolvForm=="close")
                     <p>Программа <br>{{$NameProgramm}} <br> завершена</p>
             @endif
         </div>
 
-        {{ Form::close() }}</center></p>
+        {!!  Form::close() !!}
+        </center></p>
 
 
 

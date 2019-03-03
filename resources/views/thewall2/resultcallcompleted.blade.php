@@ -85,6 +85,7 @@
             </div>
     @endif
     @if($methodArray[0]==1)
+
                 <p>Ви виконали умови диплому "{{$programmName}}"<br>Будь ласка введіть Ваше ім'я латиніцею</p>
                 {!! Form::open(array('url' => action('frontend@sendemail'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) !!}
 

@@ -54,13 +54,13 @@
 
             <div id="band" class="container text-center">
 
-        {!!  Form::open(array('url' => 'newprogramm', 'files'=>true)) !!}
+        {!!   Form::open(array('url' => 'newprogramm', 'files'=>true)) !!}
         <table border="0">
 
 
 
                <tr><td align="right"> Назва програми:&nbsp;&nbsp; </td> <td> <input  type="text"  name="Name" size="70"></td></tr>
-                <tr><td align="right"> Опис:&nbsp;&nbsp; </td> <td> {!!Form::textarea('Description', 'Опис програми буде відображатись на головній сторінці',array('size' => '69x10')  )!!}</td></tr>
+                <tr><td align="right"> Опис:&nbsp;&nbsp; </td> <td> {!! Form::textarea('Description', 'Опис програми буде відображатись на головній сторінці',array('size' => '69x10')  )!!}</td></tr>
                 <tr><td align="right"> Повтори:&nbsp;&nbsp;<br></td> <td align="left"> {!!Form::select('Repeat', array('0' => 'Заборонені', '1' => 'На різних діапазонах', '2'=>'Дозволені будь де'), '1')!!}</td></tr>
                 <tr><td align="right"> Необхідно набрати балів:&nbsp;&nbsp; </td> <td align="left">{!! Form::text('ScoreFinal', '',array('size' => '4','data-tooltip'=>'Вкажіть яку кількість балів необхідно набрати здобувач') )!!}</td></tr>
                 <tr><td align="right"> Бали за умовчуванням:&nbsp;&nbsp; </td> <td align="left"> {!!Form::text('ScoreDefault', '',array('size' => '4','data-tooltip'=>'Вкажіть яку кількість балів треба зараховувати, якщо QSO здобувача відбулося не з СПС, але з іншою станцією, яка бере участь у дипломній програмі<br /> Якщо станцій за умовчуванням не має - вкажіть - 0') )!!}</td></tr>
@@ -86,7 +86,7 @@
                 </div>
                 <input type=button onClick=plus(); value='+ СПС'><br><br></td></tr>
                     <tr><td colspan="2">
-                          {!! Form::submit('Створити дипломну програму!')!!}
+                          {!!  Form::submit('Створити дипломну програму!') !!}
 
 
                         </td></tr>

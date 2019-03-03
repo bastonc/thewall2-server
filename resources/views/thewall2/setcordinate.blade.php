@@ -46,7 +46,7 @@ $formtext="Оберіть де буде відображатись позивн�
 </head>
 <body>
 <div class="description">
-        {!!  Form::open(array('action' => 'UserWallController@getcordinatexy')) !!}
+        {!!   Form::open(array('action' => 'UserWallController@getcordinatexy')) !!}
             {{$formtext}}
     Чорний<input name="color" type="radio" value="black">
     Білий<input name="color" type="radio" value="white">

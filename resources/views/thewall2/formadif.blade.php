@@ -13,12 +13,12 @@
             <p>Log должен вестись под позывным СПС. Т.к. в журнал добавялется связь соискателя с
                 тем кто помечен полем OPERATOR в файле ADIF</p>
 
-                {{ Form::open(array('url' => action('uploadadifController@upload'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) }}
+                {!!  Form::open(array('url' => action('uploadadifController@upload'), 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
 
             <div class="form-group">
 
-                &nbsp;{{ Form::file('upfile') }}
-                {{Form::hidden('Token', $token)}}
+                {!! Form::file('upfile') !!}
+                {!! Form::hidden('Token', $token)!!}
 
             </div>
 
@@ -27,7 +27,7 @@
 
                     <button type="submit" class="btn btn-primary submit-button">Добавить</button>
 
-                {{ Form::close() }}
+                {!! Form::close() !!}
 
             </center>
 
