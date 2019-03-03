@@ -78,16 +78,15 @@ class UserWallController extends Controller
                 if ($saveMessage[0] != NULL) {
                     $sizeArray = $this->fullSizeImage($saveMessage[1]);
                     return view('thewall2.setcordinate', ["tokenprogramm" => $saveMessage[0], "image" => $saveMessage[1], "imageSize" => $sizeArray[3]]);
-                } elseif ($request->methodReciev == '0') {
-                    //dd($saveMessage);
-                    return redirect()->route('cabinet');
                 }
             }
+        }
+            elseif ($request->methodReciev == '0') {
+                //dd($saveMessage);
+                return redirect()->route('cabinet');
+            }
 
-        else {
-            return redirect()->route('cabinet');
-        }
-        }
+
             else {
             $message="";
             for ($i=0;$i<count($saveMessage);$i++) {
