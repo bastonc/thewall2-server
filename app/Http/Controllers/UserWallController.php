@@ -80,6 +80,8 @@ class UserWallController extends Controller
                     return view('thewall2.setcordinate', ["tokenprogramm" => $saveMessage[0], "image" => $saveMessage[1], "imageSize" => $sizeArray[3]]);
                 }
             }
+            return redirect()->route('cabinet');
+
         }
             elseif ($request->methodReciev == '0') {
                 //dd($saveMessage);
