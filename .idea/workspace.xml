@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0745dc9-c312-414d-8480-22c6c26721fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,13 +54,13 @@
         <counts>
           <entry key="env" value="20" />
           <entry key="js" value="21" />
-          <entry key="php" value="40663" />
+          <entry key="php" value="40673" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="20" />
-          <entry key="Blade" value="14965" />
+          <entry key="Blade" value="14975" />
           <entry key="HTML" value="38" />
           <entry key="JavaScript" value="21" />
           <entry key="PHP" value="25658" />
@@ -80,7 +80,7 @@
           <entry key="json" value="1" />
           <entry key="kLro3BjEUQJK11VEwiVo0oZm1WPbJ7JOAAErCN7V" value="1" />
           <entry key="log" value="1" />
-          <entry key="php" value="349" />
+          <entry key="php" value="350" />
           <entry key="rst" value="1" />
           <entry key="scss" value="2" />
           <entry key="txt" value="3" />
@@ -90,7 +90,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="3" />
-          <entry key="Blade" value="192" />
+          <entry key="Blade" value="193" />
           <entry key="CSS" value="5" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="1" />
@@ -116,20 +116,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserWallController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="80" column="17" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
-              <folding>
-                <element signature="e#139#215#0#PHP" />
-                <element signature="e#222#901#0#PHP" />
-                <element signature="e#906#1367#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/uploadadifController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -184,11 +170,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="129" column="44" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
+            <state relative-caret-position="360">
+              <caret line="129" column="51" lean-forward="true" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="164" column="47" selection-start-line="164" selection-start-column="47" selection-end-line="164" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -286,7 +281,6 @@
         <option value="$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/test.php" />
-        <option value="$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/form.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/formadif.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/logforsps.blade.php" />
@@ -303,6 +297,7 @@
         <option value="$PROJECT_DIR$/resources/views/thewall2/programform.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DBwork.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php" />
       </list>
     </option>
   </component>
@@ -586,12 +581,12 @@
       <workItem from="1551561459650" duration="1854000" />
       <workItem from="1551614681568" duration="12420000" />
       <workItem from="1552040101267" duration="8076000" />
-      <workItem from="1552061203704" duration="581000" />
+      <workItem from="1552061203704" duration="832000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="290882000" />
+    <option name="totallyTimeSpent" value="291133000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1680" height="974" extended-state="6" />
@@ -723,13 +718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
         </state>
       </provider>
     </entry>
@@ -959,8 +947,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="129" column="44" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
+        <state relative-caret-position="360">
+          <caret line="129" column="51" lean-forward="true" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="164" column="47" selection-start-line="164" selection-start-column="47" selection-end-line="164" selection-end-column="47" />
         </state>
       </provider>
     </entry>
