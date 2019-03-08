@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0745dc9-c312-414d-8480-22c6c26721fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DBwork.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DBwork.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/programform.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/programform.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +30,7 @@
           <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.36" value="1" />
-          <entry key="project.open.time.37" value="2" />
+          <entry key="project.open.time.37" value="3" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.40" value="1" />
@@ -49,20 +47,20 @@
           <entry key="project.open.time.71" value="1" />
           <entry key="project.open.time.9" value="1" />
           <entry key="project.open.time.95" value="1" />
-          <entry key="project.opened" value="41" />
+          <entry key="project.opened" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="env" value="20" />
           <entry key="js" value="21" />
-          <entry key="php" value="40655" />
+          <entry key="php" value="40663" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="20" />
-          <entry key="Blade" value="14957" />
+          <entry key="Blade" value="14965" />
           <entry key="HTML" value="38" />
           <entry key="JavaScript" value="21" />
           <entry key="PHP" value="25658" />
@@ -82,7 +80,7 @@
           <entry key="json" value="1" />
           <entry key="kLro3BjEUQJK11VEwiVo0oZm1WPbJ7JOAAErCN7V" value="1" />
           <entry key="log" value="1" />
-          <entry key="php" value="345" />
+          <entry key="php" value="349" />
           <entry key="rst" value="1" />
           <entry key="scss" value="2" />
           <entry key="txt" value="3" />
@@ -92,13 +90,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="3" />
-          <entry key="Blade" value="189" />
+          <entry key="Blade" value="192" />
           <entry key="CSS" value="5" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="5" />
           <entry key="Log" value="1" />
-          <entry key="PHP" value="156" />
+          <entry key="PHP" value="157" />
           <entry key="PLAIN_TEXT" value="8" />
           <entry key="ReST" value="1" />
           <entry key="SCSS" value="2" />
@@ -119,55 +117,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProgramsDiplom.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3289">
-              <caret line="486" lean-forward="true" selection-start-line="486" selection-end-line="486" />
-              <folding>
-                <element signature="e#284#634#0#PHP" />
-                <element signature="e#639#1450#0#PHP" />
-                <element signature="e#1455#1872#0#PHP" />
-                <element signature="e#9553#10219#0#PHP" />
-                <element signature="e#10224#10658#0#PHP" />
-                <element signature="e#10663#11134#0#PHP" />
-                <element signature="e#11139#12222#0#PHP" />
-                <element signature="e#12227#12668#0#PHP" />
-                <element signature="e#12673#13088#0#PHP" />
-                <element signature="e#16331#16967#0#PHP" />
-                <element signature="e#16972#17150#0#PHP" />
-                <element signature="e#17155#17354#0#PHP" />
-                <element signature="e#17359#20233#0#PHP" />
-                <element signature="e#20239#20355#0#PHP" />
-                <element signature="e#20361#21344#0#PHP" />
-                <element signature="e#21349#21952#0#PHP" />
-                <element signature="e#21957#22294#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programform.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="54" column="170" selection-start-line="54" selection-start-column="170" selection-end-line="54" selection-end-column="170" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/thewall2/newProgramForm.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="70" column="92" lean-forward="true" selection-start-line="70" selection-start-column="92" selection-end-line="70" selection-end-column="92" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserWallController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="555">
               <caret line="80" column="17" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
               <folding>
                 <element signature="e#139#215#0#PHP" />
@@ -181,8 +133,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/uploadadifController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="46" column="57" lean-forward="true" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
+            <state relative-caret-position="555">
+              <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -190,11 +142,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/indexProgramm.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
+            <state relative-caret-position="300">
               <caret line="20" column="53" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="53" />
-              <folding>
-                <element signature="e#371#406#0#HTML" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -202,23 +151,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/achiveProgramm.blade.php">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DBwork.php">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
-              <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-              <folding>
-                <element signature="e#367#391#0#HTML" expanded="true" />
-              </folding>
+              <caret line="23" column="134" lean-forward="true" selection-start-line="23" selection-start-column="134" selection-end-line="23" selection-end-column="134" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="728">
+              <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="39" column="90" selection-start-line="39" selection-start-column="90" selection-end-line="39" selection-end-column="90" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DBwork.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="23" column="140" selection-start-line="23" selection-start-column="140" selection-end-line="23" selection-end-column="140" />
-              <folding>
-                <element signature="e#49#83#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="405">
+              <caret line="129" column="44" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -231,7 +201,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-228">
+            <state relative-caret-position="345">
               <caret line="32" column="56" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="56" />
             </state>
           </provider>
@@ -323,7 +293,6 @@
         <option value="$PROJECT_DIR$/resources/views/thewall2/loginformsps.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/logprogram.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/newProgramForm.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/selectprogramm.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/setcordinate.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/generalay.blade.php" />
@@ -333,6 +302,7 @@
         <option value="$PROJECT_DIR$/resources/views/thewall2/achiveProgramm.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/programform.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DBwork.php" />
+        <option value="$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php" />
       </list>
     </option>
   </component>
@@ -616,16 +586,18 @@
       <workItem from="1551561459650" duration="1854000" />
       <workItem from="1551614681568" duration="12420000" />
       <workItem from="1552040101267" duration="8076000" />
+      <workItem from="1552061203704" duration="581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="290301000" />
+    <option name="totallyTimeSpent" value="290882000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1680" height="974" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.20318237" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.20563036" />
       <window_info id="Structure" order="1" sideWeight="0.50089127" side_tool="true" weight="0.19828641" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -641,7 +613,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32894737" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32894737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -796,31 +768,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="39" column="90" selection-start-line="39" selection-start-column="90" selection-end-line="39" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/report.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
           <caret line="29" column="108" selection-start-line="29" selection-start-column="108" selection-end-line="29" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-227">
-          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -902,40 +853,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/indexProgramm.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="20" column="53" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="53" />
-          <folding>
-            <element signature="e#371#406#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/achiveProgramm.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-          <folding>
-            <element signature="e#367#391#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228">
-          <caret line="32" column="56" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ADIF_Parser.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProgramsDiplom.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3289">
-          <caret line="486" lean-forward="true" selection-start-line="486" selection-end-line="486" />
+        <state relative-caret-position="3435">
+          <caret line="486" selection-start-line="486" selection-end-line="486" />
           <folding>
             <element signature="e#284#634#0#PHP" />
             <element signature="e#639#1450#0#PHP" />
@@ -958,13 +879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/newProgramForm.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="70" column="92" lean-forward="true" selection-start-line="70" selection-start-column="92" selection-end-line="70" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programform.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
@@ -972,9 +886,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/newProgramForm.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="70" column="92" selection-start-line="70" selection-start-column="92" selection-end-line="70" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserWallController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
+        <state relative-caret-position="555">
           <caret line="80" column="17" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
           <folding>
             <element signature="e#139#215#0#PHP" />
@@ -986,18 +907,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/uploadadifController.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/indexProgramm.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="53" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ADIF_Parser.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="32" column="56" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/achiveProgramm.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="46" column="57" lean-forward="true" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DBwork.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="23" column="140" selection-start-line="23" selection-start-column="140" selection-end-line="23" selection-end-column="140" />
-          <folding>
-            <element signature="e#49#83#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="300">
+          <caret line="23" column="134" lean-forward="true" selection-start-line="23" selection-start-column="134" selection-end-line="23" selection-end-column="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="728">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="39" column="90" selection-start-line="39" selection-start-column="90" selection-end-line="39" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="129" column="44" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
         </state>
       </provider>
     </entry>

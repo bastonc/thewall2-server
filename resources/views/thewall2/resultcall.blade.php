@@ -97,6 +97,9 @@
                         <div class="col-md-2 center-block ">
                             DATE
                         </div>
+                        <div class="col-md-2 center-block ">
+                            TIME
+                        </div>
                         <div class="col-md-1 center-block ">
                             MODE
                         </div>
@@ -122,6 +125,9 @@
                             </div>
                             <div class="col-md-2 center-block ">
                                 {{$qsoinfo->qso_date}}
+                            </div>
+                            <div class="col-md-2 center-block ">
+                                {{$qsoinfo->time_on}}
                             </div>
                             <div class="col-md-1 center-block ">
                                 {{$qsoinfo->mode}}
