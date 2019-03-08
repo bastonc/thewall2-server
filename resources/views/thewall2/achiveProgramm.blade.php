@@ -18,7 +18,7 @@
     </div>
     <!--div id="tour" class="bg-1 text-center"-->
     <div class="container text-center">
-        <p align="right"><a href="/archive?sortby=FWD">Перші - старі програми</a> | <a href="/archive">Перші - нові програми</a>
+        <p align="right" style="font-size: 13px;"><a href="/archive?sortby=FWD">Перші - старі програми</a> | <a href="/archive">Перші - нові програми</a>
             <ul class="list-group ">
                 @foreach($Programms as $programm)
                     <li class="list-group-item">
