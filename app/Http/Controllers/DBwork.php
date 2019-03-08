@@ -18,11 +18,11 @@ class DBwork
             for($index=0;$index<count($arrayData);$index++) {   //echo count($arrayRecord);
                 $record = $arrayData[$index];
                 $status ="N";
-
+		    
                 if ($repeat->repeat == "1") {
                     $qsoArray = DB::select('select `id` from QSO where  `call` = ? AND `band` = ? AND `tokenprogramm`=? AND `operator`=? AND `mode`=?',
                                             [$record['call'], $record['band'], $tokenprogramm, $record['operator'], $record['mode']]);
-
+		
                     if ($qsoArray == NULL) {
                         //$validate=$record['call'];
                         //$convertedText = mb_convert_encoding($record, 'utf-8', mb_detect_encoding($record));
@@ -44,13 +44,15 @@ class DBwork
                                 $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N' ]);
 
 
+
                     }
                 }
                 if ($repeat->repeat == "0") {
 
                     $qsoArray = DB::select('select `id` from QSO where  `call` = ? AND `tokenprogramm`=? AND `operator`=?', [
                                             $record['call'], $tokenprogramm, $record['operator']]);
-                    if ($qsoArray == NULL) {
+                
+		        if ($qsoArray == NULL) {
                         if ($qsoArray == NULL) {
                             $validator = Validator::make( $record, ['call'=>'regex:"[a-zA-Z0-9\//]{3,}"']);
                             if ($validator->fails()) {
@@ -59,11 +61,11 @@ class DBwork
                                 //dd($errors);
                                 continue;
                             }
-                            DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`tokenprogramm`, 
-                                                         `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?)',
+                            DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
+                                                         `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
                                 [$status, $record['call'], $record['operator'], $record['qso_date'],
                                     $record['time_on'], $record['band'], $record['freq'],
-                                    $record['rst_sent'], $tokenprogramm, $tokenuser, 'N']);
+                                    $record['rst_sent'],$record['mode'], $tokenprogramm, $tokenuser, 'N']);
                         }
 
 
@@ -79,11 +81,12 @@ class DBwork
                             //dd($errors);
                             continue;
                         }
-                        DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`tokenprogramm`, 
-                                                         `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?)',
+			    
+                        DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
+                                                         `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
                             [$status, $record['call'], $record['operator'], $record['qso_date'],
                                 $record['time_on'], $record['band'], $record['freq'],
-                                $record['rst_sent'], $tokenprogramm, $tokenuser, 'N']);
+                                $record['rst_sent'],$record['mode'], $tokenprogramm, $tokenuser, 'N']);
                         //}
                     }
                 }
