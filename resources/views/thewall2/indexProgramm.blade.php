@@ -1,7 +1,7 @@
 @extends('thewall2.generalay')
 
 @section ('title')
-    Дипломные программы радиолюбителей :: The Wall | Diplom
+    Дипломні програми радіоаматорів :: The Wall | Diplom
 @stop
 
 @section('content')
@@ -17,8 +17,8 @@
         <h2>Активні дипломні програми</h2>
     </div>
     <!--div id="tour" class="bg-1 text-center"-->
-        <div class="container text-center">
-            <p align="right"><a href="/?sortby=FWD">Перші - старі програми</a> | <a href="/">Перші - нові програми</a>
+        <div class="container text-center" >
+            <p align="right" style="font-size: 13px;"><a href="/?sortby=FWD">Перші - старі програми</a> | <a href="/">Перші - нові програми</a>
             <ul class="list-group ">
                 @foreach($Programms as $programm)
                 <li class="list-group-item">
