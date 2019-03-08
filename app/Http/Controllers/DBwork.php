@@ -52,7 +52,7 @@ class DBwork
                     $qsoArray = DB::select('select `id` from QSO where  `call` = ? AND `tokenprogramm`=? AND `operator`=?', [
                                             $record['call'], $tokenprogramm, $record['operator']]);
                 
-		        if ($qsoArray == NULL) {
+		        
                         if ($qsoArray == NULL) {
                             $validator = Validator::make( $record, ['call'=>'regex:"[a-zA-Z0-9\//]{3,}"']);
                             if ($validator->fails()) {
@@ -69,7 +69,7 @@ class DBwork
                         }
 
 
-                    }
+                    
                 }
                     if ($repeat->repeat == "2") {
                         //       $qsoArray = DB::select('select `id` from QSO where  `call` = ? AND `band` = ? AND `tokenprogramm`=?', [$record['call'], $record['band'], $tokenprogramm]);
@@ -81,7 +81,7 @@ class DBwork
                             //dd($errors);
                             continue;
                         }
-			$qsoArray = DB::select('select `id` from QSO where `qso_date`=? AND `time_on`=?',[$record['qso_date'], $record['time_on']]);
+			$qsoArray = DB::select('select `id` from QSO where `call`=? AND `operator`=? AND `tokenprogramm`=? AND `qso_date`=? AND `time_on`=?',[$record['call'],$record['operator'],$tokenprogramm,$record['qso_date'], $record['time_on']]);
 			
 			if($qsoArray==NULL)
 			{
