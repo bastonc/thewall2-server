@@ -2,7 +2,7 @@
 
 @section ('title')
 
-    Дипломная программа {{$programmName}} :: The Wall | Diplom
+    Дипломна програма {{$programmName}} :: The Wall | Diplom
 
 
 @stop

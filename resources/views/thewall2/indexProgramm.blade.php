@@ -1,7 +1,7 @@
 @extends('thewall2.generalay')
 
 @section ('title')
-    Дипломные программы радиолюбителей :: The Wall | Diplom
+    Дипломні програми радіоаматорів :: The Wall | Diplom
 @stop
 
 @section('content')
