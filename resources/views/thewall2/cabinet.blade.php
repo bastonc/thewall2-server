@@ -1,7 +1,7 @@
 @extends('thewall2.generalay')
 
 @section ('title')
-    Кабинет - дипломные программы :: The Wall
+    Кабинет - дипломні програми :: The Wall
 @stop
 
 @section('content')
