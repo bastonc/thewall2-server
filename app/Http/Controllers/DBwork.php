@@ -81,13 +81,16 @@ class DBwork
                             //dd($errors);
                             continue;
                         }
-			    
+			$qsoArray = DB::select('select `id` from QSO where `qso_date`=? AND `time_on`=?',[$record['qso_date'], $record['time_on']]);
+			
+			if($qsoArray==NULL)
+			{
                         DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
                                                          `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
                             [$status, $record['call'], $record['operator'], $record['qso_date'],
                                 $record['time_on'], $record['band'], $record['freq'],
                                 $record['rst_sent'],$record['mode'], $tokenprogramm, $tokenuser, 'N']);
-                        //}
+                        }
                     }
                 }
        //$flag = 'ОК';
