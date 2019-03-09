@@ -61,7 +61,8 @@
 
                <tr><td align="right"> Назва програми:&nbsp;&nbsp; </td> <td> <input  type="text"  name="Name" size="70"></td></tr>
                 <tr><td align="right"> Опис:&nbsp;&nbsp; </td> <td> {!! Form::textarea('Description', 'Опис програми буде відображатись на головній сторінці',array('size' => '69x10')  )!!}</td></tr>
-                <tr><td align="right"> Повтори:&nbsp;&nbsp;<br></td> <td align="left"> {!!Form::select('Repeat', array('0' => 'Заборонені', '1' => 'На різних діапазонах', '2'=>'Дозволені будь де'), '1')!!}</td></tr>
+                <tr><td align="right"> Повтори:&nbsp;&nbsp;<br></td> <td align="left"> {!!Form::select('Repeat', array('0' => 'Заборонені', '1' => 'На різних діапазонах', '2'=>'Дозволені будь де',
+                    '3'=>'На різних діапазонах, різними модами', '4'=>'На різних діапазонах, різними модами, в різну добу'), '1')!!}</td></tr>
                 <tr><td align="right"> Необхідно набрати балів:&nbsp;&nbsp; </td> <td align="left">{!! Form::text('ScoreFinal', '',array('size' => '4','data-tooltip'=>'Вкажіть яку кількість балів необхідно набрати здобувач') )!!}</td></tr>
                 <tr><td align="right"> Бали за умовчуванням:&nbsp;&nbsp; </td> <td align="left"> {!!Form::text('ScoreDefault', '',array('size' => '4','data-tooltip'=>'Вкажіть яку кількість балів треба зараховувати, якщо QSO здобувача відбулося не з СПС, але з іншою станцією, яка бере участь у дипломній програмі<br /> Якщо станцій за умовчуванням не має - вкажіть - 0') )!!}</td></tr>
                 <tr><td align="right"> E-mail дипломного менеджера:&nbsp;&nbsp; </td> <td align="left"> {!!Form::text('emailManager', '', array('data-tooltip'=>'На цей E-mail будуть надходити заявки на отримання диплому') )!!}</td></tr>

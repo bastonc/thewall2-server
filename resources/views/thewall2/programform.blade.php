@@ -52,7 +52,8 @@
          @foreach ($dataArray as $data)
                     <tr><td align="right"> Назва програми:</td> <td> {!! Form::text('Name', $data->name, array('size' => '70') )!!}<br><br></td></tr>
                     <tr><td align="right"> Опис: </td> <td> {!! Form::textarea('Description', $data->description, array('size' => '68x10') )!!}<br><br></td></tr>
-                    <tr><td align="right"> Повтори: </td> <td> {!!  Form::select('Repeat', array('0' => 'Запрещены', '1' => 'На разных диапазонах', '2'=>'Разрешены везде'), $data->repeat ) !!}<br><br></td></tr>
+                    <tr><td align="right"> Повтори: </td> <td> {!!  Form::select('Repeat', array('0' => 'Заборонені', '1' => 'На різних діапазонах', '2'=>'Дозволені будь де',
+                    '3'=>'На різних діапазонах, різними модами', '4'=>'На різних діапазонах, різними модами, в різну добу'), $data->repeat ) !!}<br><br></td></tr>
                     <tr><td align="right"> Необхідно набрати балів: </td> <td> {!! Form::text('ScoreFinal', $data->scoreFinal, array('data-tooltip'=>'Вкажіть яку кількість балів необхідно набрати здобувач') )!!}<br><br></td></tr>
                     <tr><td align="right"> Бали за умовчуванням(якщо є): </td> <td> {!!Form::text('ScoreDefault', $data->scoreDefault, array('size' => '4','data-tooltip'=>'Вкажіть яку кількість балів треба зараховувати, якщо QSO здобувача відбулося не з СПС, але з іншою станцією, яка бере участь у дипломній програмі<br /> Якщо станцій за умовчуванням не має - вкажіть - 0') )!!}<br><br></td></tr>
                     <tr><td align="right"> E-mail дипломного менеджеру: </td> <td> {!! Form::text('emailManager', $data->email_manager, array('data-tooltip'=>'На цей E-mail будуть надходити заявки на отримання диплому'))!!}</td></tr>
@@ -92,7 +93,7 @@
                      </td></tr>
              </table> </td></tr>
              {!! Form::hidden("edit_sps_count", $i)!!}
-             <tr><td>  </td> <td align="right" bgcolor="#5f9ea0"> {!! Form::submit('Сохранить')!!}</td></tr>
+             <tr><td>  </td> <td align="right" bgcolor="#5f9ea0"> {!! Form::submit('Зберегтипше')!!}</td></tr>
             </table>
         {!!  Form::close() !!}
     </center>

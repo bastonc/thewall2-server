@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0745dc9-c312-414d-8480-22c6c26721fe" name="Default Changelist" comment="" />
+    <list default="true" id="c0745dc9-c312-414d-8480-22c6c26721fe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/programform.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/programform.blade.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,16 +54,16 @@
         <counts>
           <entry key="env" value="20" />
           <entry key="js" value="21" />
-          <entry key="php" value="40779" />
+          <entry key="php" value="40996" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="20" />
-          <entry key="Blade" value="15081" />
+          <entry key="Blade" value="15296" />
           <entry key="HTML" value="38" />
           <entry key="JavaScript" value="21" />
-          <entry key="PHP" value="25658" />
+          <entry key="PHP" value="25660" />
           <entry key="SQL" value="2" />
         </counts>
       </usages-collector>
@@ -153,8 +155,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programform.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1440">
-              <caret line="96" column="30" lean-forward="true" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="30" />
+            <state relative-caret-position="135">
+              <caret line="54" column="172" selection-start-line="54" selection-start-column="172" selection-end-line="54" selection-end-column="172" />
               <folding>
                 <element signature="e#3418#3424#0#HTML" expanded="true" />
                 <element signature="e#3731#3737#0#HTML" expanded="true" />
@@ -591,15 +593,16 @@
       <workItem from="1551614681568" duration="12420000" />
       <workItem from="1552040101267" duration="8076000" />
       <workItem from="1552061203704" duration="1870000" />
-      <workItem from="1552129745466" duration="1147000" />
+      <workItem from="1552129745466" duration="2471000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="293318000" />
+    <option name="totallyTimeSpent" value="294642000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1680" height="974" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.20807834" />
       <window_info id="Structure" order="1" sideWeight="0.50089127" side_tool="true" weight="0.19828641" />
@@ -939,8 +942,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programform.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="96" column="30" lean-forward="true" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="30" />
+        <state relative-caret-position="135">
+          <caret line="54" column="172" selection-start-line="54" selection-start-column="172" selection-end-line="54" selection-end-column="172" />
           <folding>
             <element signature="e#3418#3424#0#HTML" expanded="true" />
             <element signature="e#3731#3737#0#HTML" expanded="true" />
