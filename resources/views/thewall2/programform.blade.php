@@ -71,7 +71,7 @@
 
      @endforeach
              <tr> <td align='center' colspan='2'>
-             {{Form::hidden('Token', $data->token )}}
+             {!! Form::hidden('Token', $data->token )!!}
              <?php $i=0;?>
              <table>
                  <br />
