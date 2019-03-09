@@ -79,7 +79,7 @@
                  <br />
              @foreach ($arraysps as $sps)
                  <?php $i++;
-                       echo "<tr> <td align='right'>  СПС:&nbsp;&nbsp;</td><td> ".$sps->call."</td><td>&nbsp;&nbsp;<input type='hidden' name='sps_mode_".$i."'  value='".$sps->mode."'>$sps->mode</td><td><input type='hidden' name='sps_call_".$i."'  value='".$sps->call."'></td><td>&nbsp;&nbsp;&nbsp; Очков:
+                       echo "<tr> <td align='right'>  СПС:&nbsp;&nbsp;</td><td> ".$sps->call."</td><td>&nbsp;&nbsp;<input type='hidden' name='sps_mode_".$i."'  value='".$sps->mode."'>$sps->mode</td><td><input type='hidden' name='sps_call_".$i."'  value='".$sps->call."'></td><td>&nbsp;&nbsp;&nbsp; Балів:
                       </td><td> <input type='text' size='4' name='sps_score_".$i."' value='".$sps->score."'></td></tr>";
                     ?>
              @endforeach
