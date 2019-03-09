@@ -36,7 +36,7 @@
           <entry key="project.open.time.42" value="4" />
           <entry key="project.open.time.43" value="2" />
           <entry key="project.open.time.45" value="1" />
-          <entry key="project.open.time.49" value="3" />
+          <entry key="project.open.time.49" value="4" />
           <entry key="project.open.time.60" value="1" />
           <entry key="project.open.time.61" value="2" />
           <entry key="project.open.time.64" value="1" />
@@ -45,7 +45,7 @@
           <entry key="project.open.time.71" value="1" />
           <entry key="project.open.time.9" value="1" />
           <entry key="project.open.time.95" value="1" />
-          <entry key="project.opened" value="42" />
+          <entry key="project.opened" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -145,7 +145,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DBwork.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
-              <caret line="23" column="134" lean-forward="true" selection-start-line="23" selection-start-column="134" selection-end-line="23" selection-end-column="134" />
+              <caret line="23" column="134" selection-start-line="23" selection-start-column="134" selection-end-line="23" selection-end-column="134" />
             </state>
           </provider>
         </entry>
@@ -153,7 +153,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="728">
+            <state relative-caret-position="480">
               <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
             </state>
           </provider>
@@ -162,7 +162,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="585">
               <caret line="39" column="90" selection-start-line="39" selection-start-column="90" selection-end-line="39" selection-end-column="90" />
             </state>
           </provider>
@@ -172,7 +172,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="32" lean-forward="true" selection-start-column="32" selection-end-column="32" />
+              <caret column="32" selection-start-column="32" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -180,8 +180,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="168" column="30" lean-forward="true" selection-start-line="168" selection-start-column="30" selection-end-line="168" selection-end-column="30" />
+            <state relative-caret-position="2520">
+              <caret line="168" column="30" selection-start-line="168" selection-start-column="30" selection-end-line="168" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -425,6 +425,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="thewall2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -479,17 +490,6 @@
               <item name="thewall2" type="b2602c69:ProjectViewProjectNode" />
               <item name="thewall2" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="thewall2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
@@ -580,16 +580,17 @@
       <workItem from="1551614681568" duration="12420000" />
       <workItem from="1552040101267" duration="8076000" />
       <workItem from="1552061203704" duration="1870000" />
+      <workItem from="1552129745466" duration="611000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="292171000" />
+    <option name="totallyTimeSpent" value="292782000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1680" height="974" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.20563036" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.20807834" />
       <window_info id="Structure" order="1" sideWeight="0.50089127" side_tool="true" weight="0.19828641" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -842,35 +843,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3435">
           <caret line="486" selection-start-line="486" selection-end-line="486" />
-          <folding>
-            <element signature="e#284#634#0#PHP" />
-            <element signature="e#639#1450#0#PHP" />
-            <element signature="e#1455#1872#0#PHP" />
-            <element signature="e#9553#10219#0#PHP" />
-            <element signature="e#10224#10658#0#PHP" />
-            <element signature="e#10663#11134#0#PHP" />
-            <element signature="e#11139#12222#0#PHP" />
-            <element signature="e#12227#12668#0#PHP" />
-            <element signature="e#12673#13088#0#PHP" />
-            <element signature="e#16331#16967#0#PHP" />
-            <element signature="e#16972#17150#0#PHP" />
-            <element signature="e#17155#17354#0#PHP" />
-            <element signature="e#17359#20233#0#PHP" />
-            <element signature="e#20239#20355#0#PHP" />
-            <element signature="e#20361#21344#0#PHP" />
-            <element signature="e#21349#21952#0#PHP" />
-            <element signature="e#21957#22294#0#PHP" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programform.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="170" selection-start-line="54" selection-start-column="170" selection-end-line="54" selection-end-column="170" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programform.blade.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/newProgramForm.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
@@ -882,11 +858,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
           <caret line="80" column="17" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
-          <folding>
-            <element signature="e#139#215#0#PHP" />
-            <element signature="e#222#901#0#PHP" />
-            <element signature="e#906#1367#0#PHP" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -904,16 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ADIF_Parser.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="32" column="56" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/achiveProgramm.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -924,34 +885,44 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DBwork.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="23" column="134" lean-forward="true" selection-start-line="23" selection-start-column="134" selection-end-line="23" selection-end-column="134" />
+          <caret line="23" column="134" selection-start-line="23" selection-start-column="134" selection-end-line="23" selection-end-column="134" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="585">
           <caret line="39" column="90" selection-start-line="39" selection-start-column="90" selection-end-line="39" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="168" column="30" lean-forward="true" selection-start-line="168" selection-start-column="30" selection-end-line="168" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcall.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="32" lean-forward="true" selection-start-column="32" selection-end-column="32" />
+          <caret column="32" selection-start-column="32" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2520">
+          <caret line="168" column="30" selection-start-line="168" selection-start-column="30" selection-end-line="168" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ADIF_Parser.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="32" column="56" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
+        <state relative-caret-position="480">
           <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
         </state>
       </provider>
