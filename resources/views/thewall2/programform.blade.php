@@ -93,7 +93,7 @@
                      </td></tr>
              </table> </td></tr>
              {!! Form::hidden("edit_sps_count", $i)!!}
-             <tr><td>  </td> <td align="right" bgcolor="#5f9ea0"> {!! Form::submit('Зберегтипше')!!}</td></tr>
+             <tr><td>  </td> <td align="right" bgcolor="#5f9ea0"> {!! Form::submit('Зберегти')!!}</td></tr>
             </table>
         {!!  Form::close() !!}
     </center>
