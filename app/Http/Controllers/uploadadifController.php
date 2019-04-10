@@ -48,8 +48,13 @@ class uploadadifController extends BaseController {
                     //dd($user);
                     if (count($resulterrors) == 0) {
                         //dd($arrayRecord);
-                        return view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord]);
-                    } else return view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord, "errors" => $resulterrors]);
+                        $url="/log?t=".$tokenprogramm;
+                        return redirect($url);
+
+                           /* view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord]);*/
+                    } else
+                                    return redirect($url);
+                       /* view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord, "errors" => $resulterrors]);*/
                 } else echo "<br>QSO not found<br>";
 
                 unlink(public_path($pathFile));

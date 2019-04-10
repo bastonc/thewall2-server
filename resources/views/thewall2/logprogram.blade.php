@@ -10,6 +10,7 @@
             <center>
                 <h1>Log</h1>
                 <p>Програма {{$NameProgramm}}</p>
+                <p> <a href="/cabinet">Повернутись до кабінету </a></p>
 
                 @if($resolvForm=="open")
                     <h3>Завантажити Adif звіт</h3>
@@ -38,11 +39,11 @@
     @if(isset($arrayRecord))
     <p><center>Завантажені QSO</center></p>
     <center>
-        <table><tr bgcolor="#5f9ea0"><td>CALL</td><td>DATE</td><td>TIME</td><td>BAND</td><td>FREQ</td><td>TO STATION</td><td>RS(t)</td></tr>
+        <table><tr bgcolor="#5f9ea0"><td>CALL</td><td>DATE</td><td>TIME</td><td>BAND</td><td>MODE</td><td>FREQ</td><td>TO STATION</td><td>RS(t)</td></tr>
             @foreach ($arrayRecord as $res)
 
                 <tr><td> {{ $res->call}}</td><td>{{$res->qso_date}}</td><td>{{ $res->time_on}}</td>
-                    <td>{{$res->band}}</td><td>{{$res->freq}}</td><td> {{$res->operator}}</td><td>{{ $res->rst_sent}}</td></tr>
+                    <td>{{$res->band}}</td><td>{{$res->mode}}</td><td>{{$res->freq}}</td><td> {{$res->operator}}</td><td>{{ $res->rst_sent}}</td></tr>
 
             @endforeach
 
