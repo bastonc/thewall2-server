@@ -26,7 +26,6 @@ class frontend
         return view('thewall2/indexProgramm',["Programms"=>$ProgrammArray]);
 
     }
-
     public function programmInside (Request $request) {
         $token=$request->p;
         $programmInside = new DBwork;
@@ -45,8 +44,7 @@ class frontend
         //
 
     }
-
-    public function  searchCall(Request $request) {
+    public function searchCall(Request $request) {
 
         $call=$request->searchcall;
         $tokenprogramm=$request->Token;
@@ -78,9 +76,14 @@ class frontend
             if($method_recieve==1) {
                 $recieveArray[] = $programmInfo->cordinatex;
                 $recieveArray[] = $programmInfo->cordinatey;
+                $recieveArray[] = $programmInfo->XName;
+                $recieveArray[] = $programmInfo->YName;
+                $recieveArray[] = $programmInfo->XNum;
+                $recieveArray[] = $programmInfo->YNum;
                 $recieveArray[] = $programmInfo->color;
             }
         }
+        //dd($recieveArray);
         foreach($searchCallInProgramm as $info  ){
             $score = $scoreDefinition->scoreDefinition($info->operator,$info->mode,$tokenprogramm);
             $info->score=$score;
@@ -184,10 +187,10 @@ class frontend
             }
         }
         if($request->key == 1){
-            if ($request->name == NULL || $request->token == NULL || $request->call == NULL || $request->x == NULL || $request->y == NULL || $request->color == NULL) {
+            if ($request->name == NULL || $request->token == NULL || $request->call == NULL || $request->XCall == NULL || $request->YCall == NULL || $request->color == NULL) {
                 echo "ERROR! I don't have full information";
             }
-            elseif ($request->name != NULL && $request->token != NULL && $request->call != NULL && $request->x != NULL && $request->y != NULL && $request->color != NULL)
+            elseif ($request->name != NULL && $request->token != NULL && $request->call != NULL && $request->XCall != NULL && $request->YCall != NULL && $request->color != NULL)
             {
                 $call = $request->call;
 
@@ -195,6 +198,7 @@ class frontend
                 if ($chekFlagForCall == 0) {
                     $diplomInfo = new ProgramsDiplom;
                     $emails = $diplomInfo->getProgrammInfo($request->token);
+
                     //$emails[0]->email_manager;
                     $nameProgramm = $emails[0]->name;
                     $to = $emails[0]->email_manager;
@@ -207,7 +211,19 @@ class frontend
                     $setCall = new ProgramsDiplom;
                     $setCall->setComplitedForCall($request->token, $call);
                     $imagePath=$emails[0]->image;
-                    $getimage = $this->getImage($imagePath, $call, $request->name, $request->x, $request->y, $request->color,$nameProgramm);
+                    $XCall=$request->XCall;
+                    $YCall=$request->YCall;
+                    $XName=$request->XName;
+                    $YName=$request->YName;
+                    $XNum=$request->XNum;
+                    $YNum=$request->YNum;
+                    //dd($YNum);
+                    $numberDiplom = new DBwork;
+                    // Get Serial Number of diploma for call (first search - increase 1 for S/N in Programm )
+                    $num=$numberDiplom->getNumberDiplom($request->token, $call);
+                    // send all data to function output on image
+                    //dd($call);
+                    $getimage = $this->getImage($imagePath, $call, $request->name, $XCall, $YCall, $XName, $YName, $XNum, $YNum, $request->color,$nameProgramm, $num);
 
                 } else {
                     $message = "Помилка! " . $call . " не виконав умови дипломної програми";
@@ -223,7 +239,8 @@ class frontend
             else
         {echo "Unknown error";}
     }
-    public function getImage ($imagePath, $call, $name, $x, $y, $color, $nameProgramm)
+
+    public function getImage ($imagePath, $call, $name, $XCall, $YCall, $XName, $YName, $XNum, $YNum, $color, $nameProgramm, $num)
     {
         $imagePathCorrect="";
         for($i=0; $i<strlen($imagePath); $i++)
@@ -252,30 +269,43 @@ class frontend
         if($imageOption[0]<600 or $imageOption[1]<600)
         {
             $sizeCall=16;
-            $sizeName=14;
+            $sizeName=16;
             $y_dop=20;
         }
         if(($imageOption[0]>600 && $imageOption[0]<1400)or($imageOption[1]>600 && $imageOption[1]<1400))
         {
-            $sizeCall=20;
-            $sizeName=16;
+            $sizeCall=17;
+            $sizeName=17;
             $y_dop=20;
         }
         if($imageOption[0]>1400 or $imageOption[1]>1400)
         {
-            $sizeCall=40;
-            $sizeName=30;
+            $sizeCall=23;
+            $sizeName=23;
             $y_dop=40;
         }
 
-        $x_call=$x;
-        $y_call=$y-5;
-        $x_name=$x;
-        $y_name=$y+$y_dop;
+        $x_call=$XCall;
+        $y_call=$YCall;
+        $x_name=$XName;
+        $y_name=$YName;
+        $x_num=$XNum;
+        $y_num=$YNum;
 
-        $string=$call." ".$name;
+        //$countNum=count($num);
+        if($num<10)
+            $numstring='000'.$num;
+        if($num>10 && $num<100)
+            $numstring='00'.$num;
+        if($num>100 && $num<1000)
+            $numstring='0'.$num;
+        if($num>1000)
+            $numstring=$num;
+        //$string=$call." ".$name;
+       // dd($x_call,$x_num);
         imagefttext($image, $sizeCall, 0, $x_call, $y_call, $textcolor, $font, $call);
         imagefttext($image, $sizeName, 0, $x_name, $y_name, $textcolor, $font, $name);
+        imagefttext($image, $sizeName, 0, $x_num, $y_num, $textcolor, $font, $numstring);
         $filename=$call."-".$nameProgramm.".jpg";
         //imagestring ( $image , 4, 1250 , 750 , "Test" , $textcolor );
 
@@ -362,7 +392,6 @@ class frontend
 
 
     }
-
     public function search(Request $request)
     {
         if($request->textsearch!=NULL)

@@ -95,10 +95,15 @@
                     {!!Form::hidden('key', "1") !!}
                     {!!Form::hidden('token', $tokenProgramm)!!}
                     {!!Form::hidden('call', $call)!!}
-                    {!!Form::hidden('x', $methodArray[1])!!}
-                    {!!Form::hidden('y', $methodArray[2])!!}
-                    {!!Form::hidden('color', $methodArray[3])!!}
-                    <button type="submit" class=" btn btn-primary submit-button">Я виконав!</button>
+                    {!!Form::hidden('XCall', $methodArray[1])!!}
+                    {!!Form::hidden('YCall', $methodArray[2])!!}
+                    {!!Form::hidden('XName', $methodArray[3])!!}
+                    {!!Form::hidden('YName', $methodArray[4])!!}
+                    {!!Form::hidden('XNum', $methodArray[5])!!}
+                    {!!Form::hidden('YNum', $methodArray[6])!!}
+                    {!!Form::hidden('color', $methodArray[7])!!}
+                    {!! Form::submit('Я виконав!', ['class'=>'btn btn-primary submit-button']) !!}
+                    <!--button type="submit" class=" btn btn-primary submit-button">Я виконав!</button-->
 
                     {!! Form::close() !!}
                 </div>

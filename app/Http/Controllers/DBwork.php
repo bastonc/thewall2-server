@@ -239,6 +239,24 @@ class DBwork
         return $spsInfo;
     }
 
+    public function getNumberDiplom($tokenprogramm, $call)
+    {
+        $chekNumUser=DB::select('SELECT DISTINCT `num` from QSO where `call`=?  and `tokenprogramm`=?',[$call,$tokenprogramm] );
+       // dump($chekNumUser);
+        if($chekNumUser[0]->num>0) {
+            //dd($chekNumUser[0]->num);
+            $num = $chekNumUser[0]->num;
+        } else {
+            $nums=DB::select('select `num` from PROGRAMM where `token`=?',[$tokenprogramm]);
+
+            $num=$nums[0]->num+1;
+            DB::update('update PROGRAMM set `num`=? where `token`=?',[$num,$tokenprogramm]);
+          }
+        DB::update('update QSO set `num`=? where `call`=? and `tokenprogramm`=?', [$num,$call,$tokenprogramm]);
+        //dd($num);
+        return $num;
+    }
+
     public function authSPS($spscall, $spspass)
     {
 

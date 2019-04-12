@@ -474,11 +474,12 @@ class ProgramsDiplom
         return view('thewall2/achiveProgramm',["Programms"=>$archiveProgramms]);
 
     }
-    public function savecordinate($x,$y,$color,$tokenprogramm)
+    public function savecordinate($XCall,$YCall,$XName,$YName,$XNum,$YNum,$color,$tokenprogramm)
     {
         $tokenUser=md5(auth()->user()->email);
-        $result=DB::select('UPDATE `PROGRAMM` SET `cordinatex`= ?, `cordinatey`=?,`color`=? WHERE `token` = ? AND `tokenparrentuser` = ?',
-            [$x,$y,$color,$tokenprogramm, $tokenUser]);
+        $result=DB::select('UPDATE `PROGRAMM` SET `cordinatex`= ?, `cordinatey`=?,`XName`=?, `YName`=?,`XNum`=?,`YNum`=?,`color`=? 
+                                  WHERE `token` = ? AND `tokenparrentuser` = ?',
+            [$XCall,$YCall,$XName,$YName,$XNum,$YNum,$color,$tokenprogramm, $tokenUser]);
         return $result;
 
     }

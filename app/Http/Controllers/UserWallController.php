@@ -183,17 +183,20 @@ class UserWallController extends Controller
     public function getcordinatexy (Request $request)
     {
         $this->validate($request, [
-            'X' => 'required',
-            'Y' => 'required',
+            'XCall' => 'required|numeric',
+            'YCall' => 'required|numeric',
+            'XName' => 'required|numeric',
+            'YName' => 'required|numeric',
+            'XNum' => 'required|numeric',
+            'YNum' => 'required|numeric',
             'color'=>'required',
             'tokenprogramm'=>'required']);
 
-        $x=$request->X;
-        $y=$request->Y;
-        $color=$request->color;
-        $tokenprogramm=$request->tokenprogramm;
+
         $cordinatxy= new ProgramsDiplom();
-        $savecordinate = $cordinatxy->savecordinate($x,$y,$color,$tokenprogramm);
+        $savecordinate = $cordinatxy->savecordinate($request->XCall,$request->YCall,$request->XName,$request->YName,
+                                                    $request->XNum,$request->YNum,$request->color,$request->tokenprogramm);
+      //dd($savecordinate);
         return redirect()->route('cabinet');
        // echo $request->X,"<br>", $request->Y, "<br>", $request->tokenprogramm ;
     }
