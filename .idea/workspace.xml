@@ -58,13 +58,13 @@
           <entry key="env" value="20" />
           <entry key="gitignore" value="24" />
           <entry key="js" value="21" />
-          <entry key="php" value="47962" />
+          <entry key="php" value="48031" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="20" />
-          <entry key="Blade" value="17660" />
+          <entry key="Blade" value="17729" />
           <entry key="HTML" value="38" />
           <entry key="JavaScript" value="21" />
           <entry key="PHP" value="30224" />
@@ -170,8 +170,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/report.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="14" column="102" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="102" />
+            <state relative-caret-position="297">
+              <caret line="71" column="88" lean-forward="true" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="88" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -179,8 +182,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="53" column="99" selection-start-line="53" selection-start-column="99" selection-end-line="53" selection-end-column="99" />
+            <state relative-caret-position="162">
+              <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -591,18 +597,18 @@
       <workItem from="1554915030052" duration="8963000" />
       <workItem from="1555005507377" duration="4629000" />
       <workItem from="1555086658944" duration="10635000" />
-      <workItem from="1555162167840" duration="11730000" />
+      <workItem from="1555162167840" duration="12705000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="342504000" />
+    <option name="totallyTimeSpent" value="343479000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1680" height="974" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.21787025" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.21787025" />
       <window_info id="Structure" order="1" sideWeight="0.50089127" side_tool="true" weight="0.19828641" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -618,7 +624,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32894737" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32894737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -976,15 +982,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/report.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="14" column="102" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="102" />
+        <state relative-caret-position="297">
+          <caret line="71" column="88" lean-forward="true" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="88" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="53" column="99" selection-start-line="53" selection-start-column="99" selection-end-line="53" selection-end-column="99" />
+        <state relative-caret-position="162">
+          <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
