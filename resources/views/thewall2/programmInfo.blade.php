@@ -60,7 +60,7 @@
                                 </div>
                                @if($complitedCallArray!=NULL)
                                 <!--div class="row-md-8 text-center table-bordered" style="padding: 10px; width:100%"-->
-                                    <div class="col-md-8 text-center ">
+                                    <div class="col-md-12 text-center ">
                                     <p><strong>Дипломи видані:</strong></p>
 
                                         @foreach($complitedCallArray as $complitedCall)

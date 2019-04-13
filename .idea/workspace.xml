@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0745dc9-c312-414d-8480-22c6c26721fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DBwork.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DBwork.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserWallController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserWallController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/frontend.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/frontend.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/report.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/report.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="c0745dc9-c312-414d-8480-22c6c26721fe" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,13 +55,13 @@
           <entry key="env" value="20" />
           <entry key="gitignore" value="24" />
           <entry key="js" value="21" />
-          <entry key="php" value="47678" />
+          <entry key="php" value="47740" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="20" />
-          <entry key="Blade" value="17376" />
+          <entry key="Blade" value="17438" />
           <entry key="HTML" value="38" />
           <entry key="JavaScript" value="21" />
           <entry key="PHP" value="30224" />
@@ -191,11 +185,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="61" column="71" selection-start-line="61" selection-start-column="71" selection-end-line="61" selection-end-column="71" />
-              <folding>
-                <element signature="e#2713#2746#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="282">
+              <caret line="62" column="69" selection-start-line="62" selection-start-column="69" selection-end-line="62" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -588,18 +579,17 @@
       <workItem from="1554915030052" duration="8963000" />
       <workItem from="1555005507377" duration="4629000" />
       <workItem from="1555086658944" duration="10635000" />
-      <workItem from="1555162167840" duration="9396000" />
+      <workItem from="1555162167840" duration="9781000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340170000" />
+    <option name="totallyTimeSpent" value="340555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1680" height="974" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.21787025" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.21787025" />
       <window_info id="Structure" order="1" sideWeight="0.50089127" side_tool="true" weight="0.19828641" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -615,7 +605,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32894737" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32894737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -980,11 +970,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="61" column="71" selection-start-line="61" selection-start-column="71" selection-end-line="61" selection-end-column="71" />
-          <folding>
-            <element signature="e#2713#2746#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="282">
+          <caret line="62" column="69" selection-start-line="62" selection-start-column="69" selection-end-line="62" selection-end-column="69" />
         </state>
       </provider>
     </entry>
