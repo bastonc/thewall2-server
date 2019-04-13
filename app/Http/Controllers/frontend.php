@@ -280,7 +280,7 @@ class frontend
         }
         if($imageOption[0]>1400 or $imageOption[1]>1400)
         {
-            $sizeCall=23;
+            $sizeCall=50;
             $sizeName=23;
             $y_dop=40;
         }
