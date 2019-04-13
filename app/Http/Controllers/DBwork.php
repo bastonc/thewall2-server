@@ -309,8 +309,13 @@ class DBwork
     }
     public function getComplitedCall($token)
     {
-        $complitedCallsArray=DB::select('SELECT DISTINCT `call` FROM QSO WHERE `status` = "completed" AND `tokenprogramm` = ?',
-            [$token]);
+        $complitedCallsArray=DB::table('QSO')->distinct()->select('call','num')->where( function ($query) use ($token) {
+            $query->where('status', '=', 'completed')
+                  ->where('tokenprogramm', '=', $token);
+        })->simplePaginate(100);
+       // dd($complitedCallsArray);
+        /*DB::select('SELECT DISTINCT `call`,`num` FROM QSO WHERE `status` = "completed" AND `tokenprogramm` = ?',
+            [$token])->paginate(10);*/
         return $complitedCallsArray;
     }
 

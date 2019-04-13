@@ -295,9 +295,9 @@ class frontend
         //$countNum=count($num);
         if($num<10)
             $numstring='000'.$num;
-        if($num>10 && $num<100)
+        if($num>10 || $num<100)
             $numstring='00'.$num;
-        if($num>100 && $num<1000)
+        if($num>100 || $num<1000)
             $numstring='0'.$num;
         if($num>1000)
             $numstring=$num;

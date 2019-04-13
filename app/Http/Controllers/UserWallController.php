@@ -201,35 +201,30 @@ class UserWallController extends Controller
        // echo $request->X,"<br>", $request->Y, "<br>", $request->tokenprogramm ;
     }
     public function reportComplited(Request $request){
-
+        /*Данная функция подготавливает данные и передает их во въюху вывода репорта (thewall2.report)*/
         $tokenProgramm=$request->t;
         $programmInside = new DBwork;
+        // getComplitedCall получает список позывных которые имеют флаг вполненных. Возвращает данные: call(позывной) и num(номер диплома)
         $complitedCall=$programmInside->getComplitedCall($tokenProgramm);
+       //dd($complitedCall);
         foreach ($complitedCall as $call)
         {
             $totalscore=0;
-
-
             $searchinProgramm = new DBwork;
             $scoreDefinition = new ProgramsDiplom;
-
             $searchCallInProgramm = $searchinProgramm->searchCall($call->call,$tokenProgramm); //get all QSOs for this call
-
-            foreach($searchCallInProgramm as $info  ){
+            foreach($searchCallInProgramm as $info  )
+            {
                 $score = $scoreDefinition->scoreDefinition($info->operator,$info->mode,$tokenProgramm); // get QSO score for call in programm
-                //$info->score=$score; //set into stdobject score for QSO
-
                 $totalscore=$totalscore+$score; // summary score for all QSOs
-
-
             }
-            $call->score=$totalscore;
-           // $call->score="100";
-            //$call->QSOs[]=()
+            $call->score=$totalscore;//set into stdobject score for QSO
            // dd($call);
         }
        // dd($complitedCall);
         $programminfo=$programmInside->getProgrammInfo($tokenProgramm);
+            //dd($programminfo);
+        /* передаем во вьюху два массива $complitedCall - с информацией о позывном и $programminfo - c информацией о программе*/
         return view("thewall2.report", ["callArray"=>$complitedCall,"programmArray"=>$programminfo]);
 
     }
