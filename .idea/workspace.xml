@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0745dc9-c312-414d-8480-22c6c26721fe" name="Default Changelist" comment="" />
+    <list default="true" id="c0745dc9-c312-414d-8480-22c6c26721fe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/report.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/report.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,13 +58,13 @@
           <entry key="env" value="20" />
           <entry key="gitignore" value="24" />
           <entry key="js" value="21" />
-          <entry key="php" value="47740" />
+          <entry key="php" value="47962" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="20" />
-          <entry key="Blade" value="17438" />
+          <entry key="Blade" value="17660" />
           <entry key="HTML" value="38" />
           <entry key="JavaScript" value="21" />
           <entry key="PHP" value="30224" />
@@ -83,7 +86,7 @@
           <entry key="json" value="1" />
           <entry key="kLro3BjEUQJK11VEwiVo0oZm1WPbJ7JOAAErCN7V" value="1" />
           <entry key="log" value="1" />
-          <entry key="php" value="365" />
+          <entry key="php" value="366" />
           <entry key="rst" value="1" />
           <entry key="scss" value="2" />
           <entry key="txt" value="3" />
@@ -93,7 +96,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="3" />
-          <entry key="Blade" value="202" />
+          <entry key="Blade" value="203" />
           <entry key="CSS" value="5" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="1" />
@@ -167,8 +170,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/report.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="54" column="57" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="57" />
+            <state relative-caret-position="162">
+              <caret line="14" column="102" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="102" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="53" column="99" selection-start-line="53" selection-start-column="99" selection-end-line="53" selection-end-column="99" />
             </state>
           </provider>
         </entry>
@@ -182,11 +194,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="62" column="69" selection-start-line="62" selection-start-column="69" selection-end-line="62" selection-end-column="69" />
+            <state relative-caret-position="267">
+              <caret line="61" column="57" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -270,7 +282,6 @@
         <option value="$PROJECT_DIR$/resources/views/thewall2/mail/image.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/mail/email.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/form.blade.php" />
@@ -292,10 +303,11 @@
         <option value="$PROJECT_DIR$/resources/views/thewall2/resultcallcompleted.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/setcordinate.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserWallController.php" />
-        <option value="$PROJECT_DIR$/resources/views/thewall2/report.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/frontend.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DBwork.php" />
         <option value="$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/thewall2/report.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php" />
       </list>
     </option>
   </component>
@@ -579,17 +591,18 @@
       <workItem from="1554915030052" duration="8963000" />
       <workItem from="1555005507377" duration="4629000" />
       <workItem from="1555086658944" duration="10635000" />
-      <workItem from="1555162167840" duration="9781000" />
+      <workItem from="1555162167840" duration="11730000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340555000" />
+    <option name="totallyTimeSpent" value="342504000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1680" height="974" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.21787025" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.21787025" />
       <window_info id="Structure" order="1" sideWeight="0.50089127" side_tool="true" weight="0.19828641" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -605,7 +618,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32894737" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32894737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -810,13 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programform.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1170">
@@ -922,13 +928,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/report.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="54" column="57" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserWallController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
@@ -970,8 +969,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/thewall2/programmInfo.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="62" column="69" selection-start-line="62" selection-start-column="69" selection-end-line="62" selection-end-column="69" />
+        <state relative-caret-position="267">
+          <caret line="61" column="57" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/report.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="14" column="102" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/thewall2/reportqso.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="53" column="99" selection-start-line="53" selection-start-column="99" selection-end-line="53" selection-end-column="99" />
         </state>
       </provider>
     </entry>

@@ -11,11 +11,11 @@
         <div class="container">
             <center>
                 <p style="font-size:15px;"><a href="/cabinet">Повернутися до кабінету</a></p>
-                <form>
-                    <input type="button" value="Друкувати" onclick="window.print();">
-                </form>
+
+                <input type="button" value="Друкувати" onclick="javascript:CallPrint('print-content');">
 
 
+                <div id="print-content">
                 <p>Звіт виданих дипломів для програми {{$programmArray[0]->name}}</p>
 
 
@@ -50,6 +50,7 @@
                     @endforeach
 
                 </table>
+                </div>
                 <?php
                 $tokenArgumet='?t='.$programmArray[0]->token;
                 echo $callArray->setPath($tokenArgumet)->links(); ?>
@@ -61,6 +62,24 @@
 
     </div>
 
+    <script language="javascript">
+        function CallPrint(strid) {
+            var prtContent = document.getElementById(strid);
+            //var prtCSS = '<link rel="stylesheet" href="/templates/css/template.css" type="text/css" />';
+            var WinPrint = window.open('','','left=50,top=50,width=800,height=640,toolbar=0,scrollbars=1,status=0');
+            WinPrint.document.write('<div id="print" class="contentpane">');
+            //WinPrint.document.write(prtCSS);
+            WinPrint.document.write('<p align="right"> Дипломна система The Wall | Diploms</p><br /><center>');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.write('</center> <br />');
+            WinPrint.document.write('</div>');
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+            prtContent.innerHTML=strOldOne;
+        }
+    </script>
 
 
 
