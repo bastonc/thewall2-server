@@ -317,7 +317,20 @@ class DBwork
         /*DB::select('SELECT DISTINCT `call`,`num` FROM QSO WHERE `status` = "completed" AND `tokenprogramm` = ?',
             [$token])->paginate(10);*/
         return $complitedCallsArray;
-    }
 
+    }
+    public function getProgrammForAnounce($data,$status)
+    {
+        $query='SELECT * FROM PROGRAMM WHERE `status`="'.$status.'" AND DATE (`start_for_page`) BETWEEN DATE ("'.$data.'")AND DATE_ADD(DATE("'.$data.'"), INTERVAL 7 DAY) ';
+        $resultArray=DB::select($query);
+        //dd($resultArray);
+        return $resultArray;
+    }
+    public function getcordinatexyforprogramm ($token)
+    {
+        $cordinateArray=DB::table('PROGRAMM')->select('cordinatex','cordinatey','XName','YName','XNum','YNum','image')
+                                    ->where('token','=', $token)->get();
+        return $cordinateArray;
+    }
 }
 //echo $res['call']." | Date:".$res['qso_date']." | Time: ". $res['time_on']." | Freq: ".$res['band']." | сработал с ". $res['operator']." | RST ". $res['rst_sent']."<br>";

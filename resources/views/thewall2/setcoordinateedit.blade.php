@@ -10,14 +10,14 @@ $formtext="Оберіть де буде відображатись позивн�
 
         #el{
             position:relative;
-           /* width: 100%;*/
+            /* width: 100%;*/
             /* z-index: 2*/
             /*background:#555*/
         }
 
 
         .stamp{
-           /* width:400px;*/
+            /* width:400px;*/
             height:25px;
             background:#ddd;
             position: absolute;
@@ -27,7 +27,7 @@ $formtext="Оберіть де буде відображатись позивн�
 
         }
         .stamp2{
-           /* width:400px;*/
+            /* width:400px;*/
             height:20px;
             background:#ddd;
             position: absolute;
@@ -54,24 +54,24 @@ $formtext="Оберіть де буде відображатись позивн�
 </head>
 <body>
 <div class="description">
-        {!!   Form::open(array('action' => 'UserWallController@getcordinatexy')) !!}
+    {!!   Form::open(array('action' => 'UserWallController@getcordinatexy')) !!}
     <center>{{$formtext}}
-    <br /><br />
-    Оберіть колір надписів<br />
-    Чорний<input name="color" type="radio" value="black" checked>
-    Білий<input name="color" type="radio" value="white">
-    <!--select name="color"><option>Чорний</option><option>Білий</option></select-->
-            <input type='hidden' id="XCall" name="XCall">
-            <input type='hidden' id="YCall" name="YCall">
-            <input type='hidden' id="XName" name="XName">
-            <input type='hidden' id="YName" name="YName">
-            <input type='hidden' id="XNum" name="XNum">
-            <input type='hidden' id="YNum" name="YNum">
-            <input type="hidden" value="{{$tokenprogramm}}" name="tokenprogramm">
-            <br />
-            <button type="submit" class="button-submit"> Я Зробив! </button>
-</center>
-        {!! Form::close() !!}
+        <br /><br />
+        Оберіть колір надписів<br />
+        Чорний<input name="color" type="radio" value="black" checked>
+        Білий<input name="color" type="radio" value="white">
+        <!--select name="color"><option>Чорний</option><option>Білий</option></select-->
+        <input type='hidden' id="XCall" name="XCall">
+        <input type='hidden' id="YCall" name="YCall">
+        <input type='hidden' id="XName" name="XName">
+        <input type='hidden' id="YName" name="YName">
+        <input type='hidden' id="XNum" name="XNum">
+        <input type='hidden' id="YNum" name="YNum">
+        <input type="hidden" value="{{$tokenprogramm}}" name="tokenprogramm">
+        <br />
+        <button type="submit" class="button-submit"> Я Зробив! </button>
+    </center>
+    {!! Form::close() !!}
 </div>
 <img id="el" src='{{$image}}' {{$imageSize}}>
 <script type="text/javascript">
@@ -110,7 +110,7 @@ $formtext="Оберіть де буде відображатись позивн�
             if(setcoordinate){
                 document.getElementById(divfixedname).style.top = divkoordinateY + 'px';
                 document.getElementById(divfixedname).style.left = clickX + 12 + 'px';
-                document.getElementById(divfixedname).innerText="001";
+                document.getElementById(divfixedname).innerText="0123";
                 document.getElementById(name1).id = "Ready";
                 document.getElementById(name2).id = "Readymove";
             }
@@ -197,7 +197,7 @@ $formtext="Оберіть де буде відображатись позивн�
             var name2="nummove";
             divkoordinateY=clickY+70;
             divkoordinateY2=clickY+120;
-            document.getElementById(name2).innerText="001";
+            document.getElementById(name2).innerText="0123";
             document.getElementById(name1).style.zindex =-1;
             document.getElementById(name2).style.top = divkoordinateY+'px';
             document.getElementById(name2).style.left = clickX+12+'px';
@@ -263,18 +263,11 @@ $formtext="Оберіть де буде відображатись позивн�
 
     }
 </script>
-<div class="stamp" id="call"><center> </center></div>
-@if(isset($cordinate))
-<div class="stamp" id="callfixed" style="top:{{$cordinate[0]->cordinatey+85}}; left:{{$cordinate[0]->cordinatex+10}};" ><center> AA1BBC </center></div>
-<div class="stamp" id="namefixed" style="top:{{$cordinate[0]->YName+85}}; left: {{$cordinate[0]->XName+10}};" ><center> Name Sirname </center></div>
-<div class="stamp" id="numfixed" style="top:{{$cordinate[0]->YNum+85}}; left: {{$cordinate[0]->XNum+10}};"><center> 001 </center></div>
-<div class="stamp2"id="callmove"><center></center></div>
-@else
 
-<div class="stamp" id="callfixed"  ><center> AA1BBC </center></div>
-<div class="stamp" id="namefixed"  ><center> Name Sirname </center></div>
-<div class="stamp" id="numfixed" ><center> 001 </center></div>
-@endif
+<div class="stamp" id="call"><center> </center></div>
+<div class="stamp" id="callfixed"  ><center> </center></div>
+<div class="stamp" id="namefixed" ><center> </center></div>
+<div class="stamp" id="numfixed" ><center> </center></div>
 <div class="stamp2"id="callmove"><center></center></div>
 <script>
     /*var callsign=document.getElementById('callfixed');

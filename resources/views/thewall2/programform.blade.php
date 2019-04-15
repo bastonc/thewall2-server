@@ -59,7 +59,7 @@
                     <tr><td align="right"> E-mail дипломного менеджеру: </td> <td> {!! Form::text('emailManager', $data->email_manager, array('data-tooltip'=>'На цей E-mail будуть надходити заявки на отримання диплому'))!!}</td></tr>
                     <tr><td align="right"> Введіть дату початку програми:&nbsp;</td> <td align="left"> {!! Form::text('startProgramm', $data->start_for_page , array('data-tooltip'=>'Дата початку дипломної програми буде виводитись на головній сторінці', 'class'=>'calendar','autocomplete'=>'off'))!!}</td></tr>
                     <tr><td align="right"> Введіть дату завершення програми:&nbsp;</td> <td align="left"> {!! Form::text('finishProgramm', $data->finish_for_page, array('data-tooltip'=>'Дата завершення дипломної програми буде виводитись на головній сторінці','class'=>'calendar','autocomplete'=>'off') )!!}</td></tr>
-                    <tr><td align="right"> Зобрження: </td> <td> <img src="{{$data->image}}"  width="100" data-tooltip='Це зображення яке використовується наразі'><br><br></td></tr>
+                    <tr><td align="right"> Зобрження: </td> <td> <img src="{{$data->image}}"  width="100" data-tooltip='Це зображення яке використовується наразі'><a href="/admin/editcordinate?t={{$data->token}}"> Змінити розташування надписів </a><br></td></tr>
                     <tr><td align="right">Загрузити нове фото <i>(якщо потрібно)</i>: </td><td>{!! Form::file('Image', array('data-tooltip'=>'Якщо потрібно змінити ескіз диплому - натисніть цю кнопку'))!!}<br><br></td></tr>
                     <tr><td align="right"  > <br /><br />Здобувач отримуе диплом через E-mail</td><td align="left"><br /><br />
                             <input data-tooltip='Дипломний менеджер отримує листа з E-mail здобувача,<br />

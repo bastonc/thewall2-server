@@ -6,7 +6,8 @@ use Mail;
 
 class frontend
 {
-    public function getProgramm(Request $request){
+    public function getProgramm(Request $request)
+    {
 
         if (isset($request->sortby)AND $request->sortby=="FWD") {
             $sortBy = "FWD";
@@ -26,7 +27,8 @@ class frontend
         return view('thewall2/indexProgramm',["Programms"=>$ProgrammArray]);
 
     }
-    public function programmInside (Request $request) {
+    public function programmInside (Request $request)
+    {
         $token=$request->p;
         $programmInside = new DBwork;
         $programmInfo=$programmInside->getProgrammInfo($token);
@@ -44,7 +46,8 @@ class frontend
         //
 
     }
-    public function searchCall(Request $request) {
+    public function searchCall(Request $request)
+    {
 
         $call=$request->searchcall;
         $tokenprogramm=$request->Token;
@@ -136,7 +139,8 @@ class frontend
 
 
     }
-    public function sendemail(Request $request){
+    public function sendemail(Request $request)
+    {
 
         if($request->key == 0) {
             if ($request->email == NULL || $request->token == NULL || $request->call == NULL) {
@@ -239,7 +243,6 @@ class frontend
             else
         {echo "Unknown error";}
     }
-
     public function getImage ($imagePath, $call, $name, $XCall, $YCall, $XName, $YName, $XNum, $YNum, $color, $nameProgramm, $num)
     {
         $imagePathCorrect="";
@@ -280,7 +283,7 @@ class frontend
         }
         if($imageOption[0]>1400 or $imageOption[1]>1400)
         {
-            $sizeCall=50;
+            $sizeCall=40;
             $sizeName=23;
             $y_dop=40;
         }
@@ -293,13 +296,11 @@ class frontend
         $y_num=$YNum;
 
         //$countNum=count($num);
-        if($num<10)
-            $numstring='000'.$num;
-        if($num>10 || $num<100)
+        if($num < 10)
             $numstring='00'.$num;
-        if($num>100 || $num<1000)
+        if($num >= 10 AND $num < 100)
             $numstring='0'.$num;
-        if($num>1000)
+        if($num >= 100)
             $numstring=$num;
         //$string=$call." ".$name;
        // dd($x_call,$x_num);
@@ -348,7 +349,8 @@ class frontend
         return $stat;
 
     }
-    public function resultForCall( $call, $tokenprogramm) {
+    public function resultForCall( $call, $tokenprogramm)
+    {
 
 
         $totalscore=0;
@@ -408,7 +410,8 @@ class frontend
             return view('thewall2/alert', ["status" => "warn", "data" => $data]);
         }
     }
-    public function getReport(Request $request){
+    public function getReport(Request $request)
+    {
 
         $scoreDefinition = new ProgramsDiplom;
         $searchinProgramm = new DBwork;
@@ -428,7 +431,55 @@ class frontend
         return view("thewall2.reportqso", ["callArray"=>$searchCallInProgramm,"programmArray"=>$programminfo]);
 
     }
+    public function anounce(Request $request)
+    {
+        $programmsForAnouncedb = new DBwork;
+        $today=date('Y-m-d');
+        //dd($today);
+        $programmArray=$programmsForAnouncedb->getProgrammForAnounce($today, 'open');
+        $tomorrow=date('Y-m-d', strtotime($today. ' + 1 days')); //устанавливаем дату "завтра"
+        $dayAfterTomorow=date('Y-m-d', strtotime($today. ' + 2 days')); //устанавливаем дату послезавтра
+        //dump($tomorrow);
+        //dd($programmArray);
+        $tomorowArray= Array();
+        $dayAftertomorowArray= Array();
+        $remainingWeek= Array();
+        foreach ($programmArray as $programm)
+        {
+            $date=date_create($programm->start_for_page)->Format('Y-m-d');
+            //dump($date);
 
+            if($date==$tomorrow)
+            {
+                $programm->start_for_page=date_create($programm->start_for_page)->Format('Y-m-d');
+                $tomorowArray[]=$programm;
+                //dump($tomorowArray);
+            }
+            elseif($date==$dayAfterTomorow)
+            {
+                $programm->start_for_page=date_create($programm->start_for_page)->Format('Y-m-d');
+                $dayAftertomorowArray[]=$programm;
+                //dump($dayAftertomorowArray);
+            }
+            else{
+                $programm->start_for_page=date_create($programm->start_for_page)->Format('Y-m-d');
+                $remainingWeekArray[]=$programm;
+
+               // dump($remainingWeekArray);
+                }
+        }
+
+          /*  usort($remainingWeekArray, function( $a, $b ) {
+                return strtotime($a["date"]) - strtotime($b["date"]);
+            });
+           */
+            $anounceCommonArray= array('tomorow'=>$tomorowArray,
+                                 'dayAftertomorow' => $dayAftertomorowArray,
+                                 'remainingWeek'=>$remainingWeekArray,);
+        //dump($anounceCommonArray['remainingWeek'][1]->start_for_page);
+
+        dd($anounceCommonArray);
+    }
 
 
 

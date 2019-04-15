@@ -29,9 +29,9 @@
                             if ($index%2 ==0) {$color="#dddddd";}else {$color="#ffffff";}
                             if ($call->num < 10)
                                 $num="000".$call->num;
-                            if($call->num > 10 && $call->num < 100)
+                            if($call->num >= 10 AND $call->num < 100)
                                 $num="00".$call->num;
-                            if($call->num > 100 && $call->num < 1000)
+                            if($call->num >= 100 AND $call->num < 1000)
                                 $num="0".$call->num;
                             if($call->num > 1000)
                                 $num=$call->num;

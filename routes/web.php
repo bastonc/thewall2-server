@@ -56,6 +56,7 @@ Route::get('log','UserWallController@logProgram');
 Route::get('open','UserWallController@openProgram');
 Route::get('newprogramm', function (){ return view("thewall2/newProgramForm");})->name('createProgramForm');
 Route::post('newprogramm', 'UserWallController@createProgram' );
+Route::get('anounce','frontend@anounce');
 
 Route::get('close', 'UserWallController@closeProgram');
 
@@ -68,6 +69,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         Route::post('get','uploadadifController@upload');
         route::get('report','UserWallController@reportComplited');
         route::get('reportoper','frontend@getReport');
+        Route::get('editcordinate','UserWallController@setCordinateEdit');
 
         //Route::get('edit','UserWallController@editProgram');
 //log close /del

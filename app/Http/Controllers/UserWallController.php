@@ -200,6 +200,16 @@ class UserWallController extends Controller
         return redirect()->route('cabinet');
        // echo $request->X,"<br>", $request->Y, "<br>", $request->tokenprogramm ;
     }
+    public function setCordinateEdit (Request $request)
+    {
+        $cordinate = new DBwork;
+        $cordinatexy=$cordinate->getcordinatexyforprogramm($request->t);
+        //$sizeArray = $this->fullSizeImage($saveMessage[1]);
+        $image = $cordinatexy[0]->image;
+        $sizeArray=$this->fullSizeImage($image);
+        //return view('thewall2.setcordinate', ["tokenprogramm" => $request->t, "image" => $saveMessage[1], "imageSize" => $sizeArray[3]]);
+        return view('thewall2.setcordinate',['cordinate'=>$cordinatexy, 'tokenprogramm' => $request->t, 'image' => $image, 'imageSize' => $sizeArray[3] ]);
+    }
     public function reportComplited(Request $request){
         /*Данная функция подготавливает данные и передает их во въюху вывода репорта (thewall2.report)*/
         $tokenProgramm=$request->t;
@@ -228,6 +238,7 @@ class UserWallController extends Controller
         return view("thewall2.report", ["callArray"=>$complitedCall,"programmArray"=>$programminfo]);
 
     }
+
     public function test()
     {
        // dd(gd_info ());
