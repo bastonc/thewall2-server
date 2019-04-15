@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0745dc9-c312-414d-8480-22c6c26721fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/thewall2/setcoordinateedit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DBwork.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DBwork.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserWallController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserWallController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/frontend.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/frontend.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/programform.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/programform.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/report.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/report.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/thewall2/setcordinate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thewall2/setcordinate.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +58,7 @@
           <entry key="env" value="20" />
           <entry key="gitignore" value="24" />
           <entry key="js" value="21" />
-          <entry key="php" value="50300" />
+          <entry key="php" value="50301" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -75,7 +67,7 @@
           <entry key="Blade" value="18141" />
           <entry key="HTML" value="38" />
           <entry key="JavaScript" value="21" />
-          <entry key="PHP" value="32081" />
+          <entry key="PHP" value="32082" />
           <entry key="PLAIN_TEXT" value="24" />
           <entry key="SQL" value="40" />
         </counts>
@@ -142,8 +134,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/frontend.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="285" column="24" selection-start-line="285" selection-start-column="24" selection-end-line="285" selection-end-column="24" />
+            <state relative-caret-position="160">
+              <caret line="445" column="27" selection-start-line="445" selection-start-column="27" selection-end-line="445" selection-end-column="27" />
               <folding>
                 <element signature="e#145#813#0#PHP" />
               </folding>
@@ -654,18 +646,18 @@
       <workItem from="1555086658944" duration="10635000" />
       <workItem from="1555162167840" duration="13901000" />
       <workItem from="1555251237867" duration="8434000" />
-      <workItem from="1555352355359" duration="5097000" />
+      <workItem from="1555352355359" duration="5903000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="358206000" />
+    <option name="totallyTimeSpent" value="359012000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1680" height="974" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.2239902" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910873" visible="true" weight="0.2239902" />
       <window_info id="Structure" order="1" sideWeight="0.50089127" side_tool="true" weight="0.19828641" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -681,7 +673,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.31944445" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.31944445" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1071,8 +1063,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/frontend.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="285" column="24" selection-start-line="285" selection-start-column="24" selection-end-line="285" selection-end-column="24" />
+        <state relative-caret-position="160">
+          <caret line="445" column="27" selection-start-line="445" selection-start-column="27" selection-end-line="445" selection-end-column="27" />
           <folding>
             <element signature="e#145#813#0#PHP" />
           </folding>

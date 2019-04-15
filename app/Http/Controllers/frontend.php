@@ -443,7 +443,7 @@ class frontend
         //dd($programmArray);
         $tomorowArray= Array();
         $dayAftertomorowArray= Array();
-        $remainingWeek= Array();
+        $remainingWeekArray= Array();
         foreach ($programmArray as $programm)
         {
             $date=date_create($programm->start_for_page)->Format('Y-m-d');
