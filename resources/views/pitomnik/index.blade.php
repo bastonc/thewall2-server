@@ -441,7 +441,7 @@
                 stateButton(data.waitMonneyArray);
                 renderBalance(data.waitMonneyArray);
                 showModal("formAnimal","formModal", "overlayDiv", "closed");
-                console.log(data);
+               // console.log(data);
             }
 
         }
