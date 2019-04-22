@@ -30,7 +30,7 @@ class AnimalClass extends Controller
         //$transaction - object объект транзакции
         $recordAnimalInBase=DB::transaction(function() use ($idCell,$objectAnimal,$transaction){
             DB::insert('INSERT INTO `Pitomnik_Animal`(`typeAnimal`,`name` , `age` , `characterAnimal` , `idCell`) VALUES (?,?,?,?,?)',
-                [$objectAnimal->typeAnimal,$objectAnimal->nameAnimal, $objectAnimal->ageAnimal, $objectAnimal->character, $idCell]);
+                [$objectAnimal->typeAnimal,$objectAnimal->name, $objectAnimal->age, $objectAnimal->characterAnimal, $idCell]);
             DB::update('UPDATE `Pitomnik_Cell` SET stata=stata+1 WHERE `id`=?',[$idCell]);
             DB::update('UPDATE `Pitomnik_Chek` SET flag=flag+1 WHERE `source`="TreasuryDepartment"');
             DB::insert('INSERT INTO `Pitomnik_Transaction`(`type`,`what` , `how` , `for`,`other`) VALUES (?,?,?,?,?)',
@@ -91,10 +91,10 @@ class AnimalClass extends Controller
         $transactionObject->type="frontend";
         $transactionObject->typeOper = 0;
         $idCell = DB::select('SELECT `idCell` FROM `Pitomnik_Animal` WHERE `name`=? AND `age`=? AND `characterAnimal`=? AND `typeAnimal`=?',
-                        [$objectAnimal->nameAnimal, $objectAnimal->ageAnimal, $objectAnimal->character, $objectAnimal->typeAnimal]);
+                        [$objectAnimal->name, $objectAnimal->age, $objectAnimal->characterAnimal, $objectAnimal->typeAnimal]);
 
         $deleteState=DB::delete('DELETE FROM Pitomnik_Animal WHERE `name`=? AND `age`=? AND `characterAnimal`=? AND `typeAnimal`=?',
-                        [$objectAnimal->nameAnimal, $objectAnimal->ageAnimal, $objectAnimal->character, $objectAnimal->typeAnimal]);
+                        [$objectAnimal->name, $objectAnimal->age, $objectAnimal->characterAnimal, $objectAnimal->typeAnimal]);
         if($deleteState!=0){
             DB::transaction( function() use ($transactionObject,$idCell){
             DB::update('UPDATE `Pitomnik_Cell` SET stata=stata-1 WHERE `id`=?', [$idCell[0]->idCell]);
@@ -128,5 +128,35 @@ class AnimalClass extends Controller
 
         return $stataTransaction;
 }
+    public function destroyer(){
+        $animalArray = DB::select('SELECT * FROM `Pitomnik_Animal` WHERE `characterAnimal`="evil"');
+       if($animalArray!=NULL) {           //выполняем проверку на нахождение злых животных
+           if(count($animalArray)==1) $index=0; else $index = rand(0, count($animalArray));
+
+
+           $cellNewId = $this->buyCellId(1, $animalArray[$index]->typeAnimal);
+           //dump($animalArray[$index]);
+           $transactionObject = (object)Array();
+           if ($animalArray[$index]->typeAnimal == 'cat') {
+               $coast = 5;
+               $type = 'кошка';
+           }
+           if ($animalArray[$index]->typeAnimal == 'dog') {
+               $coast = 10;
+               $type = 'собака';
+           }
+           $transactionObject->text = $type . " " . $animalArray[$index]->name . "пересажен в новую клетку";
+           $transactionObject->coast = $coast;
+           $transactionObject->type = "frontend";
+           $transactionObject->typeOper = 0;
+           $this->defineCell($cellNewId, $animalArray[$index], $transactionObject);
+           //dd($animalArray[$index]->idCell);
+           DB::delete('DELETE FROM `Pitomnik_Cell` WHERE `id`=?', [$animalArray[$index]->idCell]); // удаляем разваленую клетку
+           //dd($animalArray[$index]->idCell);
+           $animalArray[$index]->newCellId = $cellNewId;
+           $resultArray=$animalArray[$index];
+       }else{$resultArray=NULL;}
+        return  $resultArray;
+    }
 
 }

@@ -17,7 +17,7 @@ class ChekClass extends Controller{
             //dd($counterFlag);
             if(($counter%10)==0){
                 $transactionObject = (object) Array();
-                $transactionObject->text = "Получено 100 за каждого 10-го животного";
+                $transactionObject->text = "Казна выделила 100";
                 $transactionObject->coast = 100;
                 $transactionObject->type="frontend";
                 $transaction=DB::transaction(function() use ($transactionObject,$counter){
@@ -38,7 +38,15 @@ class ChekClass extends Controller{
     return $enableButton; // массив со значением ожидающих денег (счет на получение из казначейства)
     }
     public function giveMoney(){
+
+        $moneyWaitArray=DB::select('SELECT `moneyWait` FROM `Pitomnik_Chek` WHERE `source`="TreasuryDepartment"');
+        $transactionObject = (object) Array();
+        $transactionObject->text = "Получены деньги из казны";
+        $transactionObject->coast = $moneyWaitArray[0]->moneyWait;
+        $transactionObject->type="frontend";
         $result=DB::update('UPDATE `Pitomnik_Chek` SET `money`= `money`+`moneyWait`, `moneyWait`=0  WHERE `source`="TreasuryDepartment"');
+        DB::insert('INSERT INTO `Pitomnik_Transaction`(`type`,`what` , `how` , `for`,`other`) VALUES (?,?,?,?,?)',
+            [0,$transactionObject->text,$transactionObject->coast, $transactionObject->type, '0']);
 
         return $result;
 

@@ -12,10 +12,10 @@ class pitomnikController extends Controller
         //$msg = "Кличка: ".$request->animalName." Возраст: ".$request->animalAge." Вид: ".$request->typeAnimal . " Характер: ".$request->character;
 
         $validation = $this->validate($request, [
-            'nameAnimal'  => 'required|unique:Pitomnik_Animal,name|max:50',
-            'ageAnimal' => 'required',
+            'name'  => 'required|unique:Pitomnik_Animal,name|max:50',
+            'age' => 'required',
             'typeAnimal'=>'required',
-            'character' =>'required'
+            'characterAnimal' =>'required'
             ]);
 
         /*if ($validation->fails())
@@ -25,13 +25,13 @@ class pitomnikController extends Controller
 
         $typeAnimal=$request->typeAnimal;
         $transactionObject= (object) Array();
-        $transactionObject->text = "Добавлено животное".$request->animalName;
+        $transactionObject->text = "Добавлено животное".$request->name;
         $transactionObject->coast = 0;
         $transactionObject->type="frontend";
         $cell= new AnimalClass;
         $transaction = new TransactionClass;
         $chek = new ChekClass;
-        $character=$request->character;
+        $character=$request->characterAnimal;
         $celltype = $cell->setCellType($character); // метод определяет в какую клетку садить зверя. Возвращает 1 - одиночная; 10 - груповая
 
         $idCell=$cell->chekEmptyCell($celltype, $typeAnimal);   // метод проверяет наличия пустых ОДИНОЧНЫХ/ГРУППОВЫХ ($celltype) клеток для типа животного $typeAnimal
@@ -48,7 +48,7 @@ class pitomnikController extends Controller
 
         }else{
             $buyCellId= $cell->buyCellId($celltype, $typeAnimal); // метод покупает клетку. Принимает $celltype - тип клетки 1 = одиночная; 0 = групповая. Возвращает ID купленной клетки.
-            $transactionObject->text = "Животное посажено в новую клетку".$request->animalName;
+            $transactionObject->text = "Животное посажено в новую клетку".$request->name;
             $transactionObject->coast = 0;
             $transactionObject->type="frontend";
             $cell->defineCell($buyCellId, $request ,$transactionObject); // метод - занимает клетку $byCellId за животным, прибавляет в клетку+1 жильца, добавляем+1 добавленный для отчета по казначейству,
@@ -118,9 +118,9 @@ class pitomnikController extends Controller
             }
         }else {  $error = 1; }
 
-        if($error==1){
+      /*  if($error==1){
 
-        }
+        }*/
 
         $state='delanimal'; //стата для клиента
         $cellstateArray=$animal->refreshStateCells();    //рефрешим состоние клеток
@@ -129,6 +129,21 @@ class pitomnikController extends Controller
 
        // dd('STOP Должно быть удалено животное, продана его клетка, деньги быть на балансе');
         return response()->json(array('transactionArray'=> $transactionArray,'waitMonneyArray'=>$waitMoneyArray, 'cellStataArray'=>$cellstateArray, 'state'=>$state, 'error'=>$error), 200);
+    }
+    public function destroyer(){
+        $error=0;
+        $cell = new AnimalClass;
+        $transaction = new TransactionClass;
+        $chek = new ChekClass;
+        $animalDestroyerArray=$cell->destroyer();
+        if($animalDestroyerArray==NULL) $error=1;
+        $state='destroyer'; //стата для клиента
+        $cellstateArray=$cell->refreshStateCells();    //рефрешим состоние клеток
+        $waitMoneyArray=$chek->getBalance(); //рефрешим счет
+        $transactionArray = $transaction->getAllTransaction();  // рефрешим транзакции
+        return response()->json(array('animalDestroyer'=>$animalDestroyerArray, 'transactionArray'=> $transactionArray,
+            'waitMonneyArray'=>$waitMoneyArray, 'cellStataArray'=>$cellstateArray, 'state'=>$state, 'error'=>$error), 200);
+
     }
 }
 

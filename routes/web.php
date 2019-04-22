@@ -26,6 +26,10 @@ Route::post('givemoney','pitomnikController@giveMoney');
 //Route::get('givemoney','pitomnikController@giveMoney');
 Route::get('delanimal','pitomnikController@delAnimal');
 Route::post('delanimal','pitomnikController@delAnimal');
+Route::post('destroyer','pitomnikController@destroyer');
+Route::get('destroyer','pitomnikController@destroyer');
+
+
 
 
 

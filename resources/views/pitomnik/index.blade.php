@@ -105,22 +105,64 @@
         }
 
         .addButtonForm{
-            width:100;
+            width:150px;
             /*height:20;*/
             position: absolute;
             top: 100px;
             left: 5%;
-            border: 3px double #645a4e;
+            /*border: 3px double #645a4e;*/
+            color: #aabbff;
             /*text-align: center;*/
             /*border:2 px;*/
         }
+        .button{
+            -moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+            -webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+            box-shadow:inset 0px 1px 3px 0px #91b8b3;
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+            background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+            background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+            background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+            background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+            background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+            background-color:#768d87;
+            -moz-border-radius:5px;
+            -webkit-border-radius:5px;
+            border-radius:5px;
+            border:1px solid #566963;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:12px;
+            font-weight:bold;
+            padding:11px 23px;
+            text-decoration:none;
+            text-shadow:0px -1px 0px #2b665e;
+        }
+        .button:hover {
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+            background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+            background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+            background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+            background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+            background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+            background-color:#6c7c7c;
+        }
+        .button:active {
+            position:relative;
+            top:1px;
+        }
+
         .delButtonForm{
-            width:100;
+            width:150px;
             /*height:20;*/
             position: absolute;
             top: 100px;
             left: 85%;
-            border: 3px double #645a4e;
+            /*border: 3px double #645a4e;*/
             /*text-align: center;*/
             /*border:2 px;*/
         }
@@ -141,6 +183,23 @@
             left: 50%;
             /*text-align: center;*/
             /*border:2 px;*/
+        }
+        .push{
+            width:800px;
+            max-width:100%;
+            height:50px;
+            position: absolute;
+            top: 20px;
+            left: 5%;
+            text-align:center;
+            align-content: center;
+            color: #d3e0e9;
+            background-color: #2F860F;
+            opacity: 0.8;
+
+            /*color-interpolation: linearRGB;*/
+
+            border: 3px double #213a1a;
         }
         .buttonMoney{
             /*width:100 px;
@@ -180,12 +239,12 @@
 <!-- слой кнопки для добавления животного -->
 <div class="addButtonForm" id="addAnimalDiv">
     <span id="testresponse"></span>
-    <button id="addAnimalBtn">Принять животное</button>
+    <button id="addAnimalBtn" class="button">Принять животное</button>
 </div>
 <!------------------------------------------>
 <!-- слой кнопки для удаления животного -->
 <div class="delButtonForm" id="delAnimalDiv">
-    <button id="delAnimalBtn">Пристроить животное</button>
+    <button id="delAnimalBtn" class="button">Пристроить животное</button>
 </div>
 <!------------------------------------------>
 <!-- слой кнопки для статистики питомника -->
@@ -198,8 +257,9 @@
 
 </div>
 <!------------------------------------------>
-<input type="button" value="" id="buttonMoney" class="buttonMoney closed">
 <!-- слой кнопки для счет получения денег из казначейства -->
+<input type="button" value="" id="buttonMoney" class="buttonMoney closed">
+<!---------------------------------------------------------->
 <div class="balans" id="transactionDiv">
 
 </div>
@@ -246,7 +306,13 @@
     <div class="balance" id="balance">
         Баланс:
     </div>
-    <!---------------------------------------->
+<!---------------------------------------->
+
+<!--слой Push-уведомления -->
+<div class="push closed" id="push">
+    TEST
+</div>
+<!---------------------------------------->
 
 
 
@@ -280,7 +346,12 @@
         //submitButton.addEventListener("click", function(){alert(1);
         // },false);
         params="_token=<?php echo csrf_token() ?>&state=init";
-        ajaxPost('getall',params)
+        ajaxPost('getall',params);
+        var dig = Math.round(Math.random() * 10);
+       // alert( dig );
+        if( dig>4 && dig<7){
+            destroyer();
+        }
 
 
 
@@ -317,8 +388,8 @@
 
         if(result==true) {
 
-            params = "_token=<?php echo csrf_token() ?>&nameAnimal=" + document.Animalform.nameAnimal.value + "&ageAnimal=" + document.Animalform.ageAnimal.value + "&typeAnimal="
-                + document.Animalform.typeAnimal.value + "&character=" + document.Animalform.character.value;
+            params = "_token=<?php echo csrf_token() ?>&name=" + document.Animalform.nameAnimal.value + "&age=" + document.Animalform.ageAnimal.value + "&typeAnimal="
+                + document.Animalform.typeAnimal.value + "&characterAnimal=" + document.Animalform.character.value;
 
             if (document.getElementById('submitButton').value == 'Принять животное') {
 
@@ -360,25 +431,34 @@
         });
 
     }
+    function destroyer(){
+        params = "_token=<?php echo csrf_token() ?>";
+        ajaxPost('destroyer',params)
+    }
     function renderCellState(data){
-        htmltext="<table><tr><td>Тип клетки</td><td>Вместимость</td><td>Стоимость</td><td>Жителей</td></tr>";
+        htmltext="<table><tr bgcolor='#aabbaa'><td align=center>Тип клетки</td><td align=center>Вместимость</td><td align=center>Стоимость</td><td align=center>Жителей</td></tr>";
       // alert(data['0']['cost']);
+        i=0;
         for(cells in data){
             if(data[cells].typeAnimal == 'cat') typeAnimal='Кошачья';
             if(data[cells].typeAnimal == 'dog') typeAnimal='Собачья';
             if(data[cells].typeCell == '10') typeCell='Групповая 10';
             if(data[cells].typeCell == '1') typeCell='Одиночка';
-
-            htmltext=htmltext+'<tr><td>'+typeAnimal+'</td><td>'+typeCell+'</td><td>'+data[cells].cost+'</td><td onclick="getAnimalInCell(\''+ data[cells].id+'\')">'+data[cells].stata+'</td></tr>';
+            i++;
+            i%2==0 ? color = '#bbbbbb' : color = '#ffffff';
+            htmltext=htmltext+'<tr bgcolor='+color+' ><td align=center>'+typeAnimal+'</td><td align=center>'+typeCell+'</td><td align=center>'+data[cells].cost+'</td><td onclick="getAnimalInCell(\''+ data[cells].id+'\')" align=center>'+data[cells].stata+'</td></tr>';
         }
         htmltext=htmltext+'</table>';
         document.getElementById('stateCellDiv').innerHTML=htmltext;
     }
     function renderTransaction (data){
-        htmltext="<table><tr><td>Транзакция</td><td>Стоимость</td></tr>";
+        htmltext="<table><tr bgcolor='#aabbaa'><td align=center>Транзакция</td><td align=center>Стоимость</td></tr>";
+        i=0;
         for(transaction in data){
             if(data[transaction].type == 0)
-            htmltext=htmltext+'<tr><td>'+data[transaction].what+'</td><td>'+data[transaction].how+'</td></tr>';
+                i++;
+            i%2==0 ? color = '#bbbbbb' : color = '#ffffff';
+            htmltext=htmltext+'<tr bgcolor='+color+' ><td align=center>'+data[transaction].what+'</td><td align=center>'+data[transaction].how+'</td></tr>';
         }
         htmltext=htmltext+'</table>';
         document.getElementById('transactionDiv').innerHTML=htmltext;
@@ -406,7 +486,11 @@
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-
+    function pushdiv(PushDivId, text, msec){
+        document.getElementById(PushDivId).innerText=text;
+        document.getElementById(PushDivId).style.display="block";
+        setTimeout(function() { document.getElementById(PushDivId).style.display='none'; }, msec);
+    }
     function reciveJson(data) {
         //alert(data);
        // console.log(data);
@@ -430,18 +514,34 @@
             renderBalance(data.waitMonneyArray);
         }
         if(data.state =='delanimal'){
-            if(data.error!=''){
+            if(data.error==1){
 
                 document.getElementById("stateModal").innerHTML = "Такого животного не найдено";
                 document.getElementById("stateModal").style.display='block';
                 setTimeout(function() { document.getElementById("stateModal").style.display='none'; }, 2000);
-            }else if(data.error==''){
+            }else if(data.error==0){
                 renderCellState(data.cellStataArray);
                 renderTransaction(data.transactionArray);
                 stateButton(data.waitMonneyArray);
                 renderBalance(data.waitMonneyArray);
                 showModal("formAnimal","formModal", "overlayDiv", "closed");
                // console.log(data);
+            }
+
+        }
+        if(data.state == "destroyer"){
+            if(data.error==0){
+                //console.log(data);
+                renderCellState(data.cellStataArray);
+                renderTransaction(data.transactionArray);
+                stateButton(data.waitMonneyArray);
+                renderBalance(data.waitMonneyArray);
+                text = data.animalDestroyer.name+' '+data.animalDestroyer.typeAnimal+': в приступе злых игр была развалена клетка. Поэтому животное пересажено из клетки '+data.animalDestroyer.idCell+' в новую клетку ID: '
+                    +data.animalDestroyer.newCellId;
+                pushdiv('push',text,5000);
+
+
+
             }
 
         }
