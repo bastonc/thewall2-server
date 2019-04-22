@@ -1,0 +1,132 @@
+<?php
+namespace Ukrainediploms\Http\Controllers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Mail;
+
+class AnimalClass extends Controller
+{
+    public function setCellType($character){
+        if($character=='kind')
+            $result=10;
+        elseif($character=='evil')
+            $result=1;
+        else {$result='Error';}
+        return $result;
+    }
+    public function chekEmptyCell($typeCell, $typeAnimal){
+
+        //$typeCell === 1 ? $stat=1 : $stat=10;
+        //dd($stat);
+        $cellArray=DB::select('SELECT `id` FROM `Pitomnik_Cell` WHERE `typeAnimal`=? AND `typeCell`=? AND `stata`<?',[$typeAnimal, $typeCell,$typeCell]);
+        //dd($cellArray);
+        if($cellArray !=NULL){
+            $idCell=$cellArray[0]->id;
+        }else {$idCell=NULL; }
+        return $idCell;
+    }
+    public function defineCell ($idCell, $objectAnimal,$transaction){
+        //$msg = "Кличка: ".$request->nameAnimal." Возраст: ".$request->ageAnimal." Вид: ".$request->typeAnimal . " Характер: ".$request->character;
+        //$transaction - object объект транзакции
+        $recordAnimalInBase=DB::transaction(function() use ($idCell,$objectAnimal,$transaction){
+            DB::insert('INSERT INTO `Pitomnik_Animal`(`typeAnimal`,`name` , `age` , `characterAnimal` , `idCell`) VALUES (?,?,?,?,?)',
+                [$objectAnimal->typeAnimal,$objectAnimal->nameAnimal, $objectAnimal->ageAnimal, $objectAnimal->character, $idCell]);
+            DB::update('UPDATE `Pitomnik_Cell` SET stata=stata+1 WHERE `id`=?',[$idCell]);
+            DB::update('UPDATE `Pitomnik_Chek` SET flag=flag+1 WHERE `source`="TreasuryDepartment"');
+            DB::insert('INSERT INTO `Pitomnik_Transaction`(`type`,`what` , `how` , `for`,`other`) VALUES (?,?,?,?,?)',
+                [1,$transaction->text,$transaction->coast, $transaction->type, $idCell]);
+        });
+        //dd($recordAnimalInBase);
+        //if ($recordAnimalInBase)
+
+        return $recordAnimalInBase;
+    }
+    public function buyCellId ($celltype,$typeAnimal){
+        if($typeAnimal == "dog" && $celltype == 1) { $cost = 10; }
+        if($typeAnimal == "dog" && $celltype == 10) { $cost = 50; }
+        if($typeAnimal == "cat" && $celltype == 1) { $cost = 5; }
+        if($typeAnimal == "cat" && $celltype == 10) { $cost = 20; }
+        $transactionObject= (object) Array();
+        $transactionObject->text = "Куплена новая клетка: Тип ".$typeAnimal."; Живтных: ".$celltype;
+        $transactionObject->coast = $cost;
+        $transactionObject->type="frontend";
+        $transactionObject->typeOper = 0;
+
+        DB::transaction(function() use ($celltype,$typeAnimal,$cost, $transactionObject) {
+
+            DB::update('UPDATE `Pitomnik_Chek` SET money=money-? WHERE `source`="AllMoney"', [$cost]);
+            DB::insert('INSERT INTO `Pitomnik_Transaction`(`type`,`what` , `how` , `for`) VALUES (?,?,?,?)',
+                [$transactionObject->typeOper, $transactionObject->text, $transactionObject->coast, $transactionObject->type]);
+        });
+
+        $id = DB::table('Pitomnik_Cell')->insertGetId(
+
+
+            ['typeCell' => $celltype, 'typeAnimal' => $typeAnimal, 'cost' => $cost, 'stata' => 0]
+
+        );
+        //dd($id);
+
+        return $id;
+
+    }
+    public function refreshStateCells(){
+
+            $stataCell=DB::select('SELECT * FROM `Pitomnik_Cell`');
+            return $stataCell;
+
+
+    }
+    public function animalsInCell ($id){
+        $animalsinCellArray=DB::table('Pitomnik_Animal')->select()->where('idCell','=', $id)->get();
+        return $animalsinCellArray;
+
+
+    }
+    public function delAnimal ($objectAnimal){
+        //"Кличка: ".$request->nameAnimal." Возраст: ".$request->ageAnimal." Вид: ".$request->typeAnimal . " Характер: ".$request->character;
+        $transactionObject= (object) Array();
+        $transactionObject->text = "Животное удалено из базы".$objectAnimal->nameAnimal;
+        $transactionObject->coast = 0;
+        $transactionObject->type="frontend";
+        $transactionObject->typeOper = 0;
+        $idCell = DB::select('SELECT `idCell` FROM `Pitomnik_Animal` WHERE `name`=? AND `age`=? AND `characterAnimal`=? AND `typeAnimal`=?',
+                        [$objectAnimal->nameAnimal, $objectAnimal->ageAnimal, $objectAnimal->character, $objectAnimal->typeAnimal]);
+
+        $deleteState=DB::delete('DELETE FROM Pitomnik_Animal WHERE `name`=? AND `age`=? AND `characterAnimal`=? AND `typeAnimal`=?',
+                        [$objectAnimal->nameAnimal, $objectAnimal->ageAnimal, $objectAnimal->character, $objectAnimal->typeAnimal]);
+        if($deleteState!=0){
+            DB::transaction( function() use ($transactionObject,$idCell){
+            DB::update('UPDATE `Pitomnik_Cell` SET stata=stata-1 WHERE `id`=?', [$idCell[0]->idCell]);
+            DB::insert('INSERT INTO `Pitomnik_Transaction`(`type`,`what` , `how` , `for`) VALUES (?,?,?,?)',
+                [$transactionObject->typeOper, $transactionObject->text, $transactionObject->coast, $transactionObject->type]);
+            });
+
+        }
+
+
+        //dd($delState);
+
+        return $deleteState;
+
+    }
+    public function sellCell ($idCell, $costCell) {                                                                     //входные данные: id клетки, цена клетки
+        $costCellsell=$costCell/2;
+        $transactionObject= (object) Array();
+        $transactionObject->text = "Продана пустая клетка за".$costCellsell;
+        $transactionObject->coast = $costCellsell;
+        $transactionObject->type="frontend";
+        $transactionObject->typeOper = 0;
+        $stataTransaction=DB::transaction( function () use ($idCell, $costCellsell, $transactionObject) {
+           DB::update('UPDATE `Pitomnik_Chek` SET money=money+? WHERE `source`="AllMoney"', [$costCellsell]);
+           DB::delete('DELETE FROM `Pitomnik_Cell` WHERE `id`=? AND `stata`=0',[$idCell]);
+           DB::insert('INSERT INTO `Pitomnik_Transaction`(`type`,`what` , `how` , `for`) VALUES (?,?,?,?)',
+                [$transactionObject->typeOper, $transactionObject->text, $transactionObject->coast, $transactionObject->type]);
+
+        });
+
+
+        return $stataTransaction;
+}
+
+}

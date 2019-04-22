@@ -15,6 +15,24 @@
     return view('index');
 });**/
 
+/*****Роуты к питомнику*****/
+Route::get('pitomnik', function (){ return view('pitomnik.index');});
+Route::post('addanimal', 'pitomnikController@addAnimal');
+//Route::get('addanimal', 'pitomnikController@addAnimal');
+Route::post('getall','pitomnikController@getAll');
+Route::get('getall','pitomnikController@getAll');
+Route::post('animalincell','pitomnikController@animalInCell');
+Route::post('givemoney','pitomnikController@giveMoney');
+//Route::get('givemoney','pitomnikController@giveMoney');
+Route::get('delanimal','pitomnikController@delAnimal');
+Route::post('delanimal','pitomnikController@delAnimal');
+
+
+
+/*****Роуты к питомнику конец*****/
+
+
+
 Route::post('/search', 'frontend@search');
 Route::get('/search', 'frontend@search');
 Route::post('/getcoordinate','UserWallController@getcordinatexy');

@@ -271,29 +271,37 @@ class frontend
         $imageOption=getimagesize($imagePathCorrect);
         if($imageOption[0]<600 or $imageOption[1]<600)
         {
-            $sizeCall=16;
-            $sizeName=16;
+            $sizeCall=40;
+            $sizeName=20;
             $y_dop=20;
         }
         if(($imageOption[0]>600 && $imageOption[0]<1400)or($imageOption[1]>600 && $imageOption[1]<1400))
         {
-            $sizeCall=17;
-            $sizeName=17;
-            $y_dop=20;
+            $sizeCall=27;
+            $sizeName=16;
+            $sizeNum=13;
+            $y_dop_call=15;
+            $x_dop=0;
+            $y_dop_name=5;
         }
         if($imageOption[0]>1400 or $imageOption[1]>1400)
         {
             $sizeCall=40;
             $sizeName=23;
+            $sizeNum=13;
             $y_dop=40;
+            $y_dop_call=32;
+            $x_dop=0;
+            $y_dop_name=-5;
+            $y_dop_num=4;
         }
 
         $x_call=$XCall;
-        $y_call=$YCall;
+        $y_call=$YCall+$y_dop_call;
         $x_name=$XName;
-        $y_name=$YName;
+        $y_name=$YName-$y_dop_name;
         $x_num=$XNum;
-        $y_num=$YNum;
+        $y_num=$YNum-$y_dop_num;
 
         //$countNum=count($num);
         if($num < 10)
@@ -306,7 +314,7 @@ class frontend
        // dd($x_call,$x_num);
         imagefttext($image, $sizeCall, 0, $x_call, $y_call, $textcolor, $font, $call);
         imagefttext($image, $sizeName, 0, $x_name, $y_name, $textcolor, $font, $name);
-        imagefttext($image, $sizeName, 0, $x_num, $y_num, $textcolor, $font, $numstring);
+        imagefttext($image, $sizeNum, 0, $x_num, $y_num, $textcolor, $font, $numstring);
         $filename=$call."-".$nameProgramm.".jpg";
         //imagestring ( $image , 4, 1250 , 750 , "Test" , $textcolor );
 

@@ -28,24 +28,7 @@
 
     @stop
     @section('content')
-        <script>
-            var n=1;
 
-
-            document.getElementById('divhidden').innerHTML='<input type=hidden id=\"id'+n+'\" name=\"new_index_sps\" value=\"0\" >';
-            function plus(){
-                document.getElementById('divf'+n).innerHTML+='<br>'+n+' СПС: <input type=text id=\"id'+n+'\" name=\"new_sps_call_'+n+'\" size=\"10\"> мода: <select size=1 name=\"new_sps_mode_'+n+'\"> <option>SSB</option><option>CW</option><option>FT8</option><option>RTTY</option><option>BPSK</option><option>SSTV</option></select> баллов: <input type=text id=\"id'+n+'\" name=\"new_sps_score_'+n+'\" size=\"3\"> Пароль: <input type=text id=\"id'+n+'\" name=\"new_password_'+n+'\" size=\"3\"><input type=\"button\" id=\"id'+n+'\" onclick=del(id'+n+'); value=\"-\"> <div id=divf'+(n+1)+'></div>';
-                document.getElementById('divhidden').innerHTML='<input type=hidden id=\"id'+n+'\" name=\"new_index_sps\" value=\"'+n+'\">';
-                n++;
-
-            }
-
-            function del(id){
-                document.getElementById(id).remove();
-
-
-            }
-        </script>
         <p> <center>
         {!! Form::open(array('acion'=>"edit",'method'=>"POST",'enctype'=>"multipart/form-data"))!!}
             <table>
@@ -128,6 +111,43 @@
 
             })*/
         </script>
+        <script>
+
+
+            var n = 1;
+
+
+            document.getElementById('divhidden').innerHTML = '<input type=hidden id=\"id' + n + '\" name=\"new_index_sps\" value=\"0\" >';
+
+            function plus()
+            {
+                document.getElementById('divf' + n).innerHTML += '<div id=\"elem' + n + '"><br>' + n + ' СПС: ' +
+                    '                  <input type=text id=\"id' + n + '\" name=\"new_sps_call_' + n + '\" size=\"10\"> ' +
+                    '                   Мода: <select size=1 name=\"new_sps_mode_' + n + '\"> <option>SSB</option><option>CW</option>' +
+                    '                             <option>FT8</option><option>RTTY</option><option>BPSK</option><option>SSTV</option></select>' +
+                    '                   Балів: <input type=text id=\"id' + n + '\" name=\"new_sps_score_' + n + '\" size=\"3\">' +
+                    '                   Пароль: <input type=text id=\"id' + n + '\" name=\"new_password_' + n + '\" size=\"3\">' +
+                    '                   <input type=\"button\" id=\"id' + n + '\" onclick=\"elem=document.getElementById(\'elem'+ n +'\'); elem.parentNode.removeChild(elem) ' +
+                    '                    \" value=\"-\"> </div> <div id=divf' + (n + 1) + '></div>';
+                document.getElementById('divhidden').innerHTML = '<input type=hidden id=\"id' + n + '\" name=\"new_index_sps\" value=\"' + n + '\">';
+                n++;
+
+
+
+            }
+            function minus(id)
+            {
+                document.getElementById(id).style.display = 'none';
+
+            }
+            function del(id) {
+                document.getElementById(id).remove();
+
+
+            }
+
+        </script>
+
         <script>
             var showingTooltip;
 

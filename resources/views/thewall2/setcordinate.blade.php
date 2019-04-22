@@ -76,6 +76,39 @@ $formtext="Оберіть де буде відображатись позивн�
 <img id="el" src='{{$image}}' {{$imageSize}}>
 <script type="text/javascript">
 
+    window.onload = function() {
+        var img = document.getElementById('el');
+        var width = img.clientWidth;
+        if (width < 1000) {
+            fontcall = 40;
+            fontname = 20;
+            fontnum = 17;
+        }
+        if (width >= 1000 && width < 10000) {
+            fontcall = 70;
+            fontname = 40;
+            fontnum = 17;
+        }
+        if (width >= 10000) {
+            fontcall = 100;
+            fontname = 90;
+            fontnum = 35;
+        }
+        document.getElementById('callfixed').style.fontSize = fontcall;
+        document.getElementById('namefixed').style.fontSize = fontname;
+        document.getElementById('numfixed').style.fontSize = fontnum;
+
+
+    }
+    var img = document.getElementById('el');
+    var width = img.clientWidth;
+    var height = img.clientHeight;
+        if(width<1000)
+            fontsize=70;
+        if (width>=1000 && $width<10000)
+            fontsize=40;
+        if (width>=10000)
+            fontsize=70;
 
     var el = document.getElementById('el');
     el.addEventListener('click', getClickXY, false);
@@ -86,6 +119,24 @@ $formtext="Оберіть де буде відображатись позивн�
 
     function getClickXY(event)
     {
+        var img = document.getElementById('el');
+        var width = img.clientWidth;
+        var height = img.clientHeight;
+        if(width<1000){
+            fontcall = 40;
+            fontname = 20;
+            fontnum=17;
+        }
+        if (width>=1000 && width<10000){
+            fontcall=70;
+            fontname=40;
+            fontnum=17;
+        }
+        if (width>=10000) {
+            fontcall = 100;
+            fontname = 90;
+            fontnum = 35;
+        }
         var clickX = (event.layerX == undefined ? event.offsetX : event.layerX) + 1;
         var clickY = (event.layerY == undefined ? event.offsetY : event.layerY) + 1;
 
@@ -96,6 +147,7 @@ $formtext="Оберіть де буде відображатись позивн�
             var valueX="XNum";
             var valueY="YNum";
             var divfixedname="numfixed";
+            document.getElementById(name2).style.fontSize = fontnum;
             document.getElementById(name1).innerText="0123";
             document.getElementById(name2).style.zindex = "-1";
             document.getElementById(valueX).value = clickX;
@@ -108,6 +160,7 @@ $formtext="Оберіть де буде відображатись позивн�
 
             setcoordinate=confirm('Координати де буде розташован номер диплому визначено.');
             if(setcoordinate){
+                document.getElementById(divfixedname).style.fontSize = fontnum;
                 document.getElementById(divfixedname).style.top = divkoordinateY + 'px';
                 document.getElementById(divfixedname).style.left = clickX + 12 + 'px';
                 document.getElementById(divfixedname).innerText="001";
@@ -116,13 +169,14 @@ $formtext="Оберіть де буде відображатись позивн�
             }
         }
 
-        if(document.getElementById('name')) {
+         if(document.getElementById('name')) {
 
             var name1="name";
             var name2="namemove";
             var valueX="XName";
             var valueY="YName";
             var divfixedname="namefixed";
+            document.getElementById(name2).style.fontSize = fontname;
             document.getElementById(name1).innerText="Name Sirname";
             document.getElementById(name2).style.zindex = -1;
             document.getElementById(valueX).value = clickX;
@@ -133,6 +187,7 @@ $formtext="Оберіть де буде відображатись позивн�
 
             setcoordinate=confirm('Координати де буде розташоване ім\'я визначено.');
             if(setcoordinate){
+                document.getElementById(divfixedname).style.fontSize = fontname;
                 document.getElementById(divfixedname).style.top = divkoordinateY + 'px';
                 document.getElementById(divfixedname).style.left = clickX + 12 + 'px';
                 document.getElementById(divfixedname).innerText="Name Sirname";
@@ -156,6 +211,7 @@ $formtext="Оберіть де буде відображатись позивн�
             var valueX="XCall";
             var valueY="YCall";
             var divfixedname="callfixed";
+            document.getElementById(name2).style.fontSize = fontcall;
             document.getElementById(name1).innerText="AA1BBC";
             document.getElementById(name2).style.zindex = -1;
             document.getElementById(valueX).value = clickX;
@@ -170,6 +226,7 @@ $formtext="Оберіть де буде відображатись позивн�
             if(setcoordinate){
                 //document.getElementById(name1).id = "name";
                 // document.getElementById(name2).id = "namemove";
+                document.getElementById(divfixedname).style.fontSize = fontcall;
                 document.getElementById(divfixedname).style.top = divkoordinateY +'px';
                 document.getElementById(divfixedname).style.left = clickX+12+'px';
                 document.getElementById(divfixedname).innerText="AA1BBC";
@@ -187,6 +244,24 @@ $formtext="Оберіть де буде відображатись позивн�
     }
     function moveClickXY(event)
     {
+        var img = document.getElementById('el');
+        var width = img.clientWidth;
+        var height = img.clientHeight;
+        if(width<1000){
+            fontcall = 40;
+            fontname = 20;
+            fontnum=17;
+        }
+        if (width>=1000 && width<10000){
+                fontcall=70;
+                fontname=40;
+                fontnum=17;
+            }
+        if (width>=10000) {
+            fontcall = 100;
+            fontname = 90;
+            fontnum = 35;
+        }
 
         var clickX = (event.layerX == undefined ? event.offsetX : event.layerX) + 1;
         var clickY = (event.layerY == undefined ? event.offsetY : event.layerY) + 1;
@@ -197,6 +272,7 @@ $formtext="Оберіть де буде відображатись позивн�
             var name2="nummove";
             divkoordinateY=clickY+70;
             divkoordinateY2=clickY+120;
+            document.getElementById(name2).style.fontSize = fontnum;
             document.getElementById(name2).innerText="001";
             document.getElementById(name1).style.zindex =-1;
             document.getElementById(name2).style.top = divkoordinateY+'px';
@@ -209,6 +285,7 @@ $formtext="Оберіть де буде відображатись позивн�
             var name2="namemove";
             divkoordinateY=clickY+70;
             divkoordinateY2=clickY+120;
+            document.getElementById(name2).style.fontSize = fontname;
             document.getElementById(name2).innerText="Name Sirname";
             document.getElementById(name1).style.zindex =-1;
             document.getElementById(name2).style.top = divkoordinateY+'px';
@@ -223,6 +300,7 @@ $formtext="Оберіть де буде відображатись позивн�
             var name2="callmove";
             divkoordinateY=clickY+70;
             divkoordinateY2=clickY+120;
+            document.getElementById(name2).style.fontSize = fontcall;
             document.getElementById(name2).innerText="AA1BBC";
             document.getElementById(name1).style.zindex =-1;
             document.getElementById(name2).style.top = divkoordinateY+'px';
@@ -265,6 +343,16 @@ $formtext="Оберіть де буде відображатись позивн�
 </script>
 <div class="stamp" id="call"><center> </center></div>
 @if(isset($cordinate))
+   <script>
+
+    document.getElementById('Xcall').value = atob({{ $cordinate[0]->cordinatex }});
+    document.getElementById('Ycall').value = @{{$cordinate[0]->cordinatey}};
+    document.getElementById('XName').value = @{{$cordinate[0]->XName}};
+    document.getElementById('YName').value = @{{$cordinate[0]->YName}};
+    document.getElementById('XNum').value = @{{$cordinate[0]->XNum}};
+    document.getElementById('YNum').value = @{{$cordinate[0]->YNum}};
+    </script>
+
 <div class="stamp" id="callfixed" style="top:{{$cordinate[0]->cordinatey+85}}; left:{{$cordinate[0]->cordinatex+10}};" ><center> AA1BBC </center></div>
 <div class="stamp" id="namefixed" style="top:{{$cordinate[0]->YName+85}}; left: {{$cordinate[0]->XName+10}};" ><center> Name Sirname </center></div>
 <div class="stamp" id="numfixed" style="top:{{$cordinate[0]->YNum+85}}; left: {{$cordinate[0]->XNum+10}};"><center> 001 </center></div>
