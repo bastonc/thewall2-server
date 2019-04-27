@@ -150,7 +150,7 @@ $formtext="Оберіть де буде відображатись позивн�
             document.getElementById(name2).style.fontSize = fontnum;
             document.getElementById(name1).innerText="0123";
             document.getElementById(name2).style.zindex = "-1";
-            document.getElementById(valueX).value = clickX;
+            document.getElementById(valueX).value = clickX-10;
             document.getElementById(valueY).value = clickY-15;
 
             divkoordinateY = clickY + 70;
@@ -179,8 +179,8 @@ $formtext="Оберіть де буде відображатись позивн�
             document.getElementById(name2).style.fontSize = fontname;
             document.getElementById(name1).innerText="Name Sirname";
             document.getElementById(name2).style.zindex = -1;
-            document.getElementById(valueX).value = clickX;
-            document.getElementById(valueY).value = clickY-15;
+            document.getElementById(valueX).value = clickX+5;
+            document.getElementById(valueY).value = clickY-7;
 
             divkoordinateY = clickY + 70;
             divkoordinateY2 = clickY + 120;
@@ -214,7 +214,7 @@ $formtext="Оберіть де буде відображатись позивн�
             document.getElementById(name2).style.fontSize = fontcall;
             document.getElementById(name1).innerText="AA1BBC";
             document.getElementById(name2).style.zindex = -1;
-            document.getElementById(valueX).value = clickX;
+            document.getElementById(valueX).value = clickX+5;
             document.getElementById(valueY).value = clickY-15;
 
             divkoordinateY = clickY + 70;

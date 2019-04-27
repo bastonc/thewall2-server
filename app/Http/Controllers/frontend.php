@@ -269,22 +269,27 @@ class frontend
         putenv('GDFONTPATH=' . realpath('.'));
         $font = 'a_Futurica_ExtraBold';
         $imageOption=getimagesize($imagePathCorrect);
-        if($imageOption[0]<600 or $imageOption[1]<600)
+        if($imageOption[0]<600)
         {
             $sizeCall=40;
-            $sizeName=20;
+            $sizeName=13;
             $y_dop=20;
+            $y_dop_num=4;
+            $y_dop_name=50;
+            //dd($y_dop_name);
         }
-        if(($imageOption[0]>600 && $imageOption[0]<1400)or($imageOption[1]>600 && $imageOption[1]<1400))
+        if(($imageOption[0]>=600 && $imageOption[0]<1400))
         {
             $sizeCall=27;
             $sizeName=16;
             $sizeNum=13;
             $y_dop_call=15;
             $x_dop=0;
-            $y_dop_name=5;
+            $y_dop_name=12;
+            $y_dop_num=4;
+            //dd($y_dop_name);
         }
-        if($imageOption[0]>1400 or $imageOption[1]>1400)
+        if($imageOption[0]>=1400)
         {
             $sizeCall=40;
             $sizeName=23;
