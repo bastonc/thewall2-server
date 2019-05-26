@@ -9,6 +9,10 @@ class DBwork
 {
     public function RecordQSOtoBase($arrayData, $tokenprogramm,$keysps)
     { //dd($arrayData);
+      /*
+      function record QSO to base
+      chek opportunity adding according to condition diplom programm
+      */
 
         $errors = [];
         $tokenuser = $keysps;
@@ -37,7 +41,7 @@ class DBwork
                     }
                     $call_in_utf8 = mb_convert_encoding($record['call'], 'utf-8', mb_detect_encoding($record['call']));
                     //dd($record['mode']);
-                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
+                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
                                                          `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
                         [$status, $call_in_utf8, $record['operator'], $record['qso_date'],
                             $record['time_on'], $record['band'], $record['freq'],
@@ -60,7 +64,7 @@ class DBwork
                         //dd($errors);
                         continue;
                     }
-                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
+                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
                                                          `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
                         [$status, $record['call'], $record['operator'], $record['qso_date'],
                             $record['time_on'], $record['band'], $record['freq'],
@@ -82,7 +86,7 @@ class DBwork
                 $qsoArray = DB::select('select `id` from QSO where `call`=? AND `operator`=? AND `tokenprogramm`=? AND `qso_date`=? AND `time_on`=?', [$record['call'], $record['operator'], $tokenprogramm, $record['qso_date'], $record['time_on']]);
 
                 if ($qsoArray == NULL) {
-                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
+                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
                                                          `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
                         [$status, $record['call'], $record['operator'], $record['qso_date'],
                             $record['time_on'], $record['band'], $record['freq'],
@@ -101,33 +105,41 @@ class DBwork
                 }
                 /* наступне правило повинно бути задано в инверсійному значенні | тут задаеться перевирка якщо є зв'язок  на тому ж діапазоні та тією ж
                         модою - QSO відметаємо*/
+
                 $chekMode = DB::select('select * from QSO where `call`=? AND `operator`=?  AND `tokenprogramm`=?',
                     [$record['call'], $record['operator'], $tokenprogramm]);
                 if ($chekMode != NULL) {
+                  $searchStatus = 0;
                     //dd($chekMode[0]->band);
                   foreach($chekMode as $qso){
-                      if($qso->band!=$record['band']){
-                          if($qso->mode!=$record['mode']){
-                              DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
-                                                         `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
-                                  [$status, $record['call'], $record['operator'], $record['qso_date'],
-                                      $record['time_on'], $record['band'], $record['freq'],
-                                      $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
+                    if($qso->band == $record['band'] OR $qso->mode == $record['mode']){
+                      $searchStatus = 1; //if QSO search in base than flag searchStatus = 1
+                    }
 
-                          }
-                      }
                   }
+                  if($searchStatus == 0){
+                    /*
+                    if QSO not found in base, and flag searchStatus=0 then record QSO
+                    */
+                      DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
+                                                     `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
+                              [$status, $record['call'], $record['operator'], $record['qso_date'],
+                                  $record['time_on'], $record['band'], $record['freq'],
+                                  $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
+
+
+                  }
+
 
                 }
                 if ($chekMode == NULL) {
-                   // dd($chekMode);
-
-                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
+                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
                                                          `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
                         [$status, $record['call'], $record['operator'], $record['qso_date'],
                             $record['time_on'], $record['band'], $record['freq'],
                             $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
                 }
+
             }
 
             if ($repeat->repeat == "4") { // різні діапазони. ризні моди та різні дати
@@ -142,40 +154,33 @@ class DBwork
                 }
                 /* наступне правило повинно бути задано в инверсійному значенні | тут задаеться перевирка якщо є зв'язок  на тому ж діапазоні та тією ж
                         модою - QSO відметаємо*/
-                $chekMode = DB::select('select * from QSO where `call`=? AND `operator`=? AND `qso_date`=? AND `tokenprogramm`=?',
-                    [$record['call'], $record['operator'], $record['qso_date'], $tokenprogramm]);
+                $chekMode = DB::select('select * from QSO where `call`=? AND `operator`=?  AND `tokenprogramm`=?',
+                    [$record['call'], $record['operator'], $tokenprogramm]);
 
                 if ($chekMode != NULL) {
                    // dd($chekMode);
+                   $searchStatus = 0;
                     foreach($chekMode as $qso){
                         //dd($qso->band);
-                            if($qso->band!=$record['band']) {
-                                if ($qso->mode != $record['mode']) {
-                                    if ($qso->qso_date!= $record['qso_date']){
-                                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
-                                                         `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
-                                        [$status, $record['call'], $record['operator'], $record['qso_date'],
-                                            $record['time_on'], $record['band'], $record['freq'],
-                                            $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
-
-                                     }
-                                }
+                            if(($qso->band == $record['band']) || ($qso->mode == $record['mode']) || ($qso->qso_date == $record['qso_date'])){
+                              $searchStatus = 1;
                             }
+                        }
+                    if ($searchStatus == 0){
+                          DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
+                                               `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
+                              [$status, $record['call'], $record['operator'], $record['qso_date'],
+                                  $record['time_on'], $record['band'], $record['freq'],
+                                  $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
                     }
 
+                  }
 
 
 
+                 elseif ($chekMode==NULL){
 
-                } elseif ($chekMode==NULL){
-                    $chekOperator = DB::select('select * from QSO where `call`=? AND `operator`=? AND  `tokenprogramm`=?',
-                        [$record['call'], $record['operator'], $tokenprogramm]);
-                    foreach($chekOperator as $qso){
-                        dd($qso->band);
-                        if($qso->band!=$record['band']) {
-                            if ($qso->mode != $record['mode']) {
-                                if ($qso->qso_date!= $record['qso_date']){
-                                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
+                                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
                                                          `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
                                         [$status, $record['call'], $record['operator'], $record['qso_date'],
                                             $record['time_on'], $record['band'], $record['freq'],
@@ -184,24 +189,6 @@ class DBwork
                                 }
                             }
                         }
-                    }
-
-                }
-
-                /*if ($chekMode == NULL) {
-                    // dd($chekMode);
-
-                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`, 
-                                                         `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
-                        [$status, $record['call'], $record['operator'], $record['qso_date'],
-                            $record['time_on'], $record['band'], $record['freq'],
-                            $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
-                }*/
-            }
-    }
-       //$flag = 'ОК';
-
-        //dd($errors);
 
         return $errors;
     }

@@ -32,13 +32,14 @@ class uploadadifController extends BaseController {
     }
     public function upload (Request $request)
     {
+      /*upload ADI file from cabinet diplom manager*/
         if($request->file()!=NULL) {
             $file = new recievAdif;
             $recordFile = new DBwork();
-            $user = md5(auth()->user()->email);
+            $user = md5(auth()->user()->email); // get token user
 
 
-            $tokenprogramm = $request->Token;
+            $tokenprogramm = $request->Token; // get token programm
             $pathFile = $file->getFile($request);
             if ($pathFile != "STOP" || NULL) {
                 $arrayRecord = $file->parseAdif($pathFile);

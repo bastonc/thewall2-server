@@ -172,9 +172,9 @@ class frontend
                     //dd($request->token);
                     $this->sendMail($to, $subject, $from, $call, $text, $nameProgramm, $request->key);
                     $message = "Ваша адреса електронноi пошти направлена до дипломного менеджера.
-                            
+
                               Очiкуйте диплом на пошту.
-                            
+
                               Дякуємо за участь
                               ";
 
@@ -271,11 +271,14 @@ class frontend
         $imageOption=getimagesize($imagePathCorrect);
         if($imageOption[0]<600)
         {
-            $sizeCall=40;
-            $sizeName=13;
+            $sizeCall=20;
+            $sizeName=10;
+            $sizeNum=9;
             $y_dop=20;
             $y_dop_num=4;
-            $y_dop_name=50;
+            $y_dop_name=20;
+            $y_dop_call=0;
+            $x_dop=0;
             //dd($y_dop_name);
         }
         if(($imageOption[0]>=600 && $imageOption[0]<1400))
