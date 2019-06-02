@@ -66,7 +66,7 @@
                       </td><td> <input type='text' size='4' name='sps_score_".$i."' value='".$sps->score."'></td></tr>";
                     ?>
              @endforeach
-                 <tr><td><div id=divf1>
+                 <tr><td><div id=divf0>
 
                          </div>
                          <div id=divhidden>
@@ -78,6 +78,7 @@
              {!! Form::hidden("edit_sps_count", $i)!!}
              <tr><td>  </td> <td align="right" bgcolor="#5f9ea0"> {!! Form::submit('Зберегти')!!}</td></tr>
             </table>
+            <div id="sps_list" name="sps_list"></div>
         {!!  Form::close() !!}
     </center>
     </p>
@@ -114,37 +115,49 @@
         <script>
 
 
-            var n = 1;
+            var n = 0;
+            var sps_array=Array();
 
 
-            document.getElementById('divhidden').innerHTML = '<input type=hidden id=\"id' + n + '\" name=\"new_index_sps\" value=\"0\" >';
+            //document.getElementById('divhidden').innerHTML = '<input type=hidden id=\"id' + n + '\" name=\"new_index_sps\" value=\"0\" >';
 
             function plus()
             {
                 document.getElementById('divf' + n).innerHTML += '<div id=\"elem' + n + '"><br>' + n + ' СПС: ' +
-                    '                  <input type=text id=\"id' + n + '\" name=\"new_sps_call_' + n + '\" size=\"10\"> ' +
-                    '                   Мода: <select size=1 name=\"new_sps_mode_' + n + '\"> <option>SSB</option><option>CW</option>' +
+                    '                  <input type=text id=\"id_call' + n + '\" name=\"new_sps_call_' + n + '\" size=\"10\"> ' +
+                    '                   Мода: <select size=1 id=\"id_mode' + n + '\" name=\"new_sps_mode_' + n + '\"> <option>SSB</option><option>CW</option>' +
                     '                             <option>FT8</option><option>RTTY</option><option>BPSK</option><option>SSTV</option></select>' +
-                    '                   Балів: <input type=text id=\"id' + n + '\" name=\"new_sps_score_' + n + '\" size=\"3\">' +
-                    '                   Пароль: <input type=text id=\"id' + n + '\" name=\"new_password_' + n + '\" size=\"3\">' +
-                    '                   <input type=\"button\" id=\"id' + n + '\" onclick=\"elem=document.getElementById(\'elem'+ n +'\'); elem.parentNode.removeChild(elem) ' +
-                    '                    \" value=\"-\"> </div> <div id=divf' + (n + 1) + '></div>';
-                document.getElementById('divhidden').innerHTML = '<input type=hidden id=\"id' + n + '\" name=\"new_index_sps\" value=\"' + n + '\">';
+                    '                   Балів: <input type=text id=\"id_score' + n + '\" name=\"new_sps_score_' + n + '\" size=\"3\">' +
+                    '                   Пароль: <input type=text id=\"id_password' + n + '\" name=\"new_password_' + n + '\" size=\"3\">' +
+                    '                   <input type=\"button\" id=\"id\" onclick=\" minus('+n+')\" value=\"-\"> </div> <div id=divf' + (n + 1) + '></div>';
+                //document.getElementById('divhidden').innerHTML = '<input type=hidden id=\"id' + n + '\" name=\"new_index_sps\" value=\"' + n + '\">';
+                sps_array.push( {
+                             call_sps:document.getElementById("id_call"+n).name,
+                             mode_sps:document.getElementById("id_mode"+n).name,
+                             score_sps:document.getElementById("id_score"+n).name,
+                             password_sps:document.getElementById("id_password"+n).name
+                             });
+                sps_json_string = JSON.stringify(sps_array);
+                  //console.log (sps_json_string);
+                document.getElementById('sps_list').innerHTML="<input type=hidden name=sps_info value="+sps_json_string+">";
                 n++;
 
 
 
             }
-            function minus(id)
-            {
-                document.getElementById(id).style.display = 'none';
+            function minus(counter){
 
-            }
-            function del(id) {
-                document.getElementById(id).remove();
+                delete sps_array[counter];  // delete array element (sps_array[counter] = NULL)
+                sps_json_string = JSON.stringify(sps_array); //code array to json-string
+                document.getElementById('sps_list').innerHTML="<input type=hidden name=sps_info value="+sps_json_string+">"; // reinclude json-string to value of hidden input
+                  //console.log(sps_array);
 
 
-            }
+                elem=document.getElementById('elem'+ counter ); //delete sps inputs from form
+                elem.parentNode.removeChild(elem);
+
+           }
+
 
         </script>
 

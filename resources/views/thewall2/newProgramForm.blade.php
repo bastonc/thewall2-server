@@ -33,24 +33,7 @@
 
 
 
-            <script>
-                var n=1;
 
-
-                document.getElementById('divhidden').innerHTML='<input type=hidden id=\"id'+n+'\" name=\"index_sps\" value=\"0\" >';
-                function plus(){
-                    document.getElementById('divf'+n).innerHTML+='<br>'+n+' СПС: <input data-tooltip=\"Вкажіть позивний СПС\" type=text id=\"id'+n+'\" name=\"sps_call_'+n+'\" size=\"10\"> мода: <select size=1 name=\"new_sps_mode_'+n+'\"> <option>SSB</option><option>CW</option><option>FT8</option><option>RTTY</option><option>BPSK</option><option>SSTV</option></select> балів: <input data-tooltip=\"Вкажіть яку кількість балів дає ця СПС\" type=text id=\"id'+n+'\" name=\"sps_score_'+n+'\" size=\"3\"> Пароль: <input data-tooltip=\"Цей пароль треба передати СПС для самостійного завантаження логу. <br> Для завантаження ологу СПС має увийти в розділ Додати Log СПС \" type=text id=\"id'+n+'\" name=\"password_'+n+'\" size=\"3\"><input type=\"button\" id=\"id'+n+'\" onclick=del(id'+n+'); value=\"-\"> <div id=divf'+(n+1)+'></div>';
-                    document.getElementById('divhidden').innerHTML='<input type=hidden id=\"id'+n+'\" name=\"index_sps\" value=\"'+n+'\">';
-                    n++;
-
-                }
-
-                function del(id){
-                    document.getElementById(id).remove();
-
-
-                }
-            </script>
 
             <div id="band" class="container text-center">
 
@@ -79,12 +62,10 @@
     <tr><td colspan="2"> <font size="2"><em>УВАГА! Додавайте СПС та призначайте для кожного пароль. <br>Надалі цей пароль необхідно надати особі яка буде загружати логи СПС станції<br>
                     За допомогою цього пароля СПС будуть додавати свої логи до загального логу дипломної програми</em></font></td></tr>
 
-        <tr><td colspan="2"><div id=divf1>
+        <tr><td colspan="2"><div id=divf0>
 
                      </div>
-                        <div id=divhidden>
 
-                </div>
                 <input type=button onClick=plus(); value='+ СПС'><br><br></td></tr>
                     <tr><td colspan="2">
                           {!!  Form::submit('Створити дипломну програму!') !!}
@@ -95,6 +76,9 @@
 
 
     </table>
+    <div id="sps_list" name="sps_list"></div>
+
+        </div>
         {!!Form::close() !!}
         </div>
             <script>
@@ -126,6 +110,49 @@
                 /*$('.my-datepicker').datepicker({
 
                 })*/
+            </script>
+            <script>
+                var n=0;
+                var sps_array=Array();
+
+
+                //document.getElementById('divhidden').innerHTML='<input type=hidden id=\"id'+n+'\" name=\"index_sps\" value=\"0\" >';
+                function plus(){
+                      document.getElementById('divf' + n).innerHTML += '<div id=\"elem' + n + '"><br> СПС: ' +
+                      '                  <input type=text id=\"id_call' + n + '\" name=\"sps_call_' + n + '\" size=\"10\"> ' +
+                      '                   Мода: <select size=1 id=\"id_mode' + n + '\" name=\"new_sps_mode_' + n + '\"> <option>SSB</option><option>CW</option>' +
+                      '                             <option>FT8</option><option>RTTY</option><option>BPSK</option><option>SSTV</option></select>' +
+                      '                   Балів: <input type=text id=\"id_score' + n + '\" name=\"sps_score_' + n + '\" size=\"3\">' +
+                      '                   Пароль: <input type=text id=\"id_password' + n + '\" name=\"password_' + n + '\" size=\"3\">' +
+                      '                   <input type=\"button\" id=\"id\" onclick=\" minus('+n+')\" value=\"-\"> </div> <div id=divf' + (n + 1) + '></div>';
+                //  document.getElementById('divhidden').innerHTML = '<input type=hidden id=\"id' + n + '\" name=\"index_sps\" value=\"' + n + '\">';
+                      sps_array.push( {
+			                             call_sps:document.getElementById("id_call"+n).name,
+			                             mode_sps:document.getElementById("id_mode"+n).name,
+			                             score_sps:document.getElementById("id_score"+n).name,
+			                             password_sps:document.getElementById("id_password"+n).name
+		                               });
+		                  sps_json_string = JSON.stringify(sps_array);
+		                    //console.log (sps_json_string);
+		                  document.getElementById('sps_list').innerHTML="<input type=hidden name=sps_info value="+sps_json_string+">";
+                      n++;
+
+                }
+                function minus(counter){
+
+		                delete sps_array[counter];  // delete array element (sps_array[counter] = NULL)
+		                sps_json_string = JSON.stringify(sps_array); //code array to json-string
+		                document.getElementById('sps_list').innerHTML="<input type=hidden name=sps_info value="+sps_json_string+">"; // reinclude json-string to value of hidden input
+		                  //console.log(sps_array);
+
+
+                    elem=document.getElementById('elem'+ counter ); //delete sps inputs from form
+                    elem.parentNode.removeChild(elem);
+
+               }
+
+
+
             </script>
             <script>
                 var showingTooltip;

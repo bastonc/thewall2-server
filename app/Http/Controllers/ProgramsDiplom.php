@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Filesystem\Filesystem;
 use Carbon;
+use Str;
 
 class ProgramsDiplom
 {
@@ -65,7 +66,7 @@ class ProgramsDiplom
            // $flag[]="repalceImage";
 
             $dataArray=DB::update('UPDATE `PROGRAMM` SET `name`= ? ,`repeat`= ?,`scoreDefault`= ?,`scoreFinal`=?,
-                                `image`= ?,`description`= ?, `email_manager`= ?, `start_for_page`=?,`finish_for_page`=?,`method_recieve`=?  
+                                `image`= ?,`description`= ?, `email_manager`= ?, `start_for_page`=?,`finish_for_page`=?,`method_recieve`=?
                                 WHERE token = ? AND tokenparrentuser = ?', [$request->Name,$request->Repeat,
                 $request->ScoreDefault, $request->ScoreFinal, $filename, $request->Description, $request->emailManager,
                 $start_for_page, $finish_for_page, $request->methodReciev, $request->Token, $tokenParrentUser]);
@@ -80,20 +81,51 @@ class ProgramsDiplom
 
                 }else {$resultInfo[]=request()->$spscall."немае значення балів";}
             }
-            if (isset(request()->new_idex_sps))
+            if (isset(request()->sps_info))
             {
-                for($i=1; $i<=request()->new_index_sps;$i++)
+              $spsArray=json_decode($request->sps_info);
+//dd($spsArray);
+              $lengthSpsArray=count($spsArray);
+              for ($i=0;$i<$lengthSpsArray;$i++){
+                if($spsArray[$i]!=NULL){
+
+                  $call=$spsArray[$i]->call_sps;
+                  $score=$spsArray[$i]->score_sps;
+                  $inputpasswordsps=$spsArray[$i]->password_sps;
+                  $prepasswordsps=$request->$inputpasswordsps;
+                  $password_sps=md5($prepasswordsps);
+                  if($request->$call!=NULL){
+                    if($request->$score!=NULL){
+                  $description="Додан при редагувані";
+                  $premode=$spsArray[$i]->mode_sps;
+                  $mode=$request->$premode;
+                  $pretokensps=$tokenprogramm.$tokenParrentUser.$call;
+                  $tokensps=md5($pretokensps);
+                  $callsps = Str::upper($request->$call);
+                  $chek=DB::select('select id from SPS where `tokenparrentuser` = ? AND `tokenparrentprogram`=? AND `mode`=? AND `call` = ?', [$tokenParrentUser,$request->Token,$mode, $request->$call]);
+                  if($chek==NULL) {
+
+                    DB::insert('insert into SPS (`call`,`token`,`tokenparentuser`,`tokenparrentprogram`,`score`,`password`,`description`, `mode`)
+                                         values (?,?,?,?,?,?,?,?)', [$callsps,$tokensps,$tokenParrentUser,$tokenprogramm,$request->$score,$password_sps,$description,$mode]);
+                  //dump($spsArray[$i]->call_sps);
+                }else { $resultInfo[] = $request->$call . " вже включено до цієї программи"; }
+                } else {$resultInfo[] = $request->$call . " немає кількості балів";}
+                }
+               }
+              }
+
+             /*for($i=1; $i<=request()->new_index_sps;$i++)
                 {
                     $newspsscore = "new_sps_score_" . $i;
                     $prenewspspassword="new_password_".$i;
                     $newspscall = "new_sps_call_" . $i;
                     $mode= "sps_mode_".$i;
-                   if(equest()->$newspscall!=NULL){
+                   if(request()->$newspscall!=NULL){
                         if(request()-> $newspsscore!=NULL) {
                             if (request()->$prenewspspassword != NULL) {
                                 /*перевірка чи є такий СПС вже у програмі*/
 
-                                $chek=DB::select('select id from SPS where `tokenparrentuser` = ? AND `tokenparrentprogram`=? AND `mode`=?', [$tokenParrentUser,request()->Token,request()->$mode]);
+                          /*      $chek=DB::select('select id from SPS where `tokenparrentuser` = ? AND `tokenparrentprogram`=? AND `mode`=?', [$tokenParrentUser,request()->Token,request()->$mode]);
                                 if($chek==NULL) {
                                     $newspspassword = md5(request()->$prenewspspassword);
                                     $description = "Додан при редагувані";
@@ -107,12 +139,13 @@ class ProgramsDiplom
                         } else {$resultInfo[] = request()->$newspscall . " немає кількості балів";}
                     }
                 }
+                */
             }
         }
         else {
 
             $rowsDB=DB::update('UPDATE PROGRAMM SET `name`=?, `repeat`= ?,`scoreDefault`= ?,`scoreFinal`=?,
-                                `description` = ?, `email_manager`= ?, `start_for_page`=?,`finish_for_page`=?,`method_recieve`=?  
+                                `description` = ?, `email_manager`= ?, `start_for_page`=?,`finish_for_page`=?,`method_recieve`=?
                                 WHERE `token` = ? AND `tokenparrentuser` = ?', [$request->Name,$request->Repeat,
                 $request->ScoreDefault, $request->ScoreFinal, $request->Description, $request->emailManager,$start_for_page,$finish_for_page,
                 $request->methodReciev,$request->Token,$tokenParrentUser]);
@@ -133,37 +166,67 @@ class ProgramsDiplom
                 DB::select('UPDATE `SPS` SET `score`=? WHERE `call`=? AND `tokenparentuser`=? AND `mode`=? ', [request()->$spsscore, request()->$spscall, $tokenParrentUser,$request->$mode]);
                 }else {$resultInfo[]=request()->$spscall." немае значення балів";}
             }
-            if (isset(request()->new_index_sps)) {
-                for ($i = 1; $i <= request()->new_index_sps; $i++) {
-                    $newspscall = "new_sps_call_" . $i;
+            if (isset(request()->sps_info))
+            {
+              $spsArray=json_decode($request->sps_info);
+        //dd($spsArray);
+              $lengthSpsArray=count($spsArray);
+              for ($i=0;$i<$lengthSpsArray;$i++){
+                if($spsArray[$i]!=NULL){
+
+                  $call=$spsArray[$i]->call_sps;
+                  $score=$spsArray[$i]->score_sps;
+                  $inputpasswordsps=$spsArray[$i]->password_sps;
+                  $prepasswordsps=$request->$inputpasswordsps;
+                  $password_sps=md5($prepasswordsps);
+                  if($request->$call!=NULL){
+                    if($request->$score!=NULL){
+                  $description="Додан при редагувані";
+                  $premode=$spsArray[$i]->mode_sps;
+                  $mode=$request->$premode;
+                  $pretokensps=$tokenprogramm.$tokenParrentUser.$call;
+                  $tokensps=md5($pretokensps);
+                  $callsps = Str::upper($request->$call);
+                  $chek=DB::select('select id from SPS where `tokenparentuser` = ? AND `tokenparrentprogram`=? AND `mode`=? AND `call` = ?', [$tokenParrentUser,$request->Token,$mode, $callsps]);
+                  //dd($chek);
+                  if($chek==NULL) {
+
+                    $callsps = Str::upper($request->$call);
+                    DB::insert('insert into SPS (`call`,`token`,`tokenparentuser`,`tokenparrentprogram`,`score`,`password`,`description`, `mode`)
+                                         values (?,?,?,?,?,?,?,?)', [$callsps,$tokensps,$tokenParrentUser,$tokenprogramm,$request->$score,$password_sps,$description,$mode]);
+                  //dump($spsArray[$i]->call_sps);
+                }else { $resultInfo[] = $request->$call . " вже включено до цієї программи"; }
+                } else {$resultInfo[] = $request->$call . " немає кількості балів";}
+                }
+               }
+              }
+
+             /*for($i=1; $i<=request()->new_index_sps;$i++)
+                {
                     $newspsscore = "new_sps_score_" . $i;
-                    $prenewspspassword = "new_password_" . $i;
+                    $prenewspspassword="new_password_".$i;
+                    $newspscall = "new_sps_call_" . $i;
                     $mode= "sps_mode_".$i;
-                    $newMode="new_sps_mode_".$i;
-                    if(request()->$newspscall!=NULL) {
-                        if (request()->$newspsscore != NULL) {
-
+                   if(request()->$newspscall!=NULL){
+                        if(request()-> $newspsscore!=NULL) {
                             if (request()->$prenewspspassword != NULL) {
-                              //  dd(request()->$mode);
-                                //$chekcall
-                                $chek=DB::select('select id from SPS where `tokenparentuser` = ? AND `tokenparrentprogram`=? AND `call`=? AND `mode`=?', [$tokenParrentUser,request()->Token,request()->$newspscall,request()->$newMode]);
+                                /*перевірка чи є такий СПС вже у програмі*/
 
+                          /*      $chek=DB::select('select id from SPS where `tokenparrentuser` = ? AND `tokenparrentprogram`=? AND `mode`=?', [$tokenParrentUser,request()->Token,request()->$mode]);
                                 if($chek==NULL) {
-                                    //dd($chek);
                                     $newspspassword = md5(request()->$prenewspspassword);
                                     $description = "Додан при редагувані";
                                     $pretokensps = request()->Token . $tokenParrentUser . $newspscall;
                                     $tokensps = md5($pretokensps);
-                                    $call = strtoupper(request()->$newspscall);
-
+                                    $call = Str::upper(request()->$newspscall);
                                     DB::insert('insert into SPS (`call`,`token`,`tokenparentuser`,`tokenparrentprogram`,`score`,`password`,`description`,`mode`)
-                                   values (?,?,?,?,?,?,?,?)', [$call, $tokensps, $tokenParrentUser, request()->Token, request()->$newspsscore, $newspspassword, $description,request()->$newMode]);
+                                   values (?,?,?,?,?,?,?,?)', [$call, $tokensps, $tokenParrentUser, request()->Token, request()->$newspsscore, $newspspassword, $description,$mode]);
                                 } else { $resultInfo[] = request()->$newspscall . " вже включено до цієї программи"; }
-                            } else { $resultInfo[] = request()->$newspscall . " відсутній пароль";}
-                        } else { $resultInfo[] = request()->$newspscall . " відсутня кількість балів";}
+                                } else { $resultInfo[] = request()->$newspscall . " немає паролю";}
+                        } else {$resultInfo[] = request()->$newspscall . " немає кількості балів";}
                     }
                 }
-
+                */
             }
         }
         $flag[]=$tokenprogramm;
@@ -308,7 +371,31 @@ class ProgramsDiplom
         DB::insert('insert into PROGRAMM (`email_manager`,`name`,`token`,`tokenparrentuser`,`repeat`,`scoreDefault`,`scoreFinal`,`description`,`status`,`image`,`start_for_page`,`finish_for_page`,`method_recieve`)
                                     values (?,?,?,?,?,?,?,?,?,?,?,?,?)', [$emailManager,$name,$tokenprogramm,$tokenParrentUser,$repeat,$scoreDefault,$scoreFinal,$description, $status,  $filename,$start_for_page,$finish_for_page,$method]);
 
-        $index_sps=request()->index_sps;
+        $spsArray=json_decode($request->sps_info);
+
+        $lengthSpsArray=count($spsArray);
+        for ($i=0;$i<$lengthSpsArray;$i++){
+          if($spsArray[$i]!=NULL){
+
+            $call=$spsArray[$i]->call_sps;
+            $score=$spsArray[$i]->score_sps;
+            $inputpasswordsps=$spsArray[$i]->password_sps;
+            $prepasswordsps=$request->$inputpasswordsps;
+            $password_sps=md5($prepasswordsps);
+            $description="description";
+            $premode=$spsArray[$i]->mode_sps;
+            $mode=$request->$premode;
+            $pretokensps=$tokenprogramm.$tokenParrentUser.$call;
+            $tokensps=md5($pretokensps);
+            $callsps = Str::upper($request->$call);
+            DB::insert('insert into SPS (`call`,`token`,`tokenparentuser`,`tokenparrentprogram`,`score`,`password`,`description`, `mode`)
+                                   values (?,?,?,?,?,?,?,?)', [$callsps,$tokensps,$tokenParrentUser,$tokenprogramm,$request->$score,$password_sps,$description,$mode]);
+            //dump($spsArray[$i]->call_sps);
+          }
+        }
+        //dd($lengthSpsArray);
+
+      /*  $index_sps=request()->index_sps;
         for($i=1; $i<=$index_sps; $i++)
         {
             $call = "sps_call_".$i;
@@ -325,7 +412,7 @@ class ProgramsDiplom
             //dd($mode);
             DB::insert('insert into SPS (`call`,`token`,`tokenparentuser`,`tokenparrentprogram`,`score`,`password`,`description`, `mode`)
                                    values (?,?,?,?,?,?,?,?)', [request()->$call,$tokensps,$tokenParrentUser,$tokenprogramm,request()->$score,$password_sps,$description,$mode]);
-        }
+        }*/
 
         $flag[]=$tokenprogramm;
         $flag[]=$filename;
@@ -477,7 +564,7 @@ class ProgramsDiplom
     public function savecordinate($XCall,$YCall,$XName,$YName,$XNum,$YNum,$color,$tokenprogramm)
     {
         $tokenUser=md5(auth()->user()->email);
-        $result=DB::select('UPDATE `PROGRAMM` SET `cordinatex`= ?, `cordinatey`=?,`XName`=?, `YName`=?,`XNum`=?,`YNum`=?,`color`=? 
+        $result=DB::select('UPDATE `PROGRAMM` SET `cordinatex`= ?, `cordinatey`=?,`XName`=?, `YName`=?,`XNum`=?,`YNum`=?,`color`=?
                                   WHERE `token` = ? AND `tokenparrentuser` = ?',
             [$XCall,$YCall,$XName,$YName,$XNum,$YNum,$color,$tokenprogramm, $tokenUser]);
         return $result;
