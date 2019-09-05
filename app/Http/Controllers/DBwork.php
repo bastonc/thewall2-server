@@ -1,5 +1,7 @@
 <?php
+
 namespace Ukrainediploms\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Validator;
@@ -7,12 +9,12 @@ use Regex;
 
 class DBwork
 {
-    public function RecordQSOtoBase($arrayData, $tokenprogramm,$keysps)
+    public function RecordQSOtoBase($arrayData, $tokenprogramm, $keysps)
     { //dd($arrayData);
-      /*
-      function record QSO to base
-      chek opportunity adding according to condition diplom programm
-      */
+        /*
+        function record QSO to base
+        chek opportunity adding according to condition diplom programm
+        */
 
         $errors = [];
         $tokenuser = $keysps;
@@ -109,26 +111,26 @@ class DBwork
                 $chekMode = DB::select('select * from QSO where `call`=? AND `operator`=?  AND `tokenprogramm`=?',
                     [$record['call'], $record['operator'], $tokenprogramm]);
                 if ($chekMode != NULL) {
-                  $searchStatus = 0;
+                    $searchStatus = 0;
                     //dd($chekMode[0]->band);
-                  foreach($chekMode as $qso){
-                    if($qso->band == $record['band'] OR $qso->mode == $record['mode']){
-                      $searchStatus = 1; //if QSO search in base than flag searchStatus = 1
+                    foreach ($chekMode as $qso) {
+                        if ($qso->band == $record['band'] OR $qso->mode == $record['mode']) {
+                            $searchStatus = 1; //if QSO search in base than flag searchStatus = 1
+                        }
+
                     }
-
-                  }
-                  if($searchStatus == 0){
-                    /*
-                    if QSO not found in base, and flag searchStatus=0 then record QSO
-                    */
-                      DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
+                    if ($searchStatus == 0) {
+                        /*
+                        if QSO not found in base, and flag searchStatus=0 then record QSO
+                        */
+                        DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
                                                      `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
-                              [$status, $record['call'], $record['operator'], $record['qso_date'],
-                                  $record['time_on'], $record['band'], $record['freq'],
-                                  $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
+                            [$status, $record['call'], $record['operator'], $record['qso_date'],
+                                $record['time_on'], $record['band'], $record['freq'],
+                                $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
 
 
-                  }
+                    }
 
 
                 }
@@ -158,50 +160,45 @@ class DBwork
                     [$record['call'], $record['operator'], $tokenprogramm]);
 
                 if ($chekMode != NULL) {
-                   // dd($chekMode);
-                   $searchStatus = 0;
-                    foreach($chekMode as $qso){
+                    // dd($chekMode);
+                    $searchStatus = 0;
+                    foreach ($chekMode as $qso) {
                         //dd($qso->band);
-                            if(($qso->band == $record['band']) || ($qso->mode == $record['mode']) || ($qso->qso_date == $record['qso_date'])){
-                              $searchStatus = 1;
-                            }
+                        if (($qso->band == $record['band']) || ($qso->mode == $record['mode']) || ($qso->qso_date == $record['qso_date'])) {
+                            $searchStatus = 1;
                         }
-                    if ($searchStatus == 0){
-                          DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
+                    }
+                    if ($searchStatus == 0) {
+                        DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
                                                `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
-                              [$status, $record['call'], $record['operator'], $record['qso_date'],
-                                  $record['time_on'], $record['band'], $record['freq'],
-                                  $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
+                            [$status, $record['call'], $record['operator'], $record['qso_date'],
+                                $record['time_on'], $record['band'], $record['freq'],
+                                $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
                     }
 
-                  }
+                } elseif ($chekMode == NULL) {
 
-
-
-                 elseif ($chekMode==NULL){
-
-                                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
+                    DB::insert('insert into QSO (`status`,`call`,`operator`,`qso_date`,`time_on`,`band`,`freq`,`rst_sent`,`mode`,`tokenprogramm`,
                                                          `tokentuser`,`programname`) values (?,?,?,?,?,?,?,?,?,?,?,?)',
-                                        [$status, $record['call'], $record['operator'], $record['qso_date'],
-                                            $record['time_on'], $record['band'], $record['freq'],
-                                            $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
+                        [$status, $record['call'], $record['operator'], $record['qso_date'],
+                            $record['time_on'], $record['band'], $record['freq'],
+                            $record['rst_sent'], $record['mode'], $tokenprogramm, $tokenuser, 'N']);
 
-                                }
-                            }
-                        }
+                }
+            }
+        }
 
         return $errors;
     }
 
     public function getProgrammFrontEnd($paginate, $sortBy, $reverse) //$paginate - how page in paginate,
-                                                                    //$SortBy - column name for sortBy
-                                                                    //  $reverse - REV|FWD - rev - reverse sort; fwd - forward sort
+        //$SortBy - column name for sortBy
+        //  $reverse - REV|FWD - rev - reverse sort; fwd - forward sort
 
     {
-        if ($reverse=="REV") {
+        if ($reverse == "REV") {
             $programms = DB::table('PROGRAMM')->orderBy($sortBy, 'desc')->where('status', '=', 'open')->paginate($paginate);
-        }
-        elseif($reverse=="FWD") {
+        } elseif ($reverse == "FWD") {
             $programms = DB::table('PROGRAMM')->orderBy($sortBy)->where('status', '=', 'open')->paginate($paginate);
         }
         //dd($programms);
@@ -210,36 +207,36 @@ class DBwork
 
     public function getProgrammInfo($tokenprogramm)
     {
-        $programmInfo=DB::select('select * from PROGRAMM where  `token`=?', [$tokenprogramm]);
+        $programmInfo = DB::select('select * from PROGRAMM where  `token`=?', [$tokenprogramm]);
         return $programmInfo;
     }
 
     public function searchCall($call, $tokenprogramm)
     {
-        $calls=DB::select('select * from QSO where `call`=? AND `tokenprogramm`=?',[$call,$tokenprogramm]);
+        $calls = DB::select('select * from QSO where `call`=? AND `tokenprogramm`=?', [$call, $tokenprogramm]);
         return $calls;
     }
 
     public function getSpsForProgram($tokenprogramm)
     {
-        $spsInfo=DB::select('select `call`,`score`,`mode` from SPS where  `tokenparrentprogram`=?', [$tokenprogramm]);
+        $spsInfo = DB::select('select `call`,`score`,`mode` from SPS where  `tokenparrentprogram`=?', [$tokenprogramm]);
         return $spsInfo;
     }
 
     public function getNumberDiplom($tokenprogramm, $call)
     {
-        $chekNumUser=DB::select('SELECT DISTINCT `num` from QSO where `call`=?  and `tokenprogramm`=?',[$call,$tokenprogramm] );
-       // dump($chekNumUser);
-        if($chekNumUser[0]->num>0) {
+        $chekNumUser = DB::select('SELECT DISTINCT `num` from QSO where `call`=?  and `tokenprogramm`=?', [$call, $tokenprogramm]);
+        // dump($chekNumUser);
+        if ($chekNumUser[0]->num > 0) {
             //dd($chekNumUser[0]->num);
             $num = $chekNumUser[0]->num;
         } else {
-            $nums=DB::select('select `num` from PROGRAMM where `token`=?',[$tokenprogramm]);
+            $nums = DB::select('select `num` from PROGRAMM where `token`=?', [$tokenprogramm]);
 
-            $num=$nums[0]->num+1;
-            DB::update('update PROGRAMM set `num`=? where `token`=?',[$num,$tokenprogramm]);
-          }
-        DB::update('update QSO set `num`=? where `call`=? and `tokenprogramm`=?', [$num,$call,$tokenprogramm]);
+            $num = $nums[0]->num + 1;
+            DB::update('update PROGRAMM set `num`=? where `token`=?', [$num, $tokenprogramm]);
+        }
+        DB::update('update QSO set `num`=? where `call`=? and `tokenprogramm`=?', [$num, $call, $tokenprogramm]);
         //dd($num);
         return $num;
     }
@@ -247,7 +244,7 @@ class DBwork
     public function authSPS($spscall, $spspass)
     {
 
-        $result=DB::select('SELECT DISTINCT `tokenparrentprogram`,`tokenparentuser` FROM SPS WHERE `call` = ? AND `password` = ?',
+        $result = DB::select('SELECT DISTINCT `tokenparrentprogram`,`tokenparentuser` FROM SPS WHERE `call` = ? AND `password` = ?',
             [$spscall, $spspass]);
 
         return $result;
@@ -255,23 +252,20 @@ class DBwork
 
     public function UserSearch($searchString, $tableName, $colSearch, $keyCol, $StrongReq)
     {
-        $SearchString= trim($searchString);
+        $SearchString = trim($searchString);
         //dd($searchString);
-        if($StrongReq=="NoStrong")
-        {
-            $request="%".$SearchString."%";
-            $SearchQeuest = "SELECT ". $keyCol." FROM ".$tableName." WHERE `".$colSearch."` LIKE '".$request."'";
-            $SearchArray=DB::select($SearchQeuest);
+        if ($StrongReq == "NoStrong") {
+            $request = "%" . $SearchString . "%";
+            $SearchQeuest = "SELECT " . $keyCol . " FROM " . $tableName . " WHERE `" . $colSearch . "` LIKE '" . $request . "'";
+            $SearchArray = DB::select($SearchQeuest);
         }
-        if($StrongReq=="Strong")
-        {
-            $request=$SearchString;
-           $SearchQeuest = "SELECT ".$keyCol." FROM ".$tableName." WHERE `".$colSearch."`= '".$request."'";
+        if ($StrongReq == "Strong") {
+            $request = $SearchString;
+            $SearchQeuest = "SELECT " . $keyCol . " FROM " . $tableName . " WHERE `" . $colSearch . "`= '" . $request . "'";
 
-            $SearchArray=DB::select($SearchQeuest);
+            $SearchArray = DB::select($SearchQeuest);
         }
-        if($StrongReq!="NoStrong" and $StrongReq!="Strong")
-        {
+        if ($StrongReq != "NoStrong" and $StrongReq != "Strong") {
             echo "Error! value 'StrongReq'. Use only Strong|NoStrong";
         }
 
@@ -279,44 +273,48 @@ class DBwork
         return $SearchArray;
         //dd($SearchArray);
 
-     // SELECT name FROM PROGRAMM WHERE name=?
+        // SELECT name FROM PROGRAMM WHERE name=?
 
 
     }
+
     public function getArchiveProgramm($paginate, $sortBy, $reverse)
 
     {
-        if ($reverse=="REV") {
+        if ($reverse == "REV") {
             $arrayData = DB::table('PROGRAMM')->orderBy($sortBy, 'desc')->where('status', '=', 'close')->paginate($paginate);
-        } elseif($reverse=="FWD") {
-            $arrayData = DB::table('PROGRAMM')->orderBy($sortBy,'asc')->where('status', '=', 'close')->paginate($paginate);
+        } elseif ($reverse == "FWD") {
+            $arrayData = DB::table('PROGRAMM')->orderBy($sortBy, 'asc')->where('status', '=', 'close')->paginate($paginate);
         }
         //dd( $arrayData);
         return $arrayData;
     }
+
     public function getComplitedCall($token)
     {
-        $complitedCallsArray=DB::table('QSO')->distinct()->select('call','num')->where( function ($query) use ($token) {
+        $complitedCallsArray = DB::table('QSO')->distinct()->select('call', 'num')->where(function ($query) use ($token) {
             $query->where('status', '=', 'completed')
-                  ->where('tokenprogramm', '=', $token);
+                ->where('tokenprogramm', '=', $token);
         })->simplePaginate(100);
-       // dd($complitedCallsArray);
+        // dd($complitedCallsArray);
         /*DB::select('SELECT DISTINCT `call`,`num` FROM QSO WHERE `status` = "completed" AND `tokenprogramm` = ?',
             [$token])->paginate(10);*/
         return $complitedCallsArray;
 
     }
-    public function getProgrammForAnounce($data,$status)
+
+    public function getProgrammForAnounce($data, $status)
     {
-        $query='SELECT * FROM PROGRAMM WHERE `status`="'.$status.'" AND DATE (`start_for_page`) BETWEEN DATE ("'.$data.'")AND DATE_ADD(DATE("'.$data.'"), INTERVAL 7 DAY) ';
-        $resultArray=DB::select($query);
+        $query = 'SELECT * FROM PROGRAMM WHERE `status`="' . $status . '" AND DATE (`start_for_page`) BETWEEN DATE ("' . $data . '")AND DATE_ADD(DATE("' . $data . '"), INTERVAL 7 DAY) ';
+        $resultArray = DB::select($query);
         //dd($resultArray);
         return $resultArray;
     }
-    public function getcordinatexyforprogramm ($token)
+
+    public function getcordinatexyforprogramm($token)
     {
-        $cordinateArray=DB::table('PROGRAMM')->select('cordinatex','cordinatey','XName','YName','XNum','YNum','image')
-                                    ->where('token','=', $token)->get();
+        $cordinateArray = DB::table('PROGRAMM')->select('cordinatex', 'cordinatey', 'XName', 'YName', 'XNum', 'YNum', 'image')
+            ->where('token', '=', $token)->get();
         return $cordinateArray;
     }
 }

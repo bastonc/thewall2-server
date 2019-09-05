@@ -12,28 +12,30 @@ use PhpParser\Node\Expr\Include_;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Cookie;
 use stdClass;
-class uploadadifController extends BaseController {
 
-   /* public function __construct()
-    {
-        $this->middleware('auth');
-    }*/
+class uploadadifController extends BaseController
+{
+
+    /* public function __construct()
+     {
+         $this->middleware('auth');
+     }*/
 
 
-    public function getForm ()
+    public function getForm()
     {
         $token = new ProgramsDiplom;
-        $tokenArray=$token->GetAllPrograms();
-        foreach($tokenArray as $tokenkey)
-        {
-            $token=$tokenkey->token;
+        $tokenArray = $token->GetAllPrograms();
+        foreach ($tokenArray as $tokenkey) {
+            $token = $tokenkey->token;
         }
-        return View('thewall2/formadif', ["token"=>$token]);
+        return View('thewall2/formadif', ["token" => $token]);
     }
-    public function upload (Request $request)
+
+    public function upload(Request $request)
     {
-      /*upload ADI file from cabinet diplom manager*/
-        if($request->file()!=NULL) {
+        /*upload ADI file from cabinet diplom manager*/
+        if ($request->file() != NULL) {
             $file = new recievAdif;
             $recordFile = new DBwork();
             $user = md5(auth()->user()->email); // get token user
@@ -49,13 +51,13 @@ class uploadadifController extends BaseController {
                     //dd($user);
                     if (count($resulterrors) == 0) {
                         //dd($arrayRecord);
-                        $url="/log?t=".$tokenprogramm;
+                        $url = "/log?t=" . $tokenprogramm;
                         return redirect($url);
 
-                           /* view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord]);*/
+                        /* view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord]);*/
                     } else
-                                    return redirect($url);
-                       /* view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord, "errors" => $resulterrors]);*/
+                        return redirect($url);
+                    /* view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord, "errors" => $resulterrors]);*/
                 } else echo "<br>QSO not found<br>";
 
                 unlink(public_path($pathFile));
@@ -70,20 +72,22 @@ class uploadadifController extends BaseController {
         return 0;
 
     }
-    public  function test()
+
+    public function test()
 
     {
-        $index=1;
-        if ($index==1) {
-        return view('thewall2/test');
+        $index = 1;
+        if ($index == 1) {
+            return view('thewall2/test');
         } else return view('index');
     }
+
     public function uploadsps(Request $request)
     {
-        $keysps=$this->chekLoginSps();
+        $keysps = $this->chekLoginSps();
 
-        if($keysps!=NULL) {
-            if($request->file()!=NULL) {
+        if ($keysps != NULL) {
+            if ($request->file() != NULL) {
                 //dd($keysps);
                 $file = new recievAdif;
                 $recordFile = new DBwork();
@@ -108,7 +112,7 @@ class uploadadifController extends BaseController {
                             return view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord, "errors" => NULL]);
                         } else {
 
-                           return view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord, "errors" => $result]);
+                            return view('thewall2/uploadResult', ['arrayRecord' => $arrayRecord, "errors" => $result]);
 
                         }
 
@@ -117,12 +121,12 @@ class uploadadifController extends BaseController {
                 } else echo "<br>Incorrect file path<br>";
 
 
-            }else {
+            } else {
 
-                       $message = "<b>Помилка!</b><br>Спершу оберіть файл ADIF-звіту<br>";
-                       $data[] = ["message" => $message];
-                       return view('thewall2/alert', ["status" => "warn", "data" => $data]);
-                  }
+                $message = "<b>Помилка!</b><br>Спершу оберіть файл ADIF-звіту<br>";
+                $data[] = ["message" => $message];
+                return view('thewall2/alert', ["status" => "warn", "data" => $data]);
+            }
 
 
         } else {
@@ -131,19 +135,20 @@ class uploadadifController extends BaseController {
                         Будь ласка пройдіть аутентификацію ще раз, для цього <a href='/addadif'>натисніть тут</a>";
             $data[] = ["message" => $message];
             return view('thewall2/alert', ["status" => "warn", "data" => $data]);
-            }
+        }
 
     }
+
     public function chekLoginSps()
     {
         $spscall = Cookie::get('spscall');
         $spspass = Cookie::get('spskey');
         $spsparrent = Cookie::get('spsparrent');
         //dd($spsparrent);
-        $authSps= new DBwork;
+        $authSps = new DBwork;
         $getspsInfo = $authSps->authSPS($spscall, $spspass);
         //dd($getspsInfo);
-        if($getspsInfo!=NULL) {
+        if ($getspsInfo != NULL) {
 
             return $spspass;
         }

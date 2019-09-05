@@ -1,5 +1,7 @@
 <?php
+
 namespace Ukrainediploms\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Mail;
@@ -9,74 +11,70 @@ class frontend
     public function getProgramm(Request $request)
     {
 
-        if (isset($request->sortby)AND $request->sortby=="FWD") {
+        if (isset($request->sortby) AND $request->sortby == "FWD") {
             $sortBy = "FWD";
-                }
-                else $sortBy="REV";
+        } else $sortBy = "REV";
 
         $programms = new DBwork;
         $ProgrammArray = $programms->getProgrammFrontEnd(3, "id", $sortBy);
         foreach ($ProgrammArray as $token) {
-                $spsForProgram = $programms->getSpsForProgram($token->token);
+            $spsForProgram = $programms->getSpsForProgram($token->token);
 
-                $token->sps = $spsForProgram;
-                }
+            $token->sps = $spsForProgram;
+        }
 
-       // dd($ProgrammArray);
+        // dd($ProgrammArray);
         //$getProgramm=array_reverse($ProgrammArray);
-        return view('thewall2/indexProgramm',["Programms"=>$ProgrammArray]);
+        return view('thewall2/indexProgramm', ["Programms" => $ProgrammArray]);
 
     }
-    public function programmInside (Request $request)
+
+    public function programmInside(Request $request)
     {
-        $token=$request->p;
+        $token = $request->p;
         $programmInside = new DBwork;
-        $programmInfo=$programmInside->getProgrammInfo($token);
-        $spsMember=$programmInside->getSpsForProgram($token);
-        $complitedCall=$programmInside->getComplitedCall($token);
+        $programmInfo = $programmInside->getProgrammInfo($token);
+        $spsMember = $programmInside->getSpsForProgram($token);
+        $complitedCall = $programmInside->getComplitedCall($token);
 
         //echo "I have token: ",$token, "<br>", $programmInfo[0]->name;
-        if($programmInfo!=NULL)
-        {
-        $programmName=$programmInfo[0]->name;
-        return view('thewall2/programmInfo',["programmInfo"=>$programmInfo, "programmName"=>$programmName, "spsMember"=>$spsMember, "complitedCallArray"=>$complitedCall]);
-        }
-        else
+        if ($programmInfo != NULL) {
+            $programmName = $programmInfo[0]->name;
+            return view('thewall2/programmInfo', ["programmInfo" => $programmInfo, "programmName" => $programmName, "spsMember" => $spsMember, "complitedCallArray" => $complitedCall]);
+        } else
             echo "Error! I don't know this programm (Programm inside)";
         //
 
     }
+
     public function searchCall(Request $request)
     {
 
-        $call=$request->searchcall;
-        $tokenprogramm=$request->Token;
-        $totalscore=0;
+        $call = $request->searchcall;
+        $tokenprogramm = $request->Token;
+        $totalscore = 0;
         $result = $this->resultForCall($call, $tokenprogramm); //get 0 if completed program or 1 if not completed this program for call
 
 
+        /*
+            //echo $call,"<br>";
+            //echo $tokenprogramm,"<br>";
 
 
-    /*
-        //echo $call,"<br>";
-        //echo $tokenprogramm,"<br>";
-
-
-*/
+    */
         $scoreDefinition = new ProgramsDiplom;
         $searchinProgramm = new DBwork;
-        $searchCallInProgramm = $searchinProgramm->searchCall($call,$tokenprogramm); //all QSO for call of this programm
-        $programmInfos=$scoreDefinition->getProgrammInfo($tokenprogramm); // get all info for programm (tokenprogramm)
+        $searchCallInProgramm = $searchinProgramm->searchCall($call, $tokenprogramm); //all QSO for call of this programm
+        $programmInfos = $scoreDefinition->getProgrammInfo($tokenprogramm); // get all info for programm (tokenprogramm)
 
-        foreach ($programmInfos as $programmInfo)
-        {
-            $finalScoreProgramm=$programmInfo->scoreFinal;
-            $programmName=$programmInfo->name;
+        foreach ($programmInfos as $programmInfo) {
+            $finalScoreProgramm = $programmInfo->scoreFinal;
+            $programmName = $programmInfo->name;
             $spsForProgram = $searchinProgramm->getSpsForProgram($programmInfo->token);
             $programmInfo->sps = $spsForProgram; // set array sps call for this program
-            $method_recieve=$programmInfo->method_recieve; // get method reciev diplom ( only Email or get image )
-            $recieveArray[]=$method_recieve;
-            if($method_recieve==1) {
+            $method_recieve = $programmInfo->method_recieve; // get method reciev diplom ( only Email or get image )
+            $recieveArray[] = $method_recieve;
+            if ($method_recieve == 1) {
                 $recieveArray[] = $programmInfo->cordinatex;
                 $recieveArray[] = $programmInfo->cordinatey;
                 $recieveArray[] = $programmInfo->XName;
@@ -87,25 +85,24 @@ class frontend
             }
         }
         //dd($recieveArray);
-        foreach($searchCallInProgramm as $info  ){
-            $score = $scoreDefinition->scoreDefinition($info->operator,$info->mode,$tokenprogramm);
-            $info->score=$score;
-            $totalscore=$totalscore+$info->score;
+        foreach ($searchCallInProgramm as $info) {
+            $score = $scoreDefinition->scoreDefinition($info->operator, $info->mode, $tokenprogramm);
+            $info->score = $score;
+            $totalscore = $totalscore + $info->score;
             // echo $info->call, " -> ", $info->operator," => ",$info->score,"<br>";
 
         }
 
-        if($result==0)
-        {
+        if ($result == 0) {
 
 
-           // echo "Congratulation!<br> Diplom \"", $programmName,"\" completed!<br> Final score: ", $finalScoreProgramm, "<br>";
+            // echo "Congratulation!<br> Diplom \"", $programmName,"\" completed!<br> Final score: ", $finalScoreProgramm, "<br>";
 
 
-            return view("thewall2/resultcallcompleted",["searchCallInProgramm"=>$searchCallInProgramm,
-                "programmName"=>$programmName,"totalScore"=>$totalscore,
-                "finalScoreProgramm"=>$finalScoreProgramm, "call"=>$call, "tokenProgramm"=>$tokenprogramm,
-                "programmInfo"=>$programmInfos, "methodArray"=>$recieveArray]);
+            return view("thewall2/resultcallcompleted", ["searchCallInProgramm" => $searchCallInProgramm,
+                "programmName" => $programmName, "totalScore" => $totalscore,
+                "finalScoreProgramm" => $finalScoreProgramm, "call" => $call, "tokenProgramm" => $tokenprogramm,
+                "programmInfo" => $programmInfos, "methodArray" => $recieveArray]);
             /* Тут возрвщаем Вьюху выполенного диплома
              *  во вьюху с формой ввода E-mail (выполенный диплом) передаем:
              * 1. массив $searchCallInProgramm в котором информация по каждому QSO с очками
@@ -115,13 +112,11 @@ class frontend
              * 5. массив для передачиданных для нанесения надписей на шаблон диплома
              */
 
-        }
+        } else {
+            // echo " Diplom \"", $programmName,"\" in action!<br> Final score: ", $finalScoreProgramm, "<br>";
 
-        else {
-           // echo " Diplom \"", $programmName,"\" in action!<br> Final score: ", $finalScoreProgramm, "<br>";
-
-            return view("thewall2/resultcall",["searchCallInProgramm"=>$searchCallInProgramm, "programmName"=>$programmName,
-                                "totalScore"=>$totalscore, "finalScoreProgramm"=>$finalScoreProgramm, "call"=>$call, "tokenProgramm"=>$tokenprogramm, "programmInfo"=>$programmInfos]);
+            return view("thewall2/resultcall", ["searchCallInProgramm" => $searchCallInProgramm, "programmName" => $programmName,
+                "totalScore" => $totalscore, "finalScoreProgramm" => $finalScoreProgramm, "call" => $call, "tokenProgramm" => $tokenprogramm, "programmInfo" => $programmInfos]);
             /* Тут возрвщаем Вьюху невыполенного диплома
             *  во вьюху передаем:
             * 1. массив $searchCallInProgramm в котором информация по каждому QSO с очками
@@ -136,13 +131,12 @@ class frontend
         //dd ($searchCallInProgramm);
 
 
-
-
     }
+
     public function sendemail(Request $request)
     {
 
-        if($request->key == 0) {
+        if ($request->key == 0) {
             if ($request->email == NULL || $request->token == NULL || $request->call == NULL) {
                 echo "ERROR! I don't have E-mail or token";
             } elseif ($request->email != NULL && $request->token != NULL && $request->call != NULL) {
@@ -190,12 +184,10 @@ class frontend
                 }
             }
         }
-        if($request->key == 1){
+        if ($request->key == 1) {
             if ($request->name == NULL || $request->token == NULL || $request->call == NULL || $request->XCall == NULL || $request->YCall == NULL || $request->color == NULL) {
                 echo "ERROR! I don't have full information";
-            }
-            elseif ($request->name != NULL && $request->token != NULL && $request->call != NULL && $request->XCall != NULL && $request->YCall != NULL && $request->color != NULL)
-            {
+            } elseif ($request->name != NULL && $request->token != NULL && $request->call != NULL && $request->XCall != NULL && $request->YCall != NULL && $request->color != NULL) {
                 $call = $request->call;
 
                 $chekFlagForCall = $this->resultForCall($call, $request->token);
@@ -214,20 +206,20 @@ class frontend
                     $this->sendMail($to, $subject, $from, $call, $text, $nameProgramm, $request->key);
                     $setCall = new ProgramsDiplom;
                     $setCall->setComplitedForCall($request->token, $call);
-                    $imagePath=$emails[0]->image;
-                    $XCall=$request->XCall;
-                    $YCall=$request->YCall;
-                    $XName=$request->XName;
-                    $YName=$request->YName;
-                    $XNum=$request->XNum;
-                    $YNum=$request->YNum;
+                    $imagePath = $emails[0]->image;
+                    $XCall = $request->XCall;
+                    $YCall = $request->YCall;
+                    $XName = $request->XName;
+                    $YName = $request->YName;
+                    $XNum = $request->XNum;
+                    $YNum = $request->YNum;
                     //dd($YNum);
                     $numberDiplom = new DBwork;
                     // Get Serial Number of diploma for call (first search - increase 1 for S/N in Programm )
-                    $num=$numberDiplom->getNumberDiplom($request->token, $call);
+                    $num = $numberDiplom->getNumberDiplom($request->token, $call);
                     // send all data to function output on image
                     //dd($call);
-                    $getimage = $this->getImage($imagePath, $call, $request->name, $XCall, $YCall, $XName, $YName, $XNum, $YNum, $request->color,$nameProgramm, $num);
+                    $getimage = $this->getImage($imagePath, $call, $request->name, $XCall, $YCall, $XName, $YName, $XNum, $YNum, $request->color, $nameProgramm, $num);
 
                 } else {
                     $message = "Помилка! " . $call . " не виконав умови дипломної програми";
@@ -235,24 +227,22 @@ class frontend
                     return view('thewall2/alert', ["status" => "warn", "data" => $data]);
                 }
             }
-            }
+        } //echo "hello!<br> This is fronend controller and sendmail method<br> I have<br> email: ", $request->email,"<br> Token: ", $request->token,"<br>";}
 
-
-            //echo "hello!<br> This is fronend controller and sendmail method<br> I have<br> email: ", $request->email,"<br> Token: ", $request->token,"<br>";}
-
-            else
-        {echo "Unknown error";}
+        else {
+            echo "Unknown error";
+        }
     }
-    public function getImage ($imagePath, $call, $name, $XCall, $YCall, $XName, $YName, $XNum, $YNum, $color, $nameProgramm, $num)
+
+    public function getImage($imagePath, $call, $name, $XCall, $YCall, $XName, $YName, $XNum, $YNum, $color, $nameProgramm, $num)
     {
-        $imagePathCorrect="";
-        for($i=0; $i<strlen($imagePath); $i++)
-        {
-            if($i>0){
-                if($imagePath[$i]=="\\"){
-                    $imagePath[$i]="/";
+        $imagePathCorrect = "";
+        for ($i = 0; $i < strlen($imagePath); $i++) {
+            if ($i > 0) {
+                if ($imagePath[$i] == "\\") {
+                    $imagePath[$i] = "/";
                 }
-                $imagePathCorrect=$imagePathCorrect.$imagePath[$i];
+                $imagePathCorrect = $imagePathCorrect . $imagePath[$i];
             }
 
 
@@ -260,70 +250,67 @@ class frontend
         //dump($imagePath);
         //dd($imagePathCorrect);
         //dd($imagePathCorrect);
-        $call=strtoupper($call);
-        $image= imagecreatefromjpeg($imagePathCorrect);
-        if($color=="black")
+        $call = strtoupper($call);
+        $image = imagecreatefromjpeg($imagePathCorrect);
+        if ($color == "black")
             $textcolor = imagecolorallocate($image, 20, 20, 20);
-        if ($color=="white")
+        if ($color == "white")
             $textcolor = imagecolorallocate($image, 255, 255, 255);
         putenv('GDFONTPATH=' . realpath('.'));
         $font = 'a_Futurica_ExtraBold';
-        $imageOption=getimagesize($imagePathCorrect);
-        if($imageOption[0]<600)
-        {
-            $sizeCall=20;
-            $sizeName=10;
-            $sizeNum=9;
-            $y_dop=20;
-            $y_dop_num=4;
-            $y_dop_name=20;
-            $y_dop_call=0;
-            $x_dop=0;
+        $imageOption = getimagesize($imagePathCorrect);
+        if ($imageOption[0] < 600) {
+            $sizeCall = 20;
+            $sizeName = 10;
+            $sizeNum = 9;
+            $y_dop = 20;
+            $y_dop_num = 4;
+            $y_dop_name = 20;
+            $y_dop_call = 0;
+            $x_dop = 0;
             //dd($y_dop_name);
         }
-        if(($imageOption[0]>=600 && $imageOption[0]<1400))
-        {
-            $sizeCall=27;
-            $sizeName=16;
-            $sizeNum=13;
-            $y_dop_call=15;
-            $x_dop=0;
-            $y_dop_name=12;
-            $y_dop_num=4;
+        if (($imageOption[0] >= 600 && $imageOption[0] < 1400)) {
+            $sizeCall = 27;
+            $sizeName = 16;
+            $sizeNum = 13;
+            $y_dop_call = 15;
+            $x_dop = 0;
+            $y_dop_name = 12;
+            $y_dop_num = 4;
             //dd($y_dop_name);
         }
-        if($imageOption[0]>=1400)
-        {
-            $sizeCall=40;
-            $sizeName=23;
-            $sizeNum=13;
-            $y_dop=40;
-            $y_dop_call=32;
-            $x_dop=0;
-            $y_dop_name=-5;
-            $y_dop_num=4;
+        if ($imageOption[0] >= 1400) {
+            $sizeCall = 40;
+            $sizeName = 23;
+            $sizeNum = 13;
+            $y_dop = 40;
+            $y_dop_call = 32;
+            $x_dop = 0;
+            $y_dop_name = -5;
+            $y_dop_num = 4;
         }
 
-        $x_call=$XCall;
-        $y_call=$YCall+$y_dop_call;
-        $x_name=$XName;
-        $y_name=$YName-$y_dop_name;
-        $x_num=$XNum;
-        $y_num=$YNum-$y_dop_num;
+        $x_call = $XCall;
+        $y_call = $YCall + $y_dop_call;
+        $x_name = $XName;
+        $y_name = $YName - $y_dop_name;
+        $x_num = $XNum;
+        $y_num = $YNum - $y_dop_num;
 
         //$countNum=count($num);
-        if($num < 10)
-            $numstring='00'.$num;
-        if($num >= 10 AND $num < 100)
-            $numstring='0'.$num;
-        if($num >= 100)
-            $numstring=$num;
+        if ($num < 10)
+            $numstring = '00' . $num;
+        if ($num >= 10 AND $num < 100)
+            $numstring = '0' . $num;
+        if ($num >= 100)
+            $numstring = $num;
         //$string=$call." ".$name;
-       // dd($x_call,$x_num);
+        // dd($x_call,$x_num);
         imagefttext($image, $sizeCall, 0, $x_call, $y_call, $textcolor, $font, $call);
         imagefttext($image, $sizeName, 0, $x_name, $y_name, $textcolor, $font, $name);
         imagefttext($image, $sizeNum, 0, $x_num, $y_num, $textcolor, $font, $numstring);
-        $filename=$call."-".$nameProgramm.".jpg";
+        $filename = $call . "-" . $nameProgramm . ".jpg";
         //imagestring ( $image , 4, 1250 , 750 , "Test" , $textcolor );
 
         //header('Content-Type: image/jpeg');
@@ -333,171 +320,161 @@ class frontend
         imagejpeg($image);
 
         return redirect(url('/'));
-       /* $headers = [
-            'Content-Type' => 'application/jpg',
-        ];
-        return
+        /* $headers = [
+             'Content-Type' => 'application/jpg',
+         ];
+         return
 
-        //imagejpeg($image);
-        //echo "Сохраніть картинку як Ваш диплом, та поверніться на головну";*/
+         //imagejpeg($image);
+         //echo "Сохраніть картинку як Ваш диплом, та поверніться на головну";*/
     }
-    public function sendMail ($to, $subject, $from, $call, $text, $nameProgramm, $method)
+
+    public function sendMail($to, $subject, $from, $call, $text, $nameProgramm, $method)
     {
-        if($method==1) {
-            $pathToEmailTemplate="thewall2.mail.image";
-        }
-        elseif($method==0) {
-            $pathToEmailTemplate="thewall2.mail.email";
-        }else {
+        if ($method == 1) {
+            $pathToEmailTemplate = "thewall2.mail.image";
+        } elseif ($method == 0) {
+            $pathToEmailTemplate = "thewall2.mail.email";
+        } else {
             $message = "Помилка! Не намагайтесь обдурити систему. Вона умна";
-            $data[] = [ "message" => $message];
+            $data[] = ["message" => $message];
             return view('thewall2/alert', ["status" => "warn", "data" => $data]);
         }
 
-        $stat=Mail::send($pathToEmailTemplate,['data'=> $text, 'call'=>$call, 'nameProgramm'=>$nameProgramm], function ($message) use ($to,$subject,$from) {
+        $stat = Mail::send($pathToEmailTemplate, ['data' => $text, 'call' => $call, 'nameProgramm' => $nameProgramm], function ($message) use ($to, $subject, $from) {
 
-            $message->from($from,$subject);
+            $message->from($from, $subject);
             $message->to($to);
 
 
         });
-       // dd($stat);
+        // dd($stat);
         return $stat;
 
     }
-    public function resultForCall( $call, $tokenprogramm)
+
+    public function resultForCall($call, $tokenprogramm)
     {
 
 
-        $totalscore=0;
+        $totalscore = 0;
 
 
         $searchinProgramm = new DBwork;
         $scoreDefinition = new ProgramsDiplom;
 
-        $searchCallInProgramm = $searchinProgramm->searchCall($call,$tokenprogramm); //get all QSOs for this call
+        $searchCallInProgramm = $searchinProgramm->searchCall($call, $tokenprogramm); //get all QSOs for this call
 
-        foreach($searchCallInProgramm as $info  ){
-            $score = $scoreDefinition->scoreDefinition($info->operator,$info->mode,$tokenprogramm); // get QSO score for call in programm
-            $info->score=$score; //set into stdobject score for QSO
-            $totalscore=$totalscore+$info->score; // summary score for all QSOs
+        foreach ($searchCallInProgramm as $info) {
+            $score = $scoreDefinition->scoreDefinition($info->operator, $info->mode, $tokenprogramm); // get QSO score for call in programm
+            $info->score = $score; //set into stdobject score for QSO
+            $totalscore = $totalscore + $info->score; // summary score for all QSOs
 
 
         }
-        $programmInfos=$scoreDefinition->getProgrammInfo($tokenprogramm); // get information about programm
-        foreach ($programmInfos as $programmInfo)
+        $programmInfos = $scoreDefinition->getProgrammInfo($tokenprogramm); // get information about programm
+        foreach ($programmInfos as $programmInfo) {
+            $finalScoreProgramm = $programmInfo->scoreFinal; // get score for complited for this programm
+
+        }
+
+        if ($totalscore >= $finalScoreProgramm) // check complete or not this program for call
         {
-            $finalScoreProgramm=$programmInfo->scoreFinal; // get score for complited for this programm
-
-        }
-
-        if($totalscore >= $finalScoreProgramm) // check complete or not this program for call
-        {
-            $win=0;
-        }
-        else {
+            $win = 0;
+        } else {
 
 
-            $win=1;
+            $win = 1;
 
 
         }
         return $win; // return 0 if call completed programm, and 1 if not completed
 
 
-
-
-
-
     }
+
     public function search(Request $request)
     {
-        if($request->textsearch!=NULL)
-        {   $searchClass = new DBwork;
-            $searchArray = $searchClass->UserSearch($request->textsearch, "PROGRAMM","name", "*", "NoStrong");
+        if ($request->textsearch != NULL) {
+            $searchClass = new DBwork;
+            $searchArray = $searchClass->UserSearch($request->textsearch, "PROGRAMM", "name", "*", "NoStrong");
             //dd($searchArray);
-            return view("thewall2/searchresult",["searchArray"=>$searchArray, "searchString"=>$request->textsearch]);
+            return view("thewall2/searchresult", ["searchArray" => $searchArray, "searchString" => $request->textsearch]);
 
 
-        } else
-        {
+        } else {
             $message = "<b>Пошук пустий!<br /> Поверніться та спробуйте ще</b>";
             $data[] = ["message" => $message];
             return view('thewall2/alert', ["status" => "warn", "data" => $data]);
         }
     }
+
     public function getReport(Request $request)
     {
 
         $scoreDefinition = new ProgramsDiplom;
         $searchinProgramm = new DBwork;
-        $totalscore=0;
-        $call=$request->call;
-        $tokenprogramm=$request->t;
-        $searchCallInProgramm = $searchinProgramm->searchCall($call,$tokenprogramm);
-        foreach($searchCallInProgramm as $info  ){
-            $score = $scoreDefinition->scoreDefinition($info->operator,$info->mode,$tokenprogramm);
-            $info->score=$score;
-            $totalscore=$totalscore+$info->score;
+        $totalscore = 0;
+        $call = $request->call;
+        $tokenprogramm = $request->t;
+        $searchCallInProgramm = $searchinProgramm->searchCall($call, $tokenprogramm);
+        foreach ($searchCallInProgramm as $info) {
+            $score = $scoreDefinition->scoreDefinition($info->operator, $info->mode, $tokenprogramm);
+            $info->score = $score;
+            $totalscore = $totalscore + $info->score;
             // echo $info->call, " -> ", $info->operator," => ",$info->score,"<br>";
 
         }
         //  dd($searchCallInProgramm);
-        $programminfo=$searchinProgramm->getProgrammInfo($tokenprogramm);
-        return view("thewall2.reportqso", ["callArray"=>$searchCallInProgramm,"programmArray"=>$programminfo]);
+        $programminfo = $searchinProgramm->getProgrammInfo($tokenprogramm);
+        return view("thewall2.reportqso", ["callArray" => $searchCallInProgramm, "programmArray" => $programminfo]);
 
     }
+
     public function anounce(Request $request)
     {
         $programmsForAnouncedb = new DBwork;
-        $today=date('Y-m-d');
+        $today = date('Y-m-d');
         //dd($today);
-        $programmArray=$programmsForAnouncedb->getProgrammForAnounce($today, 'open');
-        $tomorrow=date('Y-m-d', strtotime($today. ' + 1 days')); //устанавливаем дату "завтра"
-        $dayAfterTomorow=date('Y-m-d', strtotime($today. ' + 2 days')); //устанавливаем дату послезавтра
+        $programmArray = $programmsForAnouncedb->getProgrammForAnounce($today, 'open');
+        $tomorrow = date('Y-m-d', strtotime($today . ' + 1 days')); //устанавливаем дату "завтра"
+        $dayAfterTomorow = date('Y-m-d', strtotime($today . ' + 2 days')); //устанавливаем дату послезавтра
         //dump($tomorrow);
         //dd($programmArray);
-        $tomorowArray= Array();
-        $dayAftertomorowArray= Array();
-        $remainingWeekArray= Array();
-        foreach ($programmArray as $programm)
-        {
-            $date=date_create($programm->start_for_page)->Format('Y-m-d');
+        $tomorowArray = Array();
+        $dayAftertomorowArray = Array();
+        $remainingWeekArray = Array();
+        foreach ($programmArray as $programm) {
+            $date = date_create($programm->start_for_page)->Format('Y-m-d');
             //dump($date);
 
-            if($date==$tomorrow)
-            {
-                $programm->start_for_page=date_create($programm->start_for_page)->Format('Y-m-d');
-                $tomorowArray[]=$programm;
+            if ($date == $tomorrow) {
+                $programm->start_for_page = date_create($programm->start_for_page)->Format('Y-m-d');
+                $tomorowArray[] = $programm;
                 //dump($tomorowArray);
-            }
-            elseif($date==$dayAfterTomorow)
-            {
-                $programm->start_for_page=date_create($programm->start_for_page)->Format('Y-m-d');
-                $dayAftertomorowArray[]=$programm;
+            } elseif ($date == $dayAfterTomorow) {
+                $programm->start_for_page = date_create($programm->start_for_page)->Format('Y-m-d');
+                $dayAftertomorowArray[] = $programm;
                 //dump($dayAftertomorowArray);
-            }
-            else{
-                $programm->start_for_page=date_create($programm->start_for_page)->Format('Y-m-d');
-                $remainingWeekArray[]=$programm;
+            } else {
+                $programm->start_for_page = date_create($programm->start_for_page)->Format('Y-m-d');
+                $remainingWeekArray[] = $programm;
 
-               // dump($remainingWeekArray);
-                }
+                // dump($remainingWeekArray);
+            }
         }
 
-          /*  usort($remainingWeekArray, function( $a, $b ) {
-                return strtotime($a["date"]) - strtotime($b["date"]);
-            });
-           */
-            $anounceCommonArray= array('tomorow'=>$tomorowArray,
-                                 'dayAftertomorow' => $dayAftertomorowArray,
-                                 'remainingWeek'=>$remainingWeekArray,);
+        /*  usort($remainingWeekArray, function( $a, $b ) {
+              return strtotime($a["date"]) - strtotime($b["date"]);
+          });
+         */
+        $anounceCommonArray = array('tomorow' => $tomorowArray,
+            'dayAftertomorow' => $dayAftertomorowArray,
+            'remainingWeek' => $remainingWeekArray,);
         //dump($anounceCommonArray['remainingWeek'][1]->start_for_page);
 
         dd($anounceCommonArray);
     }
-
-
 
 
 }

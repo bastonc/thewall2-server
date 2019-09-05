@@ -1,6 +1,7 @@
 <?php
 
 namespace Ukrainediploms\Http\Controllers;
+
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\Array_;
 
@@ -10,46 +11,43 @@ class recievAdif
     {
         foreach ($request->file() as $file) {
 
-          //  echo $ext;
-            if(strtolower($file->getClientOriginalExtension())=="adi")
-            {
-            $file->move(storage_path('adif'), $file->getClientOriginalName());
-            $filename= storage_path('adif/').$file->getClientOriginalName();
-            } else
-                {
-                    $filename="STOP";
-                    echo'Вы пытаетесь загрузить не ADIF файл';
-                }
+            //  echo $ext;
+            if (strtolower($file->getClientOriginalExtension()) == "adi") {
+                $file->move(storage_path('adif'), $file->getClientOriginalName());
+                $filename = storage_path('adif/') . $file->getClientOriginalName();
+            } else {
+                $filename = "STOP";
+                echo 'Вы пытаетесь загрузить не ADIF файл';
+            }
         }
-       // dd ($filename);
+        // dd ($filename);
 
         return $filename;
 
     }
+
     public function parseAdif($filename)
     {
-    //echo $filename;
+        //echo $filename;
         $p = new ADIF_Parser;
         $p->load_from_file($filename);
         $p->initialize();
-        $i=0;
-        $line = array('rst_sent', 'call', 'qso_date', 'time_on', 'time_on', 'band', 'operator', 'freq','mode');
-        while($record = $p->get_record())
-        {
-            if(count($record) == 0)
-            {
+        $i = 0;
+        $line = array('rst_sent', 'call', 'qso_date', 'time_on', 'time_on', 'band', 'operator', 'freq', 'mode');
+        while ($record = $p->get_record()) {
+            if (count($record) == 0) {
                 break;
             };
 
-            for ($i=0; $i<count($line); $i++)
-            {
-                if(array_key_exists($line[$i],$record)==false || $record[$line[$i]]=="" || $record[$line[$i]]==" " )
-                {$record[$line[$i]]="Undef";}
+            for ($i = 0; $i < count($line); $i++) {
+                if (array_key_exists($line[$i], $record) == false || $record[$line[$i]] == "" || $record[$line[$i]] == " ") {
+                    $record[$line[$i]] = "Undef";
+                }
             }
 
-            $arrayRecord[]=$record;
+            $arrayRecord[] = $record;
 
-             //echo $i." ".$record['call']." | Date:".$record['qso_date']." | Time: ". $record['time_on']." | Freq: ".$record['band']." | сработал с ". $record['operator']." | RST ". $record['rst_sent']."<br>";
+            //echo $i." ".$record['call']." | Date:".$record['qso_date']." | Time: ". $record['time_on']." | Freq: ".$record['band']." | сработал с ". $record['operator']." | RST ". $record['rst_sent']."<br>";
 
         }
         return $arrayRecord;
@@ -66,7 +64,7 @@ class recievAdif
         }
        */
 
-        $flag='ОК';
+        $flag = 'ОК';
         return $flag;
     }
 

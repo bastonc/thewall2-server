@@ -15,37 +15,11 @@
     return view('index');
 });**/
 
-/*****Роуты к питомнику*****/
-Route::get('pitomnik', function (){ return view('pitomnik.index');});
-Route::post('addanimal', 'pitomnikController@addAnimal');
-//Route::get('addanimal', 'pitomnikController@addAnimal');
-Route::post('getall','pitomnikController@getAll');
-Route::get('getall','pitomnikController@getAll');
-Route::post('animalincell','pitomnikController@animalInCell');
-Route::post('givemoney','pitomnikController@giveMoney');
-//Route::get('givemoney','pitomnikController@giveMoney');
-Route::get('delanimal','pitomnikController@delAnimal');
-Route::post('delanimal','pitomnikController@delAnimal');
-Route::post('destroyer','pitomnikController@destroyer');
-Route::get('destroyer','pitomnikController@destroyer');
-
-
-
-
-
-/*****Роуты к питомнику конец*****/
-
-
 
 Route::post('/search', 'frontend@search');
 Route::get('/search', 'frontend@search');
 Route::post('/getcoordinate','UserWallController@getcordinatexy');
-
-
-//Route::get('test', function (){ return view("thewall2/testlay");});
 Route::get('test', 'UserWallController@test');
-
-
 Route::get('/', 'frontend@getProgramm');
 Route::get('programm', 'frontend@programmInside');
 Route::post('/searchcall','frontend@searchCall');
@@ -56,33 +30,21 @@ Route::get('archive', 'ProgramsDiplom@getArchiveProgramm');
 Route::post('/spslogin', 'ProgramsDiplom@loginsps');
 Route::post('/adiff', 'ProgramsDiplom@loadadiff');
 Route::post('/uploadsps', 'uploadadifController@uploadsps');
-
-
 Route::post('/sendcompete', 'frontend@sendemail');
 Route::get('upload', 'uploadadifController@getForm');
-//Route::get('get','uploadadifController@upload');
-//Route::post('get','uploadadifController@upload');
-//Route::get('test', 'uploadadifController@test');
-
-
-//Route::controller('getForm','uploadadifController');
 Auth::routes();
-
 Route::get('/cabinet', 'UserWallController@getListProgram')->name('cabinet');;
 Route::get('/home', 'HomeController@index');
 Route::get('edit','UserWallController@editProgram');
 Route::post('edit','UserWallController@saveProgram');
 Route::get('log','UserWallController@logProgram');
-
-
 Route::get('open','UserWallController@openProgram');
+Route::post('open','UserWallController@openProgram');
 Route::get('newprogramm', function (){ return view("thewall2/newProgramForm");})->name('createProgramForm');
 Route::post('newprogramm', 'UserWallController@createProgram' );
 Route::get('anounce','frontend@anounce');
-
 Route::get('close', 'UserWallController@closeProgram');
-
-
+Route::post('close', 'UserWallController@closeProgram');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         Route::get('/', ['uses' => 'admin\AdminController@show'])->name('admin_index');
         Route::get('del','UserWallController@delProgram');
@@ -93,8 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         route::get('reportoper','frontend@getReport');
         Route::get('editcordinate','UserWallController@setCordinateEdit');
 
-        //Route::get('edit','UserWallController@editProgram');
-//log close /del
+
 
     }
 );

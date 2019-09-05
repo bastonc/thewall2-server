@@ -11,6 +11,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+
 namespace Ukrainediploms\Http\Controllers;
 class ADIF_Parser
 {
@@ -21,13 +22,13 @@ class ADIF_Parser
     public function initialize() //this function locates the <EOH>
     {
         $pos = stripos($this->data, "<eoh>");
-        if($pos == false) //did we find the end of headers?
+        if ($pos == false) //did we find the end of headers?
         {
             echo "Error: Adif_Parser Already Initialized or No <EOH> in ADIF File";
             return 0;
         };
-        $this->i = $pos+5; //iterate past the <eoh>
-        if($this->i >= strlen($this->data)) //is this the end of the file?
+        $this->i = $pos + 5; //iterate past the <eoh>
+        if ($this->i >= strlen($this->data)) //is this the end of the file?
         {
             echo "Error: ADIF File Does Not Contain Any QSOs";
             return 0;
@@ -50,18 +51,17 @@ class ADIF_Parser
     {
 
         $return = array();
-        for($a = 0; $a < strlen($record); $a++)
-        {   //echo $a."<br>";
-            if($record[$a] == '<') //find the start of the tag
+        for ($a = 0; $a < strlen($record); $a++) {   //echo $a."<br>";
+            if ($record[$a] == '<') //find the start of the tag
             {
                 $tag_name = "";
                 $value = "";
                 $len_str = "";
                 $len = 0;
                 $a++; //go past the <
-                while($record[$a] != ':') //get the tag
+                while ($record[$a] != ':') //get the tag
                 {
-                    $tag_name = $tag_name.$record[$a]; //append this char to the tag name
+                    $tag_name = $tag_name . $record[$a]; //append this char to the tag name
                     //		echo "record A: ".$record[$a]."<br>";
                     $a++;
 
@@ -69,17 +69,14 @@ class ADIF_Parser
                 };
                 //	 echo "TAG's: ".$tag_name."<br> A= ".$a."<br>";
                 $a++; //iterate past the colon
-                while($record[$a] != '>' /*&& $record[$a] != ':'*/)
-                {
-                    $len_str = $len_str.$record[$a];
+                while ($record[$a] != '>' /*&& $record[$a] != ':'*/) {
+                    $len_str = $len_str . $record[$a];
                     $a++;
                     //		echo "a после проверки закрывания тега: ".$a."<br>";
                 };
                 //	echo "len-str: ".$len_str."<br>";
-                if($record[$a] == ':')
-                {
-                    while($record[$a] != '>')
-                    {
+                if ($record[$a] == ':') {
+                    while ($record[$a] != '>') {
                         $a++;
                     };
                 };
@@ -87,9 +84,8 @@ class ADIF_Parser
                 $len = (int)$len_str;
                 //	echo "len-str: ".$len."<br>";
 
-                while($len > 0)
-                {
-                    $value = $value.$record[$a];
+                while ($len > 0) {
+                    $value = $value . $record[$a];
                     $len--;
                     $a++;
                 };
@@ -109,18 +105,18 @@ class ADIF_Parser
     //finds the next record in the file
     public function get_record()
     {
-        if($this->i >= strlen($this->data))
-        {
+        if ($this->i >= strlen($this->data)) {
             return array(); //return nothing
         };
         $end = stripos($this->data, "<eor>", $this->i);
-        if($end == false) //is this the end?
+        if ($end == false) //is this the end?
         {
             return array(); //return nothing
         };
-        $record = substr($this->data, $this->i, $end-$this->i);
-        $this->i = $end+5;
+        $record = substr($this->data, $this->i, $end - $this->i);
+        $this->i = $end + 5;
         return $this->record_to_array("$record"); //process and return output
     }
 }
+
 ?>
